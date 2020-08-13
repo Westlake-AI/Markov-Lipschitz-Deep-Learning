@@ -120,7 +120,7 @@ The results are available in `./pic/Generation.png`
 If you use this code, please cite the following:
 
 ```bibtex
-@article{li2020markov,
+@article{MarLip-v1-2020,
   title={Markov-Lipschitz Deep Learning},
   author={Li, Stan Z and Zhang, Zelin and Wu, Lirong},
   journal={arXiv preprint arXiv:2006.08256},
