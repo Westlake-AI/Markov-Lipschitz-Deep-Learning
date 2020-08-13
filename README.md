@@ -12,12 +12,12 @@ Stan Z. Li, Zelin Zang, Lirong Wu,
 arXiv preprint, arXiv:2006.08256, 2020.
 ](https://arxiv.org/abs/2006.08256)
 
-This code includes as follows:
-* ML-Enc and ML-AE
-* Generalization testing
+The code includes the following modules:
+* ML-Enc and ML-AE training
+* ML-Enc and ML-AE performance test
 * Manifold Generation
 * Visualization
-* Metrics evaluation
+* Evaluation metrics 
 
 ## Requirements
 
