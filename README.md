@@ -122,7 +122,7 @@ If you use this code, please cite the following:
 ```bibtex
 @article{MarLip-v1-2020,
   title={Markov-Lipschitz Deep Learning},
-  author={Li, Stan Z and Zhang, Zelin and Wu, Lirong},
+  author={Stan Z Li and Zelin Zhang and Lirong Wu},
   journal={arXiv preprint arXiv:2006.08256},
   year={2020}
 }
