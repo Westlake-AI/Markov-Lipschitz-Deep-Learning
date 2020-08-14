@@ -111,7 +111,7 @@ The results are available in `./pic/Generation.png`
 <img src='./figs/generalization.PNG'  width="800">
 
 
-6. Evolution of training process
+6. Visualization of ML-AE training evolution
 <center>
   <img src='./figs/latent.gif'  width="400" align="middle">
 </center>
