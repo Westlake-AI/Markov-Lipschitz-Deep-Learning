@@ -7,16 +7,14 @@
 This is the PyTorch code for the following papers:
 
 [
-Stan Z. Li, Zelin Zang, Lirong Wu, 
-"Markov-Lipschitz Deep Learning", 
-arXiv preprint, arXiv:2006.08256, 2020.
+Stan Z. Li, Zelin Zang, Lirong Wu, "Markov-Lipschitz Deep Learning", arXiv preprint, arXiv:2006.08256, 2020.
 ](https://arxiv.org/abs/2006.08256)
 
 The code includes the following modules:
 * Datasets (Swiss rool, S-Curve, MNIST, Spheres)
-* ML-Enc and ML-AE training
-* ML-Enc and ML-AE performance test
-* Manifold Generation
+* Training code for ML-Enc and ML-AE (ML-Enc + ML-Dec)
+* Test code for manifold learning (ML-Enc) 
+* Test code for manifold generation (ML-Dec) 
 * Visualization
 * Evaluation metrics 
 
@@ -68,10 +66,13 @@ The results are available in `./pic/Generation.png`
 
 ## Results
 
-1. Visualization of embedding results for the Swiss Roll (seed 0)
+1. Visualization of embedding results
 
+-- Swiss Roll and S-Curve (seed 0)
 <img src='./figs/swiss roll.png'>
 
+-- MNIST and Spheres (seed 0)
+<img src='./figs/mnist+spheres.png'>
 
 
 2. Comparison of embedding quality for Swiss Roll (800 points)
