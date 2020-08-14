@@ -10,7 +10,7 @@ This is the PyTorch code for the following paper:
 Stan Z. Li, Zelin Zang, Lirong Wu, "Markov-Lipschitz Deep Learning", arXiv preprint, arXiv:2006.08256, 2020.
 ](https://arxiv.org/abs/2006.08256)
 
-Main features of MLDL in comparison with some others are summarized below:
+Main features of MLDL for manifold learning and generation in comparison with some others are summarized below:
 <img src='./figs/MLDL_Features.png' width="800">
 
 The code includes the following modules:
@@ -102,7 +102,7 @@ The results are available in `./pic/Generation.png`
 
 4. The process of manifold data reconstruction and generation using ML-AE
 
-<img src='./figs/generation.PNG'  width="700">
+<img src='./figs/generation.PNG'  width="600">
 
 
 
@@ -114,7 +114,7 @@ The results are available in `./pic/Generation.png`
 
 6. The GIF for the training process, and as you can see, the the manifold unfolds smoothly
 
-<img src='./figs/latent.gif'  width="500">
+<img src='./figs/latent.gif'  width="400">
 
 ## Citation
 
@@ -123,7 +123,7 @@ If you use this code, please cite the following:
 ```bibtex
 @article{MarLip-v1-2020,
   title={Markov-Lipschitz Deep Learning},
-  author={Stan Z Li and Zelin Zang and Lirong Wu},
+  author={Stan Z Li and Zelin Zhang and Lirong Wu},
   journal={arXiv preprint arXiv:2006.08256},
   year={2020}
 }
