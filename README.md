@@ -20,7 +20,7 @@ The code includes the following modules:
 * Test for manifold generation (ML-Dec) 
 * Visualization
 * Evaluation metrics 
-* Compared methods: AE, <a href="https://github.com/BorgwardtLab/topological-autoencoders">Topological AE</a>, MLLE, ISOMAP, t-SNE
+* Compared methods: AE, <a href="https://github.com/BorgwardtLab/topological-autoencoders">Topological AE</a>, [MLLE](https://github.com/scikit-learn/scikit-learn), [ISOMAP](https://github.com/scikit-learn/scikit-learn), [t-SNE](https://github.com/scikit-learn/scikit-learn)
 
 ## Requirements
 
