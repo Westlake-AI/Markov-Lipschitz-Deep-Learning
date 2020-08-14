@@ -12,7 +12,7 @@ from model import MLDL_MLP
 from loss import MLDL_Loss
 from utils import GetIndicator, GIFPloter, Interpolation
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "4"
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 parser = argparse.ArgumentParser(description="author: CAIRI")
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -156,7 +156,8 @@ def PlotLatenSpace(model, batch_size, datas, labels, path, name, indicator=False
         latent_index = 2 * len(param['NetworkStructure']) - 3
         indicator = GetIndicator(
                         datas.reshape(datas.shape[0], -1), 
-                        torch.tensor(latent_point[latent_index], device=device)
+                        torch.tensor(latent_point[latent_index], device=device),
+                        dataset = param['DATASET']
                     )
 
         # Saving intermediate results
@@ -205,7 +206,7 @@ def SetParam():
     parser.add_argument("-N", "--FileName", default=None, type=str)   # File names where data and figs are stored
     parser.add_argument("-PP", "--ParamPath", default='None', type=str)   # Path for an existing parameter
     parser.add_argument("-M", "--Mode", default='ML-AE', type=str)
-    parser.add_argument("-D", "--DATASET", default='SwissRoll', type=str, choices=['SwissRoll', 'SCurve', '7MNIST', '10MNIST'])
+    parser.add_argument("-D", "--DATASET", default='SwissRoll', type=str, choices=['SwissRoll', 'SCurve', '7MNIST', '10MNIST', 'Spheres5500'])
     parser.add_argument("-LR", "--LEARNINGRATE", default=1e-3, type=float)
     parser.add_argument("-B", "--BATCHSIZE", default=800, type=int)
     parser.add_argument("-RB", "--RegularB", default=3, type=float)   # Boundary parameters for push-away Loss
@@ -225,6 +226,8 @@ def SetParam():
         args.ParamPath = './param/7mnist.json'
     if args.DATASET == '10MNIST':
         args.ParamPath = './param/10mnist.json'
+    if args.DATASET == 'Spheres5500':
+        args.ParamPath = './param/spheres5500.json'
     if args.ParamPath is not 'None':
         jsontxt = open(args.ParamPath, 'r').read()
         param = json.loads(jsontxt)
@@ -289,7 +292,8 @@ if __name__ == '__main__':
 
     # Plotting the final results and evaluating the metrics
     PlotLatenSpace(Model, param['BATCHSIZE'], train_data, train_label, path, name='Train', indicator=True, mode=param['Mode'])
-    gif_ploter.SaveGIF(path=path)
+    if param['DATASET'] != '10MNIST':
+        gif_ploter.SaveGIF(path=path)
 
     # Testing the generalizability of the model to out-of-samples
     if param['Mode'] == 'Test':

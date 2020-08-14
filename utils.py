@@ -185,7 +185,7 @@ class GIFPloter():
         plt.close() 
 
 
-def GetIndicator(data, latent, lat=None):
+def GetIndicator(data, latent, lat=None, dataset=None):
 
     """
     function used to evaluate metrics
@@ -220,21 +220,32 @@ def GetIndicator(data, latent, lat=None):
     Trust = []
 
     LGD = []
-    for k in range(4, 10, 1):
-        LGD.append(calc.local_rmse(k=k))
-    
-    for k in range(10, 30, 10):
-        mrreZX.append(calc.mrre(k)[0])
-        mrreXZ.append(calc.mrre(k)[1])
-        Cont.append(calc.continuity(k))
-        Trust.append(calc.trustworthiness(k))
+    if 'Spheres5500' in dataset:
+        for k in range(10, 20, 1):
+            LGD.append(calc.local_rmse(k=k))
+        
+        for k in range(10, 20, 1):
+            mrreZX.append(calc.mrre(k)[0])
+            mrreXZ.append(calc.mrre(k)[1])
+            Cont.append(calc.continuity(k))
+            Trust.append(calc.trustworthiness(k))
+    else:
+        for k in range(4, 10, 1):
+            LGD.append(calc.local_rmse(k=k))
+        
+        for k in range(10, 30, 10):
+            mrreZX.append(calc.mrre(k)[0])
+            mrreXZ.append(calc.mrre(k)[1])
+            Cont.append(calc.continuity(k))
+            Trust.append(calc.trustworthiness(k))        
 
-    Lipschitz_min, Lipschitz_max = calc.Lipschitz(data, latent)
+    Lipschitz_min, Lipschitz_max = calc.Lipschitz(data, latent, dataset)
 
     indicator = {}
     indicator['L_KL'] = L_KL
     indicator['RRE'] = (np.mean(mrreZX) + np.mean(mrreXZ)) / 2.0
     indicator['Trust'] = np.mean(Trust)
+    indicator['Cont'] = np.mean(Cont)
     indicator['LGD'] = np.mean(LGD)
     indicator['K_min'] = Lipschitz_min
     indicator['K_max'] = Lipschitz_max
@@ -517,10 +528,15 @@ class MeasureCalculator():
 
 
     # Get Metric K-min and K-max
-    def Lipschitz(self, x1, x2, K=5):
+    def Lipschitz(self, x1, x2, dataset='None', K=5):
         neighbors = self.Neighbor(x1, k=K)
         dis_list_old = self.CalPairwiseDis(x1, neighbors)
         dis_list = self.CalPairwiseDis(x2, neighbors)
+
+        if 'Spheres5500' in dataset:
+            dis_list_old = (dis_list_old-dis_list_old.min()) / (dis_list_old.max()-dis_list_old.min()) + 0.001
+            dis_list = (dis_list-dis_list.min()) / (dis_list.max()-dis_list.min()) + 0.001
+
         dis = dis_list / dis_list_old
 
         dis_list = []
