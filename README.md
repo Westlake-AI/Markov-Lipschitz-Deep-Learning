@@ -4,7 +4,7 @@
 
 ## Summary
 
-This is the PyTorch code for the following papers:
+This is the PyTorch code for the following paper:
 
 [
 Stan Z. Li, Zelin Zang, Lirong Wu, "Markov-Lipschitz Deep Learning", arXiv preprint, arXiv:2006.08256, 2020.
