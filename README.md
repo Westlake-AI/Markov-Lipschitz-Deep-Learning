@@ -114,7 +114,7 @@ The results are available in `./pic/Generation.png`
 
 6. The GIF for the training process, and as you can see, the the manifold unfolds smoothly
 
-<img src='./figs/latent.gif'  width="400">
+<img src='./figs/latent.gif'  width="400" class="center">
 
 ## Citation
 
@@ -123,7 +123,7 @@ If you use this code, please cite the following:
 ```bibtex
 @article{MarLip-v1-2020,
   title={Markov-Lipschitz Deep Learning},
-  author={Stan Z Li and Zelin Zhang and Lirong Wu},
+  author={Stan Z Li and Zelin Zang and Lirong Wu},
   journal={arXiv preprint arXiv:2006.08256},
   year={2020}
 }
