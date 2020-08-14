@@ -143,12 +143,13 @@ def PlotLatenSpace(model, batch_size, datas, labels, path, name, indicator=False
             label_point = np.concatenate((label_point, label.cpu().detach().numpy()), axis=0)
 
     # Plotting a new fig for the current epoch
-    gif_ploter.AddNewFig(
-        latent_point, 
-        label_point,
-        title = path + '/' + name,
-        loss = train_loss_sum
-    )
+    if param['DATASET'] != '10MNIST':
+        gif_ploter.AddNewFig(
+            latent_point, 
+            label_point,
+            title = path + '/' + name,
+            loss = train_loss_sum
+        )
 
     # Used for metrics evaluation and executed at the completion of the entire training process.
     if indicator:
@@ -204,14 +205,15 @@ def SetParam():
     parser.add_argument("-N", "--FileName", default=None, type=str)   # File names where data and figs are stored
     parser.add_argument("-PP", "--ParamPath", default='None', type=str)   # Path for an existing parameter
     parser.add_argument("-M", "--Mode", default='ML-AE', type=str)
-    parser.add_argument("-D", "--DATASET", default='SwissRoll', type=str, choices=['SwissRoll', 'SCurve'])
+    parser.add_argument("-D", "--DATASET", default='SwissRoll', type=str, choices=['SwissRoll', 'SCurve', '7MNIST', '10MNIST'])
     parser.add_argument("-LR", "--LEARNINGRATE", default=1e-3, type=float)
     parser.add_argument("-B", "--BATCHSIZE", default=800, type=int)
-    parser.add_argument("-RB", "--RegularB", default=3, type=int)   # Boundary parameters for push-away Loss
+    parser.add_argument("-RB", "--RegularB", default=3, type=float)   # Boundary parameters for push-away Loss
     parser.add_argument("-ND", "--N_Dataset", default=800, type=int)   # The data number used for training
     parser.add_argument("-GC", "--GradualChanging", default=[500, 1000], type=int, nargs='+')   # Range for the gradual changing of push-away Loss
     parser.add_argument("-R", "--ratio", default=[0.2, 1.0, 0.0, 1.0], type=float, nargs='+')   # The weight ratio for loss_ae/loss_iso/loss_angle/loss_push-away
     parser.add_argument("-EPS", "--Epcilon", default=0.23, type=float)   # The boundary parameters used to determine the neighborhood
+    parser.add_argument("-MK", "--MAEK", default=15, type=int)
     parser.add_argument("-E", "--EPOCHS", default=10000, type=int)
     parser.add_argument("-P", "--PlotForloop", default=1000, type=int)   # Save data and plot every 1000 epochs
     parser.add_argument("-SD", "--SEED", default=0, type=int)   # Seeds used to ensure reproducible results
@@ -219,6 +221,10 @@ def SetParam():
     parser.add_argument("-Noise", "--Noise", default=0.0, type=float)   # Noise added to the generated data
     args = parser.parse_args()
 
+    if args.DATASET == '7MNIST':
+        args.ParamPath = './param/7mnist.json'
+    if args.DATASET == '10MNIST':
+        args.ParamPath = './param/10mnist.json'
     if args.ParamPath is not 'None':
         jsontxt = open(args.ParamPath, 'r').read()
         param = json.loads(jsontxt)
@@ -250,17 +256,18 @@ if __name__ == '__main__':
 
     param, path = SetParam()
     SetSeed(param['SEED'])
-    Model, loss = SetModel(param)
 
     # Load training data
     train_data, train_label = dataset.LoadData(
         data_name=param['DATASET'],
         data_num=param['N_Dataset'],
         seed=param['SEED'],
-        noise=param['Noise']   
+        noise=param['Noise'],
+        test=False   
     )
 
     # Init the model
+    Model, loss = SetModel(param)
     optimizer = torch.optim.Adam(Model.parameters(), lr=param['LEARNINGRATE'])
     param_enc = [str(i*2) for i in range(len(param['NetworkStructure']) - 1)]
     param_dec = [str(int(param_enc[-1]) + 1 + i*2) for i in range(len(param['NetworkStructure']) - 1)]
@@ -281,7 +288,7 @@ if __name__ == '__main__':
             PlotLatenSpace(Model, param['BATCHSIZE'], train_data, train_label, path, name, indicator=False)
 
     # Plotting the final results and evaluating the metrics
-    PlotLatenSpace(Model, param['BATCHSIZE'], train_data, train_label, path, name, indicator=True, mode=param['Mode'])
+    PlotLatenSpace(Model, param['BATCHSIZE'], train_data, train_label, path, name='Train', indicator=True, mode=param['Mode'])
     gif_ploter.SaveGIF(path=path)
 
     # Testing the generalizability of the model to out-of-samples
@@ -291,7 +298,8 @@ if __name__ == '__main__':
             data_num=8000,
             seed=param['SEED'],
             noise=param['Noise'],  
-            remove='fivecircle'
+            remove='fivecircle',
+            test=True
         )   
 
-        PlotLatenSpace(Model, param['BATCHSIZE'], test_data, test_label, path=path, name=name+'test_', indicator=False, mode=param['Mode'])
+        PlotLatenSpace(Model, param['BATCHSIZE'], test_data, test_label, path=path, name='Test', indicator=False, mode=param['Mode'])
