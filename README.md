@@ -6,9 +6,11 @@
 
 This is the PyTorch code for the following paper:
 
-[
-Stan Z. Li, Zelin Zang, Lirong Wu, "Markov-Lipschitz Deep Learning", arXiv preprint, arXiv:2006.08256, 2020.
-](https://arxiv.org/abs/2006.08256)
+[Stan Z. Li, Zelin Zang, Lirong Wu, "Markov-Lipschitz Deep Learning", arXiv preprint, arXiv:2006.08256, 2020.]
+(https://arxiv.org/abs/2006.08256)
+
+Main features of MLDL in comparison with some others are summarized below:
+<img src='./figs/MLDL_Features.png'>
 
 The code includes the following modules:
 * Datasets (Swiss rool, S-Curve, MNIST, Spheres)
