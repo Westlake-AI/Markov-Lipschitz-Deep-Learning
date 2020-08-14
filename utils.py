@@ -52,13 +52,17 @@ class GIFPloter():
         if data_em.shape[1] == 3:
             ax = fig.add_subplot(fig_position0, fig_position1, fig_position2, projection='3d')
             ax.scatter(data_em[:, 0], data_em[:, 1], data_em[:, 2], c=color_list, s=s, cmap='rainbow')
+            ax.set_zticks([])
 
         if data_em.shape[1] == 2:
             ax = fig.add_subplot(fig_position0, fig_position1, fig_position2)
             ax.scatter(data_em[:, 0], data_em[:, 1], c=label, s=s, cmap='rainbow')
             plt.axis('equal')
 
-        plt.title(title)
+        plt.xticks([])
+        plt.yticks([])
+
+        plt.title(title, fontsize=20)
 
         self.current_subfig_index = self.current_subfig_index + 1
 
@@ -105,7 +109,7 @@ class GIFPloter():
 
         ax.legend((l1, l2, l3, l4, l5), ('ae', 'iso', 'angle', 'push_away', 'sum'))
 
-        plt.title('loss history')
+        plt.title('loss history', fontsize=20)
         plt.tight_layout()
         plt.savefig(title+'.png')
         plt.close()  

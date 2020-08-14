@@ -9,7 +9,7 @@ class MLDL_MLP(nn.Module):
         super().__init__()
         self.args = args
         self.NetworkStructure = args['NetworkStructure']
-        self.name_list = ['input']
+        self.name_list = ['Layer 0 ({})'.format(self.NetworkStructure[0])]
         self.index_list = [0]
         self.network = nn.ModuleList()
 
@@ -20,17 +20,13 @@ class MLDL_MLP(nn.Module):
                     self.NetworkStructure[i], self.NetworkStructure[i+1])
             )
 
-            self.name_list.append('EN{}_{}->{}'.format(
-                i+1, self.NetworkStructure[i], self.NetworkStructure[i+1])
-            )
+            self.name_list.append('Layer {} ({})'.format(i+1, self.NetworkStructure[i+1]))
 
             if i != len(self.NetworkStructure)-2:
                 self.network.append(
                     nn.LeakyReLU(0.1)
                 )
-                self.name_list.append('ENRELU{}_{}->{}'.format(
-                    i+1, self.NetworkStructure[i], self.NetworkStructure[i+1])
-                )
+                self.name_list.append('Layer {} ({})'.format(i+1, self.NetworkStructure[i+1]))
 
             self.index_list.append(len(self.name_list)-1)
             
@@ -41,17 +37,13 @@ class MLDL_MLP(nn.Module):
                     self.NetworkStructure[i], self.NetworkStructure[i-1])
             )
 
-            self.name_list.append('DE{}*_{}->{}'.format(
-                i-1, self.NetworkStructure[i], self.NetworkStructure[i-1])
-            )
+            self.name_list.append('Layer {}\' ({})'.format(i-1, self.NetworkStructure[i-1]))
 
             if i > 1:
                 self.network.append(
                     nn.LeakyReLU(0.1)
                 )
-                self.name_list.append('DERELU{}*_{}->{}'.format(
-                    i-1, self.NetworkStructure[i], self.NetworkStructure[i-1])
-                )
+                self.name_list.append('Layer {}\' ({})'.format(i-1, self.NetworkStructure[i-1]))
 
             self.index_list.append(len(self.name_list)-1)
     
