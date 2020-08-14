@@ -111,7 +111,6 @@ The results are available in `./pic/Generation.png`
 <img src='./figs/generalization.PNG'  width="800">
 
 
-
 6. Evolution of training process
 <center>
   <img src='./figs/latent.gif'  width="400" align="middle">
@@ -119,10 +118,9 @@ The results are available in `./pic/Generation.png`
 
 ## Citation
 
-If you use this code, please cite the following:
 
 ```bibtex
-@article{MarLip-v1-2020,
+@article{Li-MarLip-2020,
   title={Markov-Lipschitz Deep Learning},
   author={Stan Z Li and Zelin Zang and Lirong Wu},
   journal={arXiv preprint arXiv:2006.08256},
