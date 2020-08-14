@@ -11,7 +11,7 @@ Stan Z. Li, Zelin Zang, Lirong Wu, "Markov-Lipschitz Deep Learning", arXiv prepr
 ](https://arxiv.org/abs/2006.08256)
 
 Main features of MLDL in comparison with some others are summarized below:
-<img src='./figs/MLDL_Features.png'>
+<img src='./figs/MLDL_Features.png' width="800">
 
 The code includes the following modules:
 * Datasets (Swiss rool, S-Curve, MNIST, Spheres)
@@ -102,19 +102,19 @@ The results are available in `./pic/Generation.png`
 
 4. The process of manifold data reconstruction and generation using ML-AE
 
-<img src='./figs/generation.PNG'>
+<img src='./figs/generation.PNG'  width="800">
 
 
 
 5. Generalization testing
 
-<img src='./figs/generalization.PNG'>
+<img src='./figs/generalization.PNG'  width="800">
 
 
 
 6. The GIF for the training process, and as you can see, the the manifold unfolds smoothly
 
-<img src='./figs/latent.gif'>
+<img src='./figs/latent.gif'  width="500">
 
 ## Citation
 
