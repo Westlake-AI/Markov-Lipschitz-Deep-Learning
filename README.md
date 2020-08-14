@@ -13,6 +13,7 @@ arXiv preprint, arXiv:2006.08256, 2020.
 ](https://arxiv.org/abs/2006.08256)
 
 The code includes the following modules:
+* Datasets (Swiss rool, S-Curve, MNIST, Spheres)
 * ML-Enc and ML-AE training
 * ML-Enc and ML-AE performance test
 * Manifold Generation
