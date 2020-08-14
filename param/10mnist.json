@@ -1,0 +1,34 @@
+{
+  "FileName": null,
+  "ParamPath": "None",
+  "Mode": "ML-AE",
+  "DATASET": "10MNIST",
+  "LEARNINGRATE": 0.001,
+  "BATCHSIZE": 8000,
+  "RegularB": 3,
+  "N_Dataset": 8000,
+  "GradualChanging": [
+    10000,
+    10000
+  ],
+  "ratio": [
+    0.0,
+    1.0,
+    0.0,
+    2
+  ],
+  "Epcilon": 0.23,
+  "MAEK": 15,
+  "EPOCHS": 1000,
+  "PlotForloop": 100,
+  "SEED": 0,
+  "NetworkStructure": [
+    784,
+    1000,
+    500,
+    250,
+    100,
+    25
+  ],
+  "Noise": 0.0
+}
