@@ -113,8 +113,9 @@ The results are available in `./pic/Generation.png`
 
 
 6. The GIF for the training process, and as you can see, the the manifold unfolds smoothly
-
-<img src='./figs/latent.gif'  width="400" align="middle">
+<center>
+  <img src='./figs/latent.gif'  width="400" align="middle">
+</center>
 
 ## Citation
 
