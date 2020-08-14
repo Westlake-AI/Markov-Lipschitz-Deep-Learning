@@ -102,7 +102,7 @@ The results are available in `./pic/Generation.png`
 
 4. The process of manifold data reconstruction and generation using ML-AE
 
-<img src='./figs/generation.PNG'  width="800">
+<img src='./figs/generation.PNG'  width="700">
 
 
 
