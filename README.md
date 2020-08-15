@@ -50,7 +50,7 @@ The code includes the following modules:
   * GIFPloter() -- Auxiliary tool for PlotLatenSpace() 
   * GetIndicator() -- Auxiliary tool for evaluating metric 
   * Interpolation() -- Interpolation of the hidden layer for generating new data on the learned manifold 
-_   
+
 ## Running the code
 
 1. Clone this repository
