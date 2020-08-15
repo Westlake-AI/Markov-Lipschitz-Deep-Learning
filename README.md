@@ -36,7 +36,7 @@ The code includes the following modules:
 
 * main.py  
   * train() -- Train a new model_   
-  * SetParam() -- parameters for training_  
+  * SetParam() -- Parameters for training_  
   * PlotLatenSpace() -- Plot figs and save intermediate data_   
 * dataset.py  
   * LoadData() -- Load data of selected dataset_   
