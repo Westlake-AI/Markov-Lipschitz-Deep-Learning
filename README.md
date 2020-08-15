@@ -35,21 +35,21 @@ The code includes the following modules:
 ## Description
 
 * main.py  
-  * train()		-#_Train a new model_   
-  * SetParam()		-#_Set parameters for training_  
-  * PlotLatenSpace()--------#_Plot figs and save intermediate data_   
+  * train() -- Train a new model_   
+  * SetParam() -- parameters for training_  
+  * PlotLatenSpace() -- Plot figs and save intermediate data_   
 * dataset.py  
-  * LoadData()---------------#_Load data of selected dataset_   
+  * LoadData() -- Load data of selected dataset_   
 * loss.py  
-  * MLDL_Loss()-------------#_Calculate four losses: loss<sub>ae</sub> , loss<sub>iso</sub> , loss<sub>angle</sub> and loss<sub>push-away</sub>_   
+  * MLDL_Loss() -- Calculate four losses: loss<sub>ae</sub> , loss<sub>iso</sub> , loss<sub>angle</sub> and loss<sub>push-away</sub>_   
 * model.py  
-  * MLDL_MLP()-------------#_MLDL model_   
-* autotrain.py------------------#_Get the results for 10 seeds_   
-* eval.py-----------------------#_Calculate metrics for average result of 10 seeds_   
+  * MLDL_MLP() -- MLDL model_   
+* autotrain.py -- Get the results for 10 seeds_   
+* eval.py -- Calculate metrics for average result of 10 seeds_   
 * utils.py  
-  * GIFPloter()--------------#_Auxiliary tool for PlotLatenSpace()_  
-  * GetIndicator()----------#_Auxiliary tool for evaluating metrics_   
-  * Interpolation()---------#_Interpolation of the hidden layer for generating new manifold_   
+  * GIFPloter() -- Auxiliary tool for PlotLatenSpace()_  
+  * GetIndicator() -- Auxiliary tool for evaluating metrics_   
+  * Interpolation() -- Interpolation of the hidden layer for generating new manifold_   
 
 ## Running the code
 
