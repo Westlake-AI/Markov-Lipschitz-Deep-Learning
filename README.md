@@ -46,7 +46,7 @@ The code includes the following modules:
 ----MLDL_MLP()                 #_MLDL model_   
 * autotrain.py                      #_Get the results for 10 seeds_   
 * eval.py                               #_Calculate metrics for average result of 10 seeds_   
-* utils.py
+* utils.py  
 ----GIFPloter()                    #_Auxiliary tool for PlotLatenSpace()_  
 ----GetIndicator()              #_Auxiliary tool for evaluating metrics_   
 ----Interpolation()             #_Interpolation of the hidden layer for generating new manifold_   
