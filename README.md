@@ -36,9 +36,9 @@ The code includes the following modules:
 
 * main.py  
   * SetParam() -- Parameters for training
-  * PlotLatenSpace() -- Plot figs and save intermediate data
   * train() -- Train a new model (encoder and/or decoder)
   * autotrain() -- training 10 models, each with different seed
+  * inlinePlot() -- inline plot intermediate resuts
 * dataset.py  
   * LoadData() -- Load data of selected dataset
 * loss.py  
