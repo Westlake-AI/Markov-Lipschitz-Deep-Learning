@@ -34,22 +34,22 @@ The code includes the following modules:
 
 ## Description
 
-* main.py
-----train()                             #_Train a new model_ 
-----SetParam()                    #_Set parameters for training_
-----PlotLatenSpace()          #_Plot figs and save intermediate data_ 
-* dataset.py
-----LoadData()                    #_Load data of selected dataset_ 
-* loss.py
-----MLDL_Loss()                 #_Calculate four losses: loss<sub>ae</sub> , loss<sub>iso</sub> , loss<sub>angle</sub> and loss<sub>push-away</sub>_ 
-* model.py
-----MLDL_MLP()                 #_MLDL model_ 
-* autotrain.py                      #_Get the results for 10 seeds_ 
-* eval.py                               #_Calculate metrics for average result of 10 seeds_ 
+* main.py  
+----train()                             #_Train a new model_   
+----SetParam()                    #_Set parameters for training_  
+----PlotLatenSpace()          #_Plot figs and save intermediate data_   
+* dataset.py  
+----LoadData()                    #_Load data of selected dataset_   
+* loss.py  
+----MLDL_Loss()                 #_Calculate four losses: loss<sub>ae</sub> , loss<sub>iso</sub> , loss<sub>angle</sub> and loss<sub>push-away</sub>_   
+* model.py  
+----MLDL_MLP()                 #_MLDL model_   
+* autotrain.py                      #_Get the results for 10 seeds_   
+* eval.py                               #_Calculate metrics for average result of 10 seeds_   
 * utils.py
-----GIFPloter()                    #_Auxiliary tool for PlotLatenSpace()_
-----GetIndicator()              #_Auxiliary tool for evaluating metrics_ 
-----Interpolation()             #_Interpolation of the hidden layer for generating new manifold_ 
+----GIFPloter()                    #_Auxiliary tool for PlotLatenSpace()_  
+----GetIndicator()              #_Auxiliary tool for evaluating metrics_   
+----Interpolation()             #_Interpolation of the hidden layer for generating new manifold_   
 
 ## Running the code
 
@@ -92,13 +92,15 @@ The results are available in `./pic/Generation.png`
 1. Visualization of embeddings
 * Swiss Roll and S-Curve
 
-  ​	A symbol √ or X represents a success or failure in unfolding the manifold. From the figure below, we can see that the ML-Enc not only succeeds but also best maintains the true aspect ratio.<img src='./figs/swiss roll.png'>
+  ​	A symbol √ or X represents a success or failure in unfolding the manifold. From the figure below, we can see that the ML-Enc not only succeeds but also best maintains the true aspect ratio.
+  
+  <img src='./figs/swiss roll.png'>
 
 * MNIST(left) and Spheres(right)
 
-    	​	As shown in the figure, ML-Enc performs well on both training and testing data set. In addition, the embedding produced by ML-Enc is either better than others or comparable to them.
+	As shown in the figure, ML-Enc performs well on both training and testing data set. In addition, the embedding produced by ML-Enc is either better than others or comparable to them.
    
-   <img src='./figs/mnist+spheres.png'>
+  <img src='./figs/mnist+spheres.png'>
 
 
 
