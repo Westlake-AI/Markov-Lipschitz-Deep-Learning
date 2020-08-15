@@ -32,6 +32,25 @@ The code includes the following modules:
 * matplotlib == 3.1.1
 * imageio == 2.6.0
 
+## Description
+
+* main.py
+----train()                             #_Train a new model_ 
+----SetParam()                    #_Set parameters for training_
+----PlotLatenSpace()          #_Plot figs and save intermediate data_ 
+* dataset.py
+----LoadData()                    #_Load data of selected dataset_ 
+* loss.py
+----MLDL_Loss()                 #_Calculate four losses: loss<sub>ae</sub> , loss<sub>iso</sub> , loss<sub>angle</sub> and loss<sub>push-away</sub>_ 
+* model.py
+----MLDL_MLP()                 #_MLDL model_ 
+* autotrain.py                      #_Get the results for 10 seeds_ 
+* eval.py                               #_Calculate metrics for average result of 10 seeds_ 
+* utils.py
+----GIFPloter()                    #_Auxiliary tool for PlotLatenSpace()_
+----GetIndicator()              #_Auxiliary tool for evaluating metrics_ 
+----Interpolation()             #_Interpolation of the hidden layer for generating new manifold_ 
+
 ## Running the code
 
 1. Clone this repository
@@ -71,11 +90,21 @@ The results are available in `./pic/Generation.png`
 ## Results
 
 1. Visualization of embeddings
-* Swiss Roll and S-Curve <img src='./figs/swiss roll.png'>
-* MNIST and Spheres <img src='./figs/mnist+spheres.png'>
+* Swiss Roll and S-Curve
+
+  ​	A symbol √ or X represents a success or failure in unfolding the manifold. From the figure below, we can see that the ML-Enc not only succeeds but also best maintains the true aspect ratio.<img src='./figs/swiss roll.png'>
+
+* MNIST(left) and Spheres(right)
+
+    	​	As shown in the figure, ML-Enc performs well on both training and testing data set. In addition, the embedding produced by ML-Enc is either better than others or comparable to them.
+   
+   <img src='./figs/mnist+spheres.png'>
+
 
 
 2. Comparison of embedding quality for Swiss Roll (800 points)
+
+   ​	This table demonstrates that the ML-Enc outperforms all the other 6 methods in all the evaluation metrics, particularly significant in terms of the isometry (LGD, RRE and Trust) and Lipschitz (*K*-Min and *K*-Max) related metrics. 
 
    |        | #Succ | L-KL   | RRE      | Trust  | LGD     | K-Min | K-Max   | MPE    |
    | ------ | ----- | ------ | -------- | ------ | ------- | ----- | ------- | ------ |
@@ -91,6 +120,8 @@ The results are available in `./pic/Generation.png`
 
 3. Performance metrics for the ML-AE with Swiss Roll (800 points) data
 
+   ​	While the other 3 autoencoders fail to unfold the manifold data sets, the ML-AE produces good quality results especially in terms of the isometry and Lipschitz related metrics. 
+
    |        | #Succ | L-KL    | RRE     | Trust  | Trust   | K-min | K-max   | MPE     | MRE     |
    | ------ | ----- | ------- | ------- | ------ | ------- | ----- | ------- | ------- | ------- |
    | ML-AE  | 10    | 0.00165 | 0.00070 | 0.9998 | 0.00514 | 1.01  | 2.54    | 0.04309 | 0.01846 |
@@ -100,8 +131,9 @@ The results are available in `./pic/Generation.png`
 
 
 
-
 4. The process of manifold data reconstruction and generation using ML-AE
+
+   ​	In the learning phase, the ML-AE taking (a) the training data as input, output (b) embedding in the learned latent space, and then reconstruct back (c). In the generation phase, the ML-Dec takes (d) random input samples in the latent space, and maps the samples to the manifold (e).
 
 <img src='./figs/generation.PNG'  width="600">
 
@@ -109,10 +141,15 @@ The results are available in `./pic/Generation.png`
 
 5. Generalization testing
 
+   ​	The unseen manifold data sets are well unfolded by the ML-Enc and the removed shapes are kept very well, illustrating that the learned ML-Enc has a good ability to generalize to unseen data. 
+
 <img src='./figs/generalization.PNG'  width="800">
 
 
+
 6. Visualization of ML-AE training evolution
+
+   ​	The gif below shows the evolution of the process that ML-AE gradually unfolds the manifold in each layer of the encoder, learning the optimal embedding in the latent space and then reconstruct it in the mirrored symmetric layers of the decoder during the training.
 <center>
   <img src='./figs/latent.gif'  width="400" align="middle">
 </center>
