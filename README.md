@@ -41,7 +41,7 @@ The code includes the following modules:
 * dataset.py  
   * LoadData() -- Load data of selected dataset
 * loss.py  
-  * MLDL_Loss() -- Calculate four losses: loss<sub>ae</sub> , loss<sub>LIS</sub> , loss<sub>ang</sub> and loss<sub>push</sub>  
+  * MLDL_Loss() -- Calculate four losses: loss<sub>ae</sub> , loss<sub>lis</sub> , loss<sub>ang</sub> and loss<sub>push</sub>  
 * model.py  
   * MLDL_MLP() -- MLDL model  
 * autotrain.py -- Get the results for 10 seed 
