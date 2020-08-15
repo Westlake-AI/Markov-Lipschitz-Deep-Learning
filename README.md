@@ -42,7 +42,7 @@ The code includes the following modules:
 * dataset.py  
   * LoadData() -- Load data of selected dataset
 * loss.py  
-  * MLDL_Loss() -- Calculate four losses: ℒ<sub>Enc</sub>, _ℒ_<sub>Dec</sub>, _ℒ_<sub>AE</sub>, _ℒ_<sub>lis</sub> , _ℒ_<sub>push</sub>, _ℒ_<sub>ang</sub>  
+  * MLDL_Loss() -- Calculate four losses: ℒ<sub>Enc</sub>, ℒ<sub>Dec</sub>, ℒ<sub>AE</sub>, ℒ<sub>lis</sub> , ℒ<sub>push</sub>, ℒ<sub>ang</sub>  
 * model.py  
   * encoder() -- for latent feature extraction
   * decoder() -- for generating new data on the learned manifold 
