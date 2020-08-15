@@ -8,7 +8,7 @@ import numpy as np
 
 # Some self-defined functions that need to be imported
 import dataset
-from model import MLDL_MLP
+from model import MLDL_model
 from loss import MLDL_Loss
 from utils import GetIndicator, GIFPloter, Interpolation
 
@@ -57,7 +57,7 @@ def train(model, loss, epoch, train_data, train_label, sample_index, batch_size)
 
         for i, loss_item in enumerate(loss_list[1:]):
             loss_item.backward(retain_graph=True)
-            train_loss_sum[i] += loss_item.item()
+            train_loss_sum[i+1] += loss_item.item()
 
         optimizer_enc.step()
 
@@ -213,7 +213,7 @@ def SetParam():
     parser.add_argument("-ND", "--N_Dataset", default=800, type=int)   # The data number used for training
     parser.add_argument("-GC", "--GradualChanging", default=[500, 1000], type=int, nargs='+')   # Range for the gradual changing of push-away Loss
     parser.add_argument("-R", "--ratio", default=[0.2, 1.0, 0.0, 1.0], type=float, nargs='+')   # The weight ratio for loss_ae/loss_iso/loss_angle/loss_push-away
-    parser.add_argument("-EPS", "--Epcilon", default=0.23, type=float)   # The boundary parameters used to determine the neighborhood
+    parser.add_argument("-EPS", "--Epsilon", default=0.23, type=float)   # The boundary parameters used to determine the neighborhood
     parser.add_argument("-MK", "--MAEK", default=15, type=int)
     parser.add_argument("-E", "--EPOCHS", default=10000, type=int)
     parser.add_argument("-P", "--PlotForloop", default=1000, type=int)   # Save data and plot every 1000 epochs
@@ -236,7 +236,10 @@ def SetParam():
         param = args.__dict__
 
     if param['FileName'] == None:
-        path = "./pic/{}_{}_N{}_SD{}".format('MLDL', param['DATASET'], param['N_Dataset'], param['SEED'])
+        if param['DATASET'] == 'SwissRoll' or param['DATASET'] == 'SCurve':
+            path = "./pic/{}_{}_N{}_SD{}".format('MLDL', param['DATASET'], param['N_Dataset'], param['SEED'])
+        else:
+            path = "./pic/{}_{}_N{}".format('MLDL', param['DATASET'], param['N_Dataset'])
     else:
         path = "./pic/{}".format(param['FileName'])
 
@@ -249,7 +252,7 @@ def SetParam():
 
 
 def SetModel(param):
-    Model = MLDL_MLP(param).to(device)
+    Model = MLDL_model(param).to(device)
     loss = MLDL_Loss(args=param, cuda=device)
 
     return Model, loss

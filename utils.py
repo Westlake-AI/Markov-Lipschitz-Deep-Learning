@@ -185,7 +185,7 @@ class GIFPloter():
         plt.close() 
 
 
-def GetIndicator(data, latent, lat=None, dataset=None):
+def GetIndicator(data, latent, lat=None, dataset='None'):
 
     """
     function used to evaluate metrics
@@ -220,24 +220,14 @@ def GetIndicator(data, latent, lat=None, dataset=None):
     Trust = []
 
     LGD = []
-    if 'Spheres5500' in dataset:
-        for k in range(10, 20, 1):
-            LGD.append(calc.local_rmse(k=k))
-        
-        for k in range(10, 20, 1):
-            mrreZX.append(calc.mrre(k)[0])
-            mrreXZ.append(calc.mrre(k)[1])
-            Cont.append(calc.continuity(k))
-            Trust.append(calc.trustworthiness(k))
-    else:
-        for k in range(4, 10, 1):
-            LGD.append(calc.local_rmse(k=k))
-        
-        for k in range(10, 30, 10):
-            mrreZX.append(calc.mrre(k)[0])
-            mrreXZ.append(calc.mrre(k)[1])
-            Cont.append(calc.continuity(k))
-            Trust.append(calc.trustworthiness(k))        
+    for k in range(4, 10, 1):
+        LGD.append(calc.local_rmse(k=k))
+    
+    for k in range(10, 30, 10):
+        mrreZX.append(calc.mrre(k)[0])
+        mrreXZ.append(calc.mrre(k)[1])
+        Cont.append(calc.continuity(k))
+        Trust.append(calc.trustworthiness(k))        
 
     Lipschitz_min, Lipschitz_max = calc.Lipschitz(data, latent, dataset)
 
@@ -528,8 +518,12 @@ class MeasureCalculator():
 
 
     # Get Metric K-min and K-max
-    def Lipschitz(self, x1, x2, dataset='None', K=5):
-        neighbors = self.Neighbor(x1, k=K)
+    def Lipschitz(self, x1, x2, dataset='None', K=5, L_type='Input'):
+        if L_type == 'Input':
+            neighbors = self.Neighbor(x1, k=K)
+        if L_type == 'Latent':
+            neighbors = self.Neighbor(x2, k=K)
+            
         dis_list_old = self.CalPairwiseDis(x1, neighbors)
         dis_list = self.CalPairwiseDis(x2, neighbors)
 

@@ -29,7 +29,7 @@ class MLDL_Loss(object):
             kNN_mask {tensor} a mask used to determine the neighborhood of every data point
         """
 
-        Epcilon = self.args['Epcilon']
+        Epsilon = self.args['Epsilon']
 
         x = data.to(self.device)
         y = data.to(self.device)
@@ -40,7 +40,7 @@ class MLDL_Loss(object):
         dist.addmm_(1, -2, x, y.t())
         d = dist.clamp(min=1e-8).sqrt()
 
-        kNN_mask = (d < Epcilon).bool()
+        kNN_mask = (d < Epsilon).bool()
 
         return d, kNN_mask
 

@@ -1432,7 +1432,7 @@ def make_swiss_roll(n_samples=100, noise=0.0, random_state=None, remove=False, s
         X = X[mask == 0]
         tt = tt[mask == 0]
 
-    if remove == 'sqare':
+    if remove == 'square':
         for i in range(XX.shape[0]):
             if (np.abs(XX[i, 0]-center[0]) < r) and (np.abs(XX[i, 1]-center[1])) < r:
                 mask[i] = 1
@@ -1443,7 +1443,7 @@ def make_swiss_roll(n_samples=100, noise=0.0, random_state=None, remove=False, s
         X = X[mask == 0]
         tt = tt[mask == 0]
 
-    if remove == 'sqare2':
+    if remove == 'square2':
         for i in range(XX.shape[0]):
             if np.sum(np.abs(XX[i]-center)) < r:
                 mask[i] = 1

@@ -34,7 +34,7 @@ if __name__ =='__main__':
 
     # Open multiple threads to perform multiple GPU parallel training
     while idx<len(cmd):
-        for gpuid in range(1,7):
+        for gpuid in range(1,8):
             if gpustate[str(gpuid)]==True:
                 print(idx)
                 gpustate[str(gpuid)]=False
