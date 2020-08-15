@@ -35,21 +35,23 @@ The code includes the following modules:
 ## Description
 
 * main.py  
-  * train() -- Train a new model
   * SetParam() -- Parameters for training
   * PlotLatenSpace() -- Plot figs and save intermediate data
+  * train() -- Train a new model
+  * autotrain() -- training 10 models, each with different seed
+  * encoder() -- latent feature extraction
+  * decoder() -- generating new data on the learned manifold 
 * dataset.py  
   * LoadData() -- Load data of selected dataset
 * loss.py  
-  * MLDL_Loss() -- Calculate four losses: loss<sub>ae</sub> , loss<sub>lis</sub> , loss<sub>ang</sub> and loss<sub>push</sub>  
+  * MLDL_Loss() -- Calculate four losses: L<sub>ae</sub> , L<sub>lis</sub> , L<sub>ang</sub> and L<sub>push</sub>  
 * model.py  
-  * MLDL_MLP() -- MLDL model  
-* autotrain.py -- Get the results for 10 seed 
-* eval.py -- Calculate metrics for average result of 10 seeds
+  * MLDL_Model() -- MLDL model 
+* eval.py -- Calculate performance metrics from results, each being the average of the 10
 * utils.py  
   * GIFPloter() -- Auxiliary tool for PlotLatenSpace() 
   * GetIndicator() -- Auxiliary tool for evaluating metric 
-  * Interpolation() -- Interpolation of the hidden layer for generating new data on the learned manifold 
+  * sampling() -- samping in the latent space for generating new data on the learned manifold 
 
 ## Running the code
 
