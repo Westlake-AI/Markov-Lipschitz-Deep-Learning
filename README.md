@@ -37,7 +37,7 @@ The code includes the following modules:
 * main.py  
   * train()---------------------#_Train a new model_   
   * SetParam()---------------#_Set parameters for training_  
-  * PlotLatenSpace()---------#_Plot figs and save intermediate data_   
+  * PlotLatenSpace()--------#_Plot figs and save intermediate data_   
 * dataset.py  
   * LoadData()---------------#_Load data of selected dataset_   
 * loss.py  
@@ -45,7 +45,7 @@ The code includes the following modules:
 * model.py  
   * MLDL_MLP()-------------#_MLDL model_   
 * autotrain.py------------------#_Get the results for 10 seeds_   
-* eval.py------------------------#_Calculate metrics for average result of 10 seeds_   
+* eval.py-----------------------#_Calculate metrics for average result of 10 seeds_   
 * utils.py  
   * GIFPloter()--------------#_Auxiliary tool for PlotLatenSpace()_  
   * GetIndicator()----------#_Auxiliary tool for evaluating metrics_   
