@@ -92,13 +92,13 @@ The results are available in `./pic/Generation.png`
 1. Visualization of embeddings
 * Swiss Roll and S-Curve
 
-  ​	A symbol √ or X represents a success or failure in unfolding the manifold. From the figure below, we can see that the ML-Enc not only succeeds but also best maintains the true aspect ratio.
+   A symbol √ or X represents a success or failure in unfolding the manifold. From the figure below, we can see that the ML-Enc not only succeeds but also best maintains the true aspect ratio.
   
   <img src='./figs/swiss roll.png'>
 
 * MNIST(left) and Spheres(right)
 
-	As shown in the figure, ML-Enc performs well on both training and testing data set. In addition, the embedding produced by ML-Enc is either better than others or comparable to them.
+	 As shown in the figure, ML-Enc performs well on both training and testing data set. In addition, the embedding produced by ML-Enc is either better than others or comparable to them.
    
   <img src='./figs/mnist+spheres.png'>
 
@@ -106,7 +106,7 @@ The results are available in `./pic/Generation.png`
 
 2. Comparison of embedding quality for Swiss Roll (800 points)
 
-   ​	This table demonstrates that the ML-Enc outperforms all the other 6 methods in all the evaluation metrics, particularly significant in terms of the isometry (LGD, RRE and Trust) and Lipschitz (*K*-Min and *K*-Max) related metrics. 
+   ​This table demonstrates that the ML-Enc outperforms all the other 6 methods in all the evaluation metrics, particularly significant in terms of the isometry (LGD, RRE and Trust) and Lipschitz (*K*-Min and *K*-Max) related metrics. 
 
    |        | #Succ | L-KL   | RRE      | Trust  | LGD     | K-Min | K-Max   | MPE    |
    | ------ | ----- | ------ | -------- | ------ | ------- | ----- | ------- | ------ |
@@ -122,7 +122,7 @@ The results are available in `./pic/Generation.png`
 
 3. Performance metrics for the ML-AE with Swiss Roll (800 points) data
 
-   ​	While the other 3 autoencoders fail to unfold the manifold data sets, the ML-AE produces good quality results especially in terms of the isometry and Lipschitz related metrics. 
+   ​While the other 3 autoencoders fail to unfold the manifold data sets, the ML-AE produces good quality results especially in terms of the isometry and Lipschitz related metrics. 
 
    |        | #Succ | L-KL    | RRE     | Trust  | Trust   | K-min | K-max   | MPE     | MRE     |
    | ------ | ----- | ------- | ------- | ------ | ------- | ----- | ------- | ------- | ------- |
@@ -135,7 +135,7 @@ The results are available in `./pic/Generation.png`
 
 4. The process of manifold data reconstruction and generation using ML-AE
 
-   ​	In the learning phase, the ML-AE taking (a) the training data as input, output (b) embedding in the learned latent space, and then reconstruct back (c). In the generation phase, the ML-Dec takes (d) random input samples in the latent space, and maps the samples to the manifold (e).
+   ​In the learning phase, the ML-AE taking (a) the training data as input, output (b) embedding in the learned latent space, and then reconstruct back (c). In the generation phase, the ML-Dec takes (d) random input samples in the latent space, and maps the samples to the manifold (e).
 
 <img src='./figs/generation.PNG'  width="600">
 
@@ -143,7 +143,7 @@ The results are available in `./pic/Generation.png`
 
 5. Generalization testing
 
-   ​	The unseen manifold data sets are well unfolded by the ML-Enc and the removed shapes are kept very well, illustrating that the learned ML-Enc has a good ability to generalize to unseen data. 
+   ​The unseen manifold data sets are well unfolded by the ML-Enc and the removed shapes are kept very well, illustrating that the learned ML-Enc has a good ability to generalize to unseen data. 
 
 <img src='./figs/generalization.PNG'  width="800">
 
@@ -151,7 +151,7 @@ The results are available in `./pic/Generation.png`
 
 6. Visualization of ML-AE training evolution
 
-   ​	The gif below shows the evolution of the process that ML-AE gradually unfolds the manifold in each layer of the encoder, learning the optimal embedding in the latent space and then reconstruct it in the mirrored symmetric layers of the decoder during the training.
+   ​The gif below shows the evolution of the process that ML-AE gradually unfolds the manifold in each layer of the encoder, learning the optimal embedding in the latent space and then reconstruct it in the mirrored symmetric layers of the decoder during the training.
 <center>
   <img src='./figs/latent.gif'  width="400" align="middle">
 </center>
