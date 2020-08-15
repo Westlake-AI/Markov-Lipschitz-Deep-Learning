@@ -35,22 +35,22 @@ The code includes the following modules:
 ## Description
 
 * main.py  
-  * train() -- Train a new model_   
-  * SetParam() -- Parameters for training_  
-  * PlotLatenSpace() -- Plot figs and save intermediate data_   
+  * train() -- Train a new model
+  * SetParam() -- Parameters for training
+  * PlotLatenSpace() -- Plot figs and save intermediate data
 * dataset.py  
-  * LoadData() -- Load data of selected dataset_   
+  * LoadData() -- Load data of selected dataset
 * loss.py  
-  * MLDL_Loss() -- Calculate four losses: loss<sub>ae</sub> , loss<sub>iso</sub> , loss<sub>angle</sub> and loss<sub>push-away</sub>_   
+  * MLDL_Loss() -- Calculate four losses: loss<sub>ae</sub> , loss<sub>LIS</sub> , loss<sub>ang</sub> and loss<sub>push</sub>  
 * model.py  
-  * MLDL_MLP() -- MLDL model_   
-* autotrain.py -- Get the results for 10 seeds_   
-* eval.py -- Calculate metrics for average result of 10 seeds_   
+  * MLDL_MLP() -- MLDL model  
+* autotrain.py -- Get the results for 10 seed 
+* eval.py -- Calculate metrics for average result of 10 seeds
 * utils.py  
-  * GIFPloter() -- Auxiliary tool for PlotLatenSpace()_  
-  * GetIndicator() -- Auxiliary tool for evaluating metrics_   
-  * Interpolation() -- Interpolation of the hidden layer for generating new manifold_   
-
+  * GIFPloter() -- Auxiliary tool for PlotLatenSpace() 
+  * GetIndicator() -- Auxiliary tool for evaluating metric 
+  * Interpolation() -- Interpolation of the hidden layer for generating new data on the learned manifold 
+_   
 ## Running the code
 
 1. Clone this repository
