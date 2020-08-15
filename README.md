@@ -35,21 +35,21 @@ The code includes the following modules:
 ## Description
 
 * main.py  
-----train()                             #_Train a new model_   
-----SetParam()                    #_Set parameters for training_  
-----PlotLatenSpace()          #_Plot figs and save intermediate data_   
+----train()&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;#_Train a new model_   
+----SetParam()&#12288;&#12288;&#12288;&#12288;&#12288;#_Set parameters for training_  
+----PlotLatenSpace() &#12288;&#12288;#_Plot figs and save intermediate data_   
 * dataset.py  
-----LoadData()                    #_Load data of selected dataset_   
+----LoadData()&#12288;&#12288;&#12288;&#12288;&#12288;#_Load data of selected dataset_   
 * loss.py  
-----MLDL_Loss()                 #_Calculate four losses: loss<sub>ae</sub> , loss<sub>iso</sub> , loss<sub>angle</sub> and loss<sub>push-away</sub>_   
+----MLDL_Loss()&#12288;&#12288;&#12288;&#12288;#_Calculate four losses: loss<sub>ae</sub> , loss<sub>iso</sub> , loss<sub>angle</sub> and loss<sub>push-away</sub>_   
 * model.py  
-----MLDL_MLP()                 #_MLDL model_   
-* autotrain.py                      #_Get the results for 10 seeds_   
-* eval.py                               #_Calculate metrics for average result of 10 seeds_   
+----MLDL_MLP()&#12288;&#12288;&#12288;&#12288;#_MLDL model_   
+* autotrain.py&#12288;&#12288;&#12288;&#12288;&#12288;#_Get the results for 10 seeds_   
+* eval.py&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;#_Calculate metrics for average result of 10 seeds_   
 * utils.py  
-----GIFPloter()                    #_Auxiliary tool for PlotLatenSpace()_  
-----GetIndicator()              #_Auxiliary tool for evaluating metrics_   
-----Interpolation()             #_Interpolation of the hidden layer for generating new manifold_   
+----GIFPloter()&#12288;&#12288;&#12288;&#12288;&#12288;#_Auxiliary tool for PlotLatenSpace()_  
+----GetIndicator()&#12288;&#12288;&#12288;#_Auxiliary tool for evaluating metrics_   
+----Interpolation()&#12288;&#12288;&#12288;#_Interpolation of the hidden layer for generating new manifold_   
 
 ## Running the code
 
@@ -106,7 +106,7 @@ The results are available in `./pic/Generation.png`
 
 2. Comparison of embedding quality for Swiss Roll (800 points)
 
-   ​This table demonstrates that the ML-Enc outperforms all the other 6 methods in all the evaluation metrics, particularly significant in terms of the isometry (LGD, RRE and Trust) and Lipschitz (*K*-Min and *K*-Max) related metrics. 
+   This table demonstrates that the ML-Enc outperforms all the other 6 methods in all the evaluation metrics, particularly significant in terms of the isometry (LGD, RRE and Trust) and Lipschitz (*K*-Min and *K*-Max) related metrics. 
 
    |        | #Succ | L-KL   | RRE      | Trust  | LGD     | K-Min | K-Max   | MPE    |
    | ------ | ----- | ------ | -------- | ------ | ------- | ----- | ------- | ------ |
@@ -122,7 +122,7 @@ The results are available in `./pic/Generation.png`
 
 3. Performance metrics for the ML-AE with Swiss Roll (800 points) data
 
-   ​While the other 3 autoencoders fail to unfold the manifold data sets, the ML-AE produces good quality results especially in terms of the isometry and Lipschitz related metrics. 
+   While the other 3 autoencoders fail to unfold the manifold data sets, the ML-AE produces good quality results especially in terms of the isometry and Lipschitz related metrics. 
 
    |        | #Succ | L-KL    | RRE     | Trust  | Trust   | K-min | K-max   | MPE     | MRE     |
    | ------ | ----- | ------- | ------- | ------ | ------- | ----- | ------- | ------- | ------- |
@@ -135,7 +135,7 @@ The results are available in `./pic/Generation.png`
 
 4. The process of manifold data reconstruction and generation using ML-AE
 
-   ​In the learning phase, the ML-AE taking (a) the training data as input, output (b) embedding in the learned latent space, and then reconstruct back (c). In the generation phase, the ML-Dec takes (d) random input samples in the latent space, and maps the samples to the manifold (e).
+   In the learning phase, the ML-AE taking (a) the training data as input, output (b) embedding in the learned latent space, and then reconstruct back (c). In the generation phase, the ML-Dec takes (d) random input samples in the latent space, and maps the samples to the manifold (e).
 
 <img src='./figs/generation.PNG'  width="600">
 
@@ -143,7 +143,7 @@ The results are available in `./pic/Generation.png`
 
 5. Generalization testing
 
-   ​The unseen manifold data sets are well unfolded by the ML-Enc and the removed shapes are kept very well, illustrating that the learned ML-Enc has a good ability to generalize to unseen data. 
+   The unseen manifold data sets are well unfolded by the ML-Enc and the removed shapes are kept very well, illustrating that the learned ML-Enc has a good ability to generalize to unseen data. 
 
 <img src='./figs/generalization.PNG'  width="800">
 
@@ -151,7 +151,7 @@ The results are available in `./pic/Generation.png`
 
 6. Visualization of ML-AE training evolution
 
-   ​The gif below shows the evolution of the process that ML-AE gradually unfolds the manifold in each layer of the encoder, learning the optimal embedding in the latent space and then reconstruct it in the mirrored symmetric layers of the decoder during the training.
+   The gif below shows the evolution of the process that ML-AE gradually unfolds the manifold in each layer of the encoder, learning the optimal embedding in the latent space and then reconstruct it in the mirrored symmetric layers of the decoder during the training.
 <center>
   <img src='./figs/latent.gif'  width="400" align="middle">
 </center>
