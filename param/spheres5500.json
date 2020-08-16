@@ -21,12 +21,13 @@
   "MAEK": 15,
   "EPOCHS": 2000,
   "PlotForloop": 100,
-  "SEED": 1,
+  "SEED": 42,
   "NetworkStructure": [
     101,
     88,
     78,
     2
   ],
-  "Noise": 0.0
+  "Noise": 0.0,
+  "Autotrain": false
 }

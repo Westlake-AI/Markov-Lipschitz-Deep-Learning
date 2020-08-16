@@ -99,7 +99,7 @@ def Genelization(Model, path):
     test_data, test_label = dataset.LoadData(
         data_name=param['DATASET'],
         data_num=8000,
-        seed=param['SEED'],
+        seed=param['SEED']+1,
         noise=param['Noise'],  
         remove='fivecircle',
         test=True

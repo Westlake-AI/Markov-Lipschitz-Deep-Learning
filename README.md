@@ -80,13 +80,13 @@ The evaluation metrics are available in `./pic/indicators.csv`
   ```
   python main.py -M Test
   ```
-The results are available in `./pic/Epoch_10000_test.png`
+The results are available in `./pic/MLDL_SwissRoll_N800_SD0/Epoch_10000_test.png`
 
 5. To test the manifold generation, run
   ```
   python main.py -M Generation
   ```
-The results are available in `./pic/Generation.png`
+The results are available in `./pic/MLDL_SwissRoll_N800_SD0/Generation.png`
 
 ## Results
 
