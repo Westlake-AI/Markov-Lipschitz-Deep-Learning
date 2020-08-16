@@ -59,7 +59,7 @@ The code includes the following modules:
 1. Clone this repository
 
   ```
-  git clone https://github.com/westlake-cairi/westlake-cairi-MAE_TESTREBAR/tree/New_Codes
+  git clone https://github.com/westlake-cairi/Markov-Lipschitz-Deep-Learning
   ```
 
 2. Install the required dependency packages
@@ -67,14 +67,10 @@ The code includes the following modules:
 3. To get the results for 10 seeds, run
 
   ```
-<<<<<<< HEAD
-  python main.py -Auto
-=======
-  python main.py -Auto True
->>>>>>> 559ead5689a39e75e49255f68cfaa3f5fb4178d3
+python main.py -Auto
   ```
 
-4. To choose a dataset among SwissRoll, Scurve, MNIST and Spheres, run
+4. To choose a dataset among SwissRoll, Scurve, 7MNIST, 10MNIST and Spheres5500, run
 
   ```
   python main.py -D "dataset name"
@@ -92,13 +88,13 @@ The evaluation metrics are available in `./pic/indicators.csv`
   ```
   python main.py -M Test
   ```
-The results are available in `./pic/Epoch_10000_test.png`
+The results are available in `./pic/file_name/Test.png`
 
 7. To test the manifold generation, run
   ```
   python main.py -M Generation
   ```
-The results are available in `./pic/Generation.png`
+The results are available in `./pic/file_name/Generation.png`
 
 ## Results
 
