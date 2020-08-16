@@ -2,15 +2,17 @@ import os
 import csv
 import json
 import torch
+import signal
 import argparse
 import datetime
 import numpy as np
+from multiprocessing import Process, Manager
 
 # Some self-defined functions that need to be imported
 import dataset
 from model import MLDL_model
 from loss import MLDL_Loss
-from utils import GetIndicator, GIFPloter, Interpolation
+from utils import *
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "4"
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
@@ -87,7 +89,26 @@ def train(model, loss, epoch, train_data, train_label, sample_index, batch_size)
     )
 
 
-def PlotLatenSpace(model, batch_size, datas, labels, path, name, indicator=False, mode='ML-AE'):
+def Generation(model, latent_point, label_point, latent_index):
+    gen_latent = Sampling().Inter(latent_point[latent_index], number_points=10000)
+    gen_data = model.Decoder(torch.tensor(gen_latent, device=device).float()).detach().cpu().numpy()
+    gif_ploter.Plot_Generation(latent_point[0], latent_point[latent_index], latent_point[-1], gen_latent, gen_data, label_point, title = path + '/Generation.png')
+
+
+def Genelization(Model, path):
+    test_data, test_label = dataset.LoadData(
+        data_name=param['DATASET'],
+        data_num=8000,
+        seed=param['SEED'],
+        noise=param['Noise'],  
+        remove='fivecircle',
+        test=True
+    )   
+
+    onlinePlot(Model, param['BATCHSIZE'], test_data, test_label, path=path, name='Test', indicator=False, mode=param['Mode'])
+
+
+def onlinePlot(model, batch_size, datas, labels, path, name, indicator=False, mode='ML-AE'):
 
     """
     For testing models, saving intermediate data, and plotting figs.
@@ -180,11 +201,9 @@ def PlotLatenSpace(model, batch_size, datas, labels, path, name, indicator=False
 
         print(indicator)
 
-        # Perform interpolation in idden layer, generate new manifold, and plot figs
+        # Perform sampling in idden layer, generate new manifold, and plot figs
         if mode == 'Generation':
-            gen_latent = Interpolation().Inter(latent_point[latent_index], number_points=10000)
-            gen_data = model.Decoder(torch.tensor(gen_latent, device=device).float()).detach().cpu().numpy()
-            gif_ploter.Plot_Generation(latent_point[0], latent_point[latent_index], latent_point[-1], gen_latent, gen_data, label_point, title = path + '/Generation.png')
+            Generation(model, latent_point, label_point, latent_index)
 
 
 def SetSeed(seed):
@@ -220,6 +239,7 @@ def SetParam():
     parser.add_argument("-SD", "--SEED", default=0, type=int)   # Seeds used to ensure reproducible results
     parser.add_argument("-NS", "--NetworkStructure", default=[3, 100, 100, 100, 3, 2], type=int, nargs='+')
     parser.add_argument("-Noise", "--Noise", default=0.0, type=float)   # Noise added to the generated data
+    parser.add_argument("-Auto", "--Autotrain", default=False, action='store_true')
     args = parser.parse_args()
 
     if args.DATASET == '7MNIST':
@@ -258,55 +278,79 @@ def SetModel(param):
     return Model, loss
 
 
+def autotrain():
+    # Combination of multiple parallel training parameters (only SEED is set below, different parameters can be set as needed)
+    cmd=[]
+    for i in range(10):
+        cmd.append('CUDA_VISIBLE_DEVICES={} '+'python main.py -SD {seed}'.format(seed=i))
+
+    signal.signal(signal.SIGTERM, term)
+    gpustate=Manager().dict({str(i):True for i in range(1,8)})
+    processes=[]
+    idx=0
+
+    # Open multiple threads to perform multiple GPU parallel training
+    while idx<len(cmd):
+        for gpuid in range(1,8):
+            if gpustate[str(gpuid)]==True:
+                print(idx)
+                gpustate[str(gpuid)]=False
+                p=Process(target=run,args=(cmd[idx],gpuid,gpustate),name=str(gpuid))
+                p.start()
+
+                print(gpustate)
+                processes.append(p)
+                idx+=1
+
+                break
+
+    for p in processes:
+        p.join()
+
+
 if __name__ == '__main__':
 
     param, path = SetParam()
-    SetSeed(param['SEED'])
+    if param['Autotrain']:
+        autotrain()
+    else:
+        SetSeed(param['SEED'])
 
-    # Load training data
-    train_data, train_label = dataset.LoadData(
-        data_name=param['DATASET'],
-        data_num=param['N_Dataset'],
-        seed=param['SEED'],
-        noise=param['Noise'],
-        test=False   
-    )
-
-    # Init the model
-    Model, loss = SetModel(param)
-    optimizer = torch.optim.Adam(Model.parameters(), lr=param['LEARNINGRATE'])
-    param_enc = [str(i*2) for i in range(len(param['NetworkStructure']) - 1)]
-    param_dec = [str(int(param_enc[-1]) + 1 + i*2) for i in range(len(param['NetworkStructure']) - 1)]
-    optimizer_enc = torch.optim.Adam([{'params': [param for name, param in Model.named_parameters() if
-                                        any([s in name for s in param_enc])]}], lr=param['LEARNINGRATE'])
-    optimizer_dec = torch.optim.Adam([{'params': [param for name, param in Model.named_parameters() if
-                                        any([s in name for s in param_dec])]}], lr=param['LEARNINGRATE'])
-
-    sample_index = dataset.SampleIndexGenerater(train_data, param['BATCHSIZE'])
-    gif_ploter = GIFPloter(param, Model)
-
-    # Start training
-    for epoch in range(param['EPOCHS'] + 1):
-        train(Model, loss, epoch, train_data, train_label, sample_index, param['BATCHSIZE'])
-
-        if epoch % param['PlotForloop'] == 0:
-            name = 'Epoch_' + str(epoch).zfill(5)
-            PlotLatenSpace(Model, param['BATCHSIZE'], train_data, train_label, path, name, indicator=False)
-
-    # Plotting the final results and evaluating the metrics
-    PlotLatenSpace(Model, param['BATCHSIZE'], train_data, train_label, path, name='Train', indicator=True, mode=param['Mode'])
-    if param['DATASET'] != '10MNIST':
-        gif_ploter.SaveGIF(path=path)
-
-    # Testing the generalizability of the model to out-of-samples
-    if param['Mode'] == 'Test':
-        test_data, test_label = dataset.LoadData(
+        # Load training data
+        train_data, train_label = dataset.LoadData(
             data_name=param['DATASET'],
-            data_num=8000,
+            data_num=param['N_Dataset'],
             seed=param['SEED'],
-            noise=param['Noise'],  
-            remove='fivecircle',
-            test=True
-        )   
+            noise=param['Noise'],
+            test=False   
+        )
 
-        PlotLatenSpace(Model, param['BATCHSIZE'], test_data, test_label, path=path, name='Test', indicator=False, mode=param['Mode'])
+        # Init the model
+        Model, loss = SetModel(param)
+        optimizer = torch.optim.Adam(Model.parameters(), lr=param['LEARNINGRATE'])
+        param_enc = [str(i*2) for i in range(len(param['NetworkStructure']) - 1)]
+        param_dec = [str(int(param_enc[-1]) + 1 + i*2) for i in range(len(param['NetworkStructure']) - 1)]
+        optimizer_enc = torch.optim.Adam([{'params': [param for name, param in Model.named_parameters() if
+                                            any([s in name for s in param_enc])]}], lr=param['LEARNINGRATE'])
+        optimizer_dec = torch.optim.Adam([{'params': [param for name, param in Model.named_parameters() if
+                                            any([s in name for s in param_dec])]}], lr=param['LEARNINGRATE'])
+
+        sample_index = dataset.SampleIndexGenerater(train_data, param['BATCHSIZE'])
+        gif_ploter = GIFPloter(param, Model)
+
+        # Start training
+        for epoch in range(param['EPOCHS'] + 1):
+            train(Model, loss, epoch, train_data, train_label, sample_index, param['BATCHSIZE'])
+
+            if epoch % param['PlotForloop'] == 0:
+                name = 'Epoch_' + str(epoch).zfill(5)
+                onlinePlot(Model, param['BATCHSIZE'], train_data, train_label, path, name, indicator=False)
+
+        # Plotting the final results and evaluating the metrics
+        onlinePlot(Model, param['BATCHSIZE'], train_data, train_label, path, name='Train', indicator=True, mode=param['Mode'])
+        if param['DATASET'] != '10MNIST':
+            gif_ploter.SaveGIF(path=path)
+
+        # Testing the generalizability of the model to out-of-samples
+        if param['Mode'] == 'Test':
+            Genelization(Model, path)

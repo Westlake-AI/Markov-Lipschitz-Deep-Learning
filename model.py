@@ -61,6 +61,20 @@ class MLDL_model(nn.Module):
 
         return output_info
 
+    # Input the input layer data, pass the encoder, and get the reconstruction result
+    def Encoder(self, data):
+
+        output_info = []
+        input_data = data
+
+        for i, layer in enumerate(self.network):
+            if i <= (len(self.NetworkStructure) - 2) * 2:
+                output_data = layer(input_data)
+                output_info.append(output_data)
+                input_data = output_data
+
+        return output_info[-1]
+
     # Input the hidden layer data, pass the decoder, and get the reconstruction result
     def Decoder(self, data):
 

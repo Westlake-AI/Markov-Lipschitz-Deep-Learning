@@ -20,7 +20,7 @@ The code includes the following modules:
 * Test for manifold generation (ML-Dec) 
 * Visualization
 * Evaluation metrics 
-* Compared methods: AE, <a href="https://github.com/BorgwardtLab/topological-autoencoders">Topological AE</a>, [MLLE](https://github.com/scikit-learn/scikit-learn), [ISOMAP](https://github.com/scikit-learn/scikit-learn), [t-SNE](https://github.com/scikit-learn/scikit-learn)
+* Compared methods: AE, <a href="https://github.com/BorgwardtLab/topological-autoencoders">Topological AE</a>, [MLLE](https://github.com/scikit-learn/scikit-learn), [ISOMAP](https://github.com/scikit-learn/scikit-learn), [t-SNE](https://github.com/scikit-learn/scikit-learn) (Note: We modify the original TopoAE source code to make it compatible to run the Swiss roll dataset. The modifications are as follow: Adding a swiss roll dataset generation function besides existing datasets. Modifying the network structure using the structure mentioned in our paper so that all AE based methods have the same network structure for fair comparison.)
 
 ## Requirements
 
@@ -38,19 +38,19 @@ The code includes the following modules:
   * SetParam() -- Parameters for training
   * train() -- Train a new model (encoder and/or decoder)
   * autotrain() -- training 10 models, each with different seed
-  * inlinePlot() -- inline plot intermediate resuts
+  * onlinePlot() -- online plot intermediate resuts
 * dataset.py  
   * LoadData() -- Load data of selected dataset
 * loss.py  
   * MLDL_Loss() -- Calculate six losses: ℒ<sub>Enc</sub>, ℒ<sub>Dec</sub>, ℒ<sub>AE</sub>, ℒ<sub>lis</sub>, ℒ<sub>push</sub>, ℒ<sub>ang</sub>  
 * model.py  
-  * encoder() -- for latent feature extraction
-  * decoder() -- for generating new data on the learned manifold 
+  * Encoder() -- for latent feature extraction
+  * Decoder() -- for generating new data on the learned manifold 
 * eval.py -- Calculate performance metrics from results, each being the average of the 10
 * utils.py  
   * GIFPloter() -- Auxiliary tool for PlotLatenSpace() 
   * GetIndicator() -- Auxiliary tool for evaluating metric 
-  * sampling() -- samping in the latent space for generating new data on the learned manifold 
+  * Sampling() -- Samping in the latent space for generating new data on the learned manifold 
 
 ## Running the code
 

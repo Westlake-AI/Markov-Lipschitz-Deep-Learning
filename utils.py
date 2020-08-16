@@ -1,15 +1,34 @@
 import os
 import math
 import torch
+import signal
 import imageio
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.spatial import Delaunay
 from sklearn.decomposition import PCA
 from mpl_toolkits.mplot3d import Axes3D
+from multiprocessing import Process, Manager
 from scipy.spatial.distance import pdist, squareform
 
 
+def run(command, gpuid, gpustate):
+    os.system(command.format(gpuid))
+    gpustate[str(gpuid)] = True
+
+
+def term(sig_num, addtion):
+    print('terminate process {}'.format(os.getpid()))
+    try:
+        print('the processes is {}'.format(processes) )
+        for p in processes:
+            print('process {} terminate'.format(p.pid))
+            p.terminate()
+
+    except Exception as e:
+        print(str(e))
+
+        
 class GIFPloter():
     def __init__(self, args, model):
 
@@ -542,8 +561,8 @@ class MeasureCalculator():
         return np.min(dis_list), np.max(dis_list)
 
 
-# Interpolation of the hidden layer based on the triangular pasta sheet.
-class Interpolation():
+# Sampling of the hidden layer based on the triangular pasta sheet.
+class Sampling():
     def __init__(self):
         pass
 
