@@ -20,7 +20,7 @@ The code includes the following modules:
 * Test for manifold generation (ML-Dec) 
 * Visualization
 * Evaluation metrics 
-* Compared methods: AE, <a href="https://github.com/BorgwardtLab/topological-autoencoders">Topological AE</a>, [MLLE](https://github.com/scikit-learn/scikit-learn), [ISOMAP](https://github.com/scikit-learn/scikit-learn), [t-SNE](https://github.com/scikit-learn/scikit-learn) (Note: We modify the original TopoAE source code to make it compatible to run the Swiss roll dataset. The modifications are as follow: Adding a swiss roll dataset generation function besides existing datasets. Modifying the network structure using the structure mentioned in our paper so that all AE based methods have the same network structure for fair comparison.)
+* Compared methods: AE, <a href="https://github.com/BorgwardtLab/topological-autoencoders">TopoAE</a>, [MLLE](https://github.com/scikit-learn/scikit-learn), [ISOMAP](https://github.com/scikit-learn/scikit-learn), [t-SNE](https://github.com/scikit-learn/scikit-learn). (Note: We modify the original TopoAE source code to make it able to run the Swiss roll dataset by adding a swiss roll dataset generation function and modifying the network structure for fair comparison.)
 
 ## Requirements
 
