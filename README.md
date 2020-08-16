@@ -37,20 +37,22 @@ The code includes the following modules:
 * main.py  
   * SetParam() -- Parameters for training
   * train() -- Train a new model (encoder and/or decoder)
-  * autotrain() -- training 10 models, each with different seed
-  * onlinePlot() -- online plot intermediate resuts
+  * autotrain() -- Training 10 models, each with different seed
+  * onlinePlot() -- Online plot intermediate results
+  * Generation() -- Generate manifold
+  * Generalization() -- Test the generalization of a learned model to unseen data 
 * dataset.py  
   * LoadData() -- Load data of selected dataset
 * loss.py  
   * MLDL_Loss() -- Calculate six losses: ℒ<sub>Enc</sub>, ℒ<sub>Dec</sub>, ℒ<sub>AE</sub>, ℒ<sub>lis</sub>, ℒ<sub>push</sub>, ℒ<sub>ang</sub>  
 * model.py  
-  * Encoder() -- for latent feature extraction
-  * Decoder() -- for generating new data on the learned manifold 
+  * Encoder() -- For latent feature extraction
+  * Decoder() -- For generating new data on the learned manifold 
 * eval.py -- Calculate performance metrics from results, each being the average of the 10
 * utils.py  
-  * GIFPloter() -- Auxiliary tool for PlotLatenSpace() 
+  * GIFPloter() -- Auxiliary tool for online plot
   * GetIndicator() -- Auxiliary tool for evaluating metric 
-  * Sampling() -- Samping in the latent space for generating new data on the learned manifold 
+  * Sampling() -- Sampling in the latent space for generating new data on the learned manifold 
 
 ## Running the code
 
@@ -65,10 +67,16 @@ The code includes the following modules:
 3. To get the results for 10 seeds, run
 
   ```
-  python autotrain.py
+  python main.py -Auto True
   ```
 
-4. To get the metrics for ML-Enc and ML-AE, run
+4. To choose a dataset among SwissRoll, Scurve, MNIST and Spheres, run
+
+  ```
+  python main.py -D "dataset name"
+  ```
+
+5. To get the metrics for ML-Enc and ML-AE, run
 
   ```
   python eval.py -M ML-Enc
@@ -76,13 +84,13 @@ The code includes the following modules:
   ```
 The evaluation metrics are available in `./pic/indicators.csv`
 
-5. To test the generalization to unseen data, run
+6. To test the generalization to unseen data, run
   ```
   python main.py -M Test
   ```
 The results are available in `./pic/Epoch_10000_test.png`
 
-5. To test the manifold generation, run
+7. To test the manifold generation, run
   ```
   python main.py -M Generation
   ```
