@@ -17,7 +17,7 @@
     0.0,
     2
   ],
-  "Epcilon": 0.23,
+  "Epsilon": 0.23,
   "MAEK": 15,
   "EPOCHS": 1000,
   "PlotForloop": 100,
@@ -30,5 +30,6 @@
     100,
     25
   ],
-  "Noise": 0.0
+  "Noise": 0.0,
+  "Autotrain": false
 }

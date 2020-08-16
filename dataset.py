@@ -48,13 +48,14 @@ def dsphere(n=100, d=2, r=1, noise=None, ambient=None):
 
     return data
 
-def create_sphere_dataset5500(n_samples=500, d=100, bigR=25, n_spheres=11, r=5, plot=True, seed=42):
-    np.random.seed(seed)
+def create_sphere_dataset5500(n_samples=500, d=100, bigR=25, n_spheres=11, r=5, seed=42):
+    np.random.seed(42)
 
     # it seemed that rescaling the shift variance by sqrt of d lets big sphere stay around the inner spheres
     variance = 10/np.sqrt(d)
     shift_matrix = np.random.normal(0, variance, [n_spheres, d+1])
 
+    np.random.seed(seed)
     spheres = []
     n_datapoints = 0
     for i in np.arange(n_spheres-1):
