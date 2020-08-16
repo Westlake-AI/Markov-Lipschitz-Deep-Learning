@@ -65,7 +65,7 @@ The code includes the following modules:
 3. To get the results for 10 seeds, run
 
   ```
-  python autotrain.py
+  python main.py -Auto
   ```
 
 4. To get the metrics for ML-Enc and ML-AE, run
