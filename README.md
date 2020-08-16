@@ -48,7 +48,7 @@ The code includes the following modules:
 * model.py  
   * Encoder() -- For latent feature extraction
   * Decoder() -- For generating new data on the learned manifold 
-* eval.py -- Calculate performance metrics from results, each being the average of the 10
+* eval.py -- Calculate performance metrics from results, each being the average of 10 seeds
 * utils.py  
   * GIFPloter() -- Auxiliary tool for online plot
   * GetIndicator() -- Auxiliary tool for evaluating metric 
@@ -88,13 +88,13 @@ The evaluation metrics are available in `./pic/indicators.csv`
   ```
   python main.py -M Test
   ```
-The results are available in `./pic/MLDL_SwissRoll_N800_SD0/Epoch_10000_test.png`
+The results are available in `./pic/Epoch_10000_test.png`
 
 7. To test the manifold generation, run
   ```
   python main.py -M Generation
   ```
-The results are available in `./pic/MLDL_SwissRoll_N800_SD0/Generation.png`
+The results are available in `./pic/Generation.png`
 
 ## Results
 
