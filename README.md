@@ -10,7 +10,7 @@
 <a href="https://github.com/BorgwardtLab/topological-autoencoders/blob/master/animations/topoae.gif">
         <img src='./figs/topoae.gif' width="270" alt="TopoAE Result">
 </a>
-<a href="https://github.com/BorgwardtLab/topological-autoencoders/blob/master/animations/topoae.gif">
+<a href="https://github.com/BorgwardtLab/topological-autoencoders/blob/master/animations/vanilla.gif">
         <img src='./figs/vanilla.gif' width="270" alt="Vanilla AE Result">
 </a>
 </p>
