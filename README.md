@@ -2,7 +2,7 @@
 
 # Markov-Lipschitz Deep Learning (MLDL)
 
-  <img src='./figs/MLDL.png'>
+  <img src='./figs/MLDL.png' width="600">
   
 This is a PyTorch implementation of the 
   [
