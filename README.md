@@ -171,6 +171,6 @@ The results are available in `./pic/file_name/Generation.png`
 6. Visualization of ML-AE training evolution
 
    The gif below shows the evolution of the process that ML-AE gradually unfolds the manifold in each layer of the encoder, learning the optimal embedding in the latent space and then reconstruct it in the mirrored symmetric layers of the decoder during the training.
-<center>
-  <img src='./figs/latent.gif'  width="400" align="middle">
-</center>
+<p align="center">
+ <img src='./figs/latent.gif'  width="400" align="middle">
+</p>
