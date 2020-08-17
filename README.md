@@ -166,7 +166,6 @@ The results are available in `./pic/file_name/Generation.png`
    The unseen manifold data sets are well unfolded by the ML-Enc and the removed shapes are kept very well, illustrating that the learned ML-Enc has a good ability to generalize to unseen data. 
 =======
    The learned ML-Enc network can unfold unseen data of the learned manifold whereas the compared methods cannot.  
->>>>>>> 9b0037e1cb1c759d9ff64ef4ce272b49601efed1
 
 <img src='./figs/generalization.PNG'  width="800" align="center">
 
