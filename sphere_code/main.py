@@ -163,9 +163,9 @@ def PlotLatenSpace(model, batch_size, device, datas, labels, da=0, txt='no name'
         da.AnalisisInfo(path, filename+txt)
     # visdomtool.ShowImg(path, model.model_name+name)
 
-    np.save(datas.detach().cpu().numpy(), 'data.npy')
-    np.save(latent_point.detach().cpu().numpy(),'latent.npy')
-    np.save(label_point.detach().cpu().numpy(),'label_point.npy')
+    np.save('data.npy', datas.detach().cpu().numpy())
+    np.save('latent.npy', latent_point,)
+    np.save('label_point.npy', label_point)
 
 # --- main function --- #
 if __name__ == '__main__':
