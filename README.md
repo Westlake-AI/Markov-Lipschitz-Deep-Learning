@@ -132,7 +132,7 @@ The results are available in `./pic/file_name/Generation.png`
 * MNIST
 
 <p align="center">
-  <img src='./figs/MNIST-results.png' align="center">
+  <img src='./figs/MNIST-results.png' align="center"  width="500" >
 </p>
 
 * Spheres
