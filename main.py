@@ -225,7 +225,7 @@ def SetParam():
     parser.add_argument("-N", "--FileName", default=None, type=str)   # File names where data and figs are stored
     parser.add_argument("-PP", "--ParamPath", default='None', type=str)   # Path for an existing parameter
     parser.add_argument("-M", "--Mode", default='ML-AE', type=str)
-    parser.add_argument("-D", "--DATASET", default='SwissRoll', type=str, choices=['SwissRoll', 'SCurve', '7MNIST', '10MNIST'])
+    parser.add_argument("-D", "--DATASET", default='SwissRoll', type=str, choices=['SwissRoll', 'SCurve', '7MNIST', '10MNIST', 'Spheres5500'])
     parser.add_argument("-LR", "--LEARNINGRATE", default=1e-3, type=float)
     parser.add_argument("-B", "--BATCHSIZE", default=800, type=int)
     parser.add_argument("-RB", "--RegularB", default=3, type=float)   # Boundary parameters for push-away Loss
@@ -239,7 +239,7 @@ def SetParam():
     parser.add_argument("-SD", "--SEED", default=0, type=int)   # Seeds used to ensure reproducible results
     parser.add_argument("-NS", "--NetworkStructure", default=[3, 100, 100, 100, 3, 2], type=int, nargs='+')
     parser.add_argument("-Noise", "--Noise", default=0.0, type=float)   # Noise added to the generated data
-    parser.add_argument("-Auto", "--Autotrain", default=False, action='store_true')
+    parser.add_argument("-MultiRun", "--Train_MultiRun", default=False, action='store_true')
     args = parser.parse_args()
 
     if args.DATASET == '7MNIST':
@@ -278,7 +278,7 @@ def SetModel(param):
     return Model, loss
 
 
-def AutoTrain():
+def Train_MultiRun():
     # Combination of multiple parallel training parameters (only SEED is set below, different parameters can be set as needed)
     cmd=[]
     for i in range(10):
@@ -311,8 +311,8 @@ def AutoTrain():
 if __name__ == '__main__':
 
     param, path = SetParam()
-    if param['Autotrain']:
-        AutoTrain()
+    if param['Train_MultiRun']:
+        Train_MultiRun()
     else:
         SetSeed(param['SEED'])
 
