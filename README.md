@@ -117,7 +117,7 @@ The results are available in `./pic/file_name/Generation.png`
   
   <img src='./figs/swiss roll.png' align="center">
 
-* MNIST(left) and Spheres(right)
+* MNIST
 
 	 As shown in the figure, ML-Enc performs well on both training and testing data set. In addition, the embedding produced by ML-Enc is either better than others or comparable to them.
    
