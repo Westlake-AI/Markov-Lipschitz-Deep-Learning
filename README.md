@@ -109,7 +109,7 @@ The results are available in `./pic/file_name/Generation.png`
 
 ## Results
 
-1. Visualization of demision reduction results: embeddings in latent spaces
+1. ML-Enc: Dimension reduction results -- embeddings in latent spaces
 * Swiss Roll and S-Curve
 
    A symbol √ or X represents a success or failure in unfolding the manifold. From the figure below, we can see that the ML-Enc not only succeeds but also best maintains the true aspect ratio.
@@ -121,7 +121,7 @@ The results are available in `./pic/file_name/Generation.png`
   <img src='./figs/mnist+spheres.png' align="center">
 
 
-2. Performance metrics for dimension reduction on Swiss Roll (800 points) data
+2. ML-Enc: Performance metrics for dimension reduction on Swiss Roll (800 points) data
 
    This table demonstrates that the ML-Enc outperforms all the other 6 methods in all the evaluation metrics, particularly significant in terms of the isometry (LGD, RRE, Cont and Trust) and Lipschitz (*K*-Min and *K*-Max) related metrics. 
 
@@ -140,7 +140,7 @@ The results are available in `./pic/file_name/Generation.png`
 
 </p>
 
-3. Ability of ML-Enc to generalize on unseen data of the learned manifold
+3. ML-Enc: Ability to generalize on unseen data of the learned manifold
 
    The learned ML-Enc network can unfold unseen data of the learned manifold, demonstrated using the Swiss-roll with a hole, whereas the compared methods cannot.  
 
@@ -149,7 +149,7 @@ The results are available in `./pic/file_name/Generation.png`
 </p>
 
 
-4. ML-AE for dimension reduction and manifold data generation
+4. ML-AE: For dimension reduction and manifold data generation
 
    In the learning phase, the ML-AE taking (a) the training data as input, output (b) embedding in the learned latent space, and then reconstruct back (c). In the generation phase, the ML-Dec takes (d) random input samples in the latent space, and maps the samples to the manifold (e).
 
@@ -158,7 +158,7 @@ The results are available in `./pic/file_name/Generation.png`
 </p>
 
 
-5. Visualization of ML-AE training evolution
+5. ML-AE: Evolution of training evolution
 
    The ML-AE training gradually unfolds the manifold from input layer to the latent layer and reconstructs the latent embedding back to data in the input space.
    
