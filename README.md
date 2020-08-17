@@ -121,7 +121,6 @@ The results are available in `./pic/file_name/Generation.png`
 
 	 As shown in the figure, ML-Enc performs well on both training and testing data set. In addition, the embedding produced by ML-Enc is either better than others or comparable to them.
    
-  <img src='./figs/mnist+spheres.png' align="center">
 
 
 2. Performance metrics on Swiss Roll (800 points) data
