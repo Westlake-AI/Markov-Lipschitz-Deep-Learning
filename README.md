@@ -2,15 +2,7 @@
 
 # Markov-Lipschitz Deep Learning (MLDL)
 
-## Summary
-
-This is the PyTorch code for the following paper:
-
-[
-Stan Z. Li, Zelin Zang, Lirong Wu, "Markov-Lipschitz Deep Learning", arXiv preprint, arXiv:2006.08256, 2020.
-](https://arxiv.org/abs/2006.08256)
-
-Main features of MLDL for manifold learning and generation in comparison with some others are summarized below:
+The main features of MLDL for manifold learning and generation in comparison to other popular ones are summarized below:
 <img src='./figs/MLDL_Features.png' width="800">
 
 The code includes the following modules:
@@ -172,7 +164,10 @@ The results are available in `./pic/file_name/Generation.png`
 @article{Li-MarLip-2020,
   title={Markov-Lipschitz Deep Learning},
   author={Stan Z Li and Zelin Zang and Lirong Wu},
-  journal={arXiv preprint arXiv:2006.08256},
+  journal={arXiv preprint 
+  [
+  arXiv:2006.08256
+  ](https://arxiv.org/abs/2006.08256)},
   year={2020}
 }
 ```
