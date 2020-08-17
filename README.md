@@ -129,12 +129,17 @@ The results are available in `./pic/file_name/Generation.png`
   <img src='./figs/swiss roll.png' align="center">
 </p>
 
-* MNIST and Spheres
+* MNIST
 
 <p align="center">
-  <img src='./figs/mnist+spheres.png' align="center">
+  <img src='./figs/MNIST-results.png' align="center">
 </p>
 
+* Spheres
+
+<p align="center">
+  <img src='./figs/Spheres-results.png' align="center">
+</p>
 
 2. ML-Enc: Performance metrics for dimension reduction on Swiss Roll (800 points) data
 
