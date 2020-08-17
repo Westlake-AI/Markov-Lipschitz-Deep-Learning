@@ -5,11 +5,22 @@
   <img src='./figs/MLDL.png' width="700">
 </p>
 
+<p align="center">
+<img src='./figs/ML-AE.gif' width="300"  alt="ML-AE Result">
+<a href="https://github.com/BorgwardtLab/topological-autoencoders/blob/master/animations/topoae.gif">
+        <img src='./figs/topoae.gif' width="300" alt="TopoAE Result">
+</a>
+<a href="https://github.com/BorgwardtLab/topological-autoencoders/blob/master/animations/topoae.gif">
+        <img src='./figs/vanilla.gif' width="300" alt="Vanilla AE Result">
+</a>
+</p>
+
 This is a PyTorch implementation of the 
   [
   MLDL paper
   ](https://arxiv.org/abs/2006.08256)
 :
+
 ```bibtex
 @article{Li-MarLip-2020,
   title={Markov-Lipschitz Deep Learning},
