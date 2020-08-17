@@ -112,7 +112,7 @@ The results are available in `./pic/file_name/Generation.png`
 1. ML-Enc: Dimension reduction results -- embeddings in latent spaces
 * Swiss Roll and S-Curve
 
-   A symbol √ or X represents a success or failure in unfolding the manifold. From the figure below, we can see that the ML-Enc not only succeeds but also best maintains the true aspect ratio.
+   A symbol √ or X represents a success or failure in unfolding the manifold. The methods in the upper-row ML-Enc succeed and by calculation, the ML-Enc best maintains the true aspect ratio.
 
 <p align="center">
   <img src='./figs/swiss roll.png' align="center">
