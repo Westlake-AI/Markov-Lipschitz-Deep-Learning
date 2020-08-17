@@ -48,11 +48,11 @@ The code includes the following modules:
 
 * main.py  
   * SetParam() -- Parameters for training
-  * train() -- Train a new model (encoder and/or decoder)
-  * autotrain() -- Training 10 models, each with different seed
+  * Train() -- Train a new model (encoder and/or decoder)
+  * Autotrain() -- Training 10 models, each with different seed
   * Generation() -- Testing generation of new data of the learned manifold
   * Generalization() -- Testing dimension reduction from unseen data of the learned manifold
-  * onlinePlot() -- online plot intermediate results during training
+  * InlinePlot() -- Inline plot intermediate results during training
 * dataset.py  
   * LoadData() -- Load data of selected dataset
 * loss.py  
