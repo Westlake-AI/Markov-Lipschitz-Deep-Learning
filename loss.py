@@ -44,7 +44,7 @@ class MLDL_Loss(object):
 
         return d, kNN_mask
 
-    def kNNGraph(self, data):
+    def KNNGraph(self, data):
 
         """
         another function used to calculate the distance between point pairs and determine the neighborhood
@@ -158,8 +158,8 @@ class MLDL_Loss(object):
     def MorphicLossItem(self, data, latent):
 
         if 'MNIST' in self.args['DATASET']:
-            dis_data, kNN_data  = self.kNNGraph(data)
-            dis_latent, kNN_latent = self.kNNGraph(latent)
+            dis_data, kNN_data  = self.KNNGraph(data)
+            dis_latent, kNN_latent = self.KNNGraph(latent)
         else:
             dis_data, kNN_data  = self.Epsilonball(data)
             dis_latent, kNN_latent = self.Epsilonball(latent)

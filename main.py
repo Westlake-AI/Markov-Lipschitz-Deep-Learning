@@ -20,7 +20,7 @@ parser = argparse.ArgumentParser(description="author: CAIRI")
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 
-def train(model, loss, epoch, train_data, train_label, sample_index, batch_size):
+def Train(model, loss, epoch, train_data, train_label, sample_index, batch_size):
 
     """
     Train the model for one loop.
@@ -105,10 +105,10 @@ def Genelization(Model, path):
         test=True
     )   
 
-    onlinePlot(Model, param['BATCHSIZE'], test_data, test_label, path=path, name='Test', indicator=False, mode=param['Mode'])
+    OnlinePlot(Model, param['BATCHSIZE'], test_data, test_label, path=path, name='Test', indicator=False, mode=param['Mode'])
 
 
-def onlinePlot(model, batch_size, datas, labels, path, name, indicator=False, mode='ML-AE'):
+def OnlinePlot(model, batch_size, datas, labels, path, name, indicator=False, mode='ML-AE'):
 
     """
     For testing models, saving intermediate data, and plotting figs.
@@ -278,7 +278,7 @@ def SetModel(param):
     return Model, loss
 
 
-def autotrain():
+def Autotrain():
     # Combination of multiple parallel training parameters (only SEED is set below, different parameters can be set as needed)
     cmd=[]
     for i in range(10):
@@ -312,7 +312,7 @@ if __name__ == '__main__':
 
     param, path = SetParam()
     if param['Autotrain']:
-        autotrain()
+        Autotrain()
     else:
         SetSeed(param['SEED'])
 
@@ -340,14 +340,14 @@ if __name__ == '__main__':
 
         # Start training
         for epoch in range(param['EPOCHS'] + 1):
-            train(Model, loss, epoch, train_data, train_label, sample_index, param['BATCHSIZE'])
+            Train(Model, loss, epoch, train_data, train_label, sample_index, param['BATCHSIZE'])
 
             if epoch % param['PlotForloop'] == 0:
                 name = 'Epoch_' + str(epoch).zfill(5)
-                onlinePlot(Model, param['BATCHSIZE'], train_data, train_label, path, name, indicator=False)
+                OnlinePlot(Model, param['BATCHSIZE'], train_data, train_label, path, name, indicator=False)
 
         # Plotting the final results and evaluating the metrics
-        onlinePlot(Model, param['BATCHSIZE'], train_data, train_label, path, name='Train', indicator=True, mode=param['Mode'])
+        OnlinePlot(Model, param['BATCHSIZE'], train_data, train_label, path, name='Train', indicator=True, mode=param['Mode'])
         if param['DATASET'] != '10MNIST':
             gif_ploter.SaveGIF(path=path)
 
