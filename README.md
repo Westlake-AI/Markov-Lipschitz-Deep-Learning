@@ -113,13 +113,16 @@ The results are available in `./pic/file_name/Generation.png`
 * Swiss Roll and S-Curve
 
    A symbol √ or X represents a success or failure in unfolding the manifold. From the figure below, we can see that the ML-Enc not only succeeds but also best maintains the true aspect ratio.
-  
+
+<p align="center">
   <img src='./figs/swiss roll.png' align="center">
+</p>
 
 * MNIST and Spheres
-   
-  <img src='./figs/mnist+spheres.png' align="center">
 
+<p align="center">
+  <img src='./figs/mnist+spheres.png' align="center">
+</p>
 
 2. ML-Enc: Performance metrics for dimension reduction on Swiss Roll (800 points) data
 
