@@ -127,7 +127,6 @@ The results are available in `./pic/file_name/Generation.png`
 
    This table demonstrates that the ML-Enc outperforms all the other 6 methods in all the evaluation metrics, particularly significant in terms of the isometry (LGD, RRE, Cont and Trust) and Lipschitz (*K*-Min and *K*-Max) related metrics. 
 
-<<<<<<< HEAD
    |        | #Succ | L-KL   | RRE      | Trust  | Cont   | LGD     | K-Min | K-Max   | MPE    |
    | ------ | ----- | ------ | -------- | ------ | ------ | ------- | ----- | ------- | ------ |
    | ML-Enc | 10    | 0.0184 | 0.000414 | 0.9999 | 0.9985 | 0.00385 | 1.00  | 2.14    | 0.0262 |
@@ -139,6 +138,8 @@ The results are available in `./pic/file_name/Generation.png`
    | LLE    | 0     | 0.1775 | 0.014249 | 0.9753 | 0.9895 | 0.04671 | 6.17  | 451.58  | 0.1400 |
    | TopoAE | 0     | 0.0349 | 0.022174 | 0.9661 | 0.9884 | 0.13294 | 1.27  | 189.95  | 0.1307 |
 
+
+
 3. Performance metrics for the ML-AE with Swiss Roll (800 points) data
 
    While the other 3 autoencoders fail to unfold the manifold data sets, the ML-AE produces good quality results especially in terms of the isometry and Lipschitz related metrics. 
@@ -149,23 +150,11 @@ The results are available in `./pic/file_name/Generation.png`
    | AE     | 0     | 0.11537 | 0.13589 | 0.7742 | 0.9339 | 0.03069 | 1.82  | 5985.74 | 0.01519 | 0.40685 |
    | VAE    | 0     | 0.23253 | 0.49784 | 0.5053 | 0.5039 | 0.04000 | 1.49  | 5290.55 | 0.01977 | 0.78104 |
    | TopoAE | 0     | 0.05793 | 0.04891 | 0.9265 | 0.9762 | 0.09651 | 1.10  | 228.11  | 0.12049 | 0.56013 |
-=======
-   |        | #Succ | L-KL   | RRE      | Trust  | LGD     | K-Min | K-Max   | MPE    |
-   | ------ | ----- | ------ | -------- | ------ | ------- | ----- | ------- | ------ |
-   | ML-Enc | 10    | 0.0184 | 0.000414 | 0.9999 | 0.00385 | 1.00  | 2.14    | 0.0262 |
-   | MLLE   | 6     | 0.1251 | 0.030702 | 0.9455 | 0.04534 | 7.37  | 238.74  | 0.1709 |
-   | HLLE   | 6     | 0.1297 | 0.034619 | 0.9388 | 0.04542 | 7.44  | 218.38  | 0.0978 |
-   | LTSA   | 6     | 0.1296 | 0.034933 | 0.9385 | 0.04542 | 7.44  | 215.93  | 0.0964 |
-   | ISOMAP | 6     | 0.0234 | 0.009650 | 0.9827 | 0.02376 | 1.11  | 34.35   | 0.0429 |
-   | t-SNE  | 0     | 0.0450 | 0.006108 | 0.9987 | 3.40665 | 11.1  | 1097.62 | 0.1071 |
-   | LLE    | 0     | 0.1775 | 0.014249 | 0.9753 | 0.04671 | 6.17  | 451.58  | 0.1400 |
 
->>>>>>> 9b0037e1cb1c759d9ff64ef4ce272b49601efed1
 
 
 3. Generalization testing
 
-<<<<<<< HEAD
    In the learning phase, the ML-AE taking (a) the training data as input, output (b) embedding in the learned latent space, and then reconstruct back (c). In the generation phase, the ML-Dec takes (d) random input samples in the latent space, and maps the samples to the manifold (e).
 
 <img src='./figs/generation.PNG'  width="800" align="center">
