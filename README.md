@@ -7,7 +7,7 @@
 This is a PyTorch implementation of the 
   [
   MLDL paper
-  ](https://arxiv.org/abs/2006.08256),
+  ](https://arxiv.org/abs/2006.08256)
 :
 ```bibtex
 @article{Li-MarLip-2020,
