@@ -95,7 +95,7 @@ def Generation(model, latent_point, label_point, latent_index):
     gif_ploter.Plot_Generation(latent_point[0], latent_point[latent_index], latent_point[-1], gen_latent, gen_data, label_point, title = path + '/Generation.png')
 
 
-def Genelization(Model, path):
+def Generalization(Model, path):
     test_data, test_label = dataset.LoadData(
         data_name=param['DATASET'],
         data_num=8000,
@@ -278,7 +278,7 @@ def SetModel(param):
     return Model, loss
 
 
-def Autotrain():
+def AutoTrain():
     # Combination of multiple parallel training parameters (only SEED is set below, different parameters can be set as needed)
     cmd=[]
     for i in range(10):
@@ -312,7 +312,7 @@ if __name__ == '__main__':
 
     param, path = SetParam()
     if param['Autotrain']:
-        Autotrain()
+        AutoTrain()
     else:
         SetSeed(param['SEED'])
 
@@ -353,4 +353,4 @@ if __name__ == '__main__':
 
         # Testing the generalizability of the model to out-of-samples
         if param['Mode'] == 'Test':
-            Genelization(Model, path)
+            Generalization(Model, path)
