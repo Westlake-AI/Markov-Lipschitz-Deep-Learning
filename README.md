@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-<img src='./figs/train.gif' width="280"  alt="ML-AE Result">
+<img src='./figs/train.gif' width="270"  alt="ML-AE Result">
 <a href="https://github.com/BorgwardtLab/topological-autoencoders/blob/master/animations/topoae.gif">
         <img src='./figs/topoae.gif' width="270" alt="TopoAE Result">
 </a>
