@@ -124,6 +124,7 @@ The results are available in `./pic/file_name/Generation.png`
   <img src='./figs/mnist+spheres.png' align="center">
 </p>
 
+
 2. ML-Enc: Performance metrics for dimension reduction on Swiss Roll (800 points) data
 
    This table demonstrates that the ML-Enc outperforms all the other 6 methods in all the evaluation metrics, particularly significant in terms of the isometry (LGD, RRE, Cont and Trust) and Lipschitz (*K*-Min and *K*-Max) related metrics. 
@@ -142,6 +143,7 @@ The results are available in `./pic/file_name/Generation.png`
    | TopoAE | 0     | 0.0349 | 0.022174 | 0.9661 | 0.9884 | 0.13294 | 1.27  | 189.95  | 0.1307 |
 
 </p>
+
 
 3. ML-Enc: Ability to generalize on unseen data of the learned manifold
 
