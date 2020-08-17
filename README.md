@@ -124,8 +124,7 @@ The results are available in `./pic/file_name/Generation.png`
   <img src='./figs/mnist+spheres.png'>
 
 
-
-2. Comparison of embedding quality for Swiss Roll (800 points)
+2. Performance metrics on Swiss Roll (800 points) data
 
    This table demonstrates that the ML-Enc outperforms all the other 6 methods in all the evaluation metrics, particularly significant in terms of the isometry (LGD, RRE and Trust) and Lipschitz (*K*-Min and *K*-Max) related metrics. 
 
@@ -139,38 +138,16 @@ The results are available in `./pic/file_name/Generation.png`
    | t-SNE  | 0     | 0.0450 | 0.006108 | 0.9987 | 3.40665 | 11.1  | 1097.62 | 0.1071 |
    | LLE    | 0     | 0.1775 | 0.014249 | 0.9753 | 0.04671 | 6.17  | 451.58  | 0.1400 |
 
-   
-
-3. Performance metrics for the ML-AE with Swiss Roll (800 points) data
-
-   While the other 3 autoencoders fail to unfold the manifold data sets, the ML-AE produces good quality results especially in terms of the isometry and Lipschitz related metrics. 
-
-   |        | #Succ | L-KL    | RRE     | Trust  | Trust   | K-min | K-max   | MPE     | MRE     |
-   | ------ | ----- | ------- | ------- | ------ | ------- | ----- | ------- | ------- | ------- |
-   | ML-AE  | 10    | 0.00165 | 0.00070 | 0.9998 | 0.00514 | 1.01  | 2.54    | 0.04309 | 0.01846 |
-   | AE     | 0     | 0.11537 | 0.13589 | 0.7742 | 0.03069 | 1.82  | 5985.74 | 0.01519 | 0.40685 |
-   | VAE    | 0     | 0.23253 | 0.49784 | 0.5053 | 0.04000 | 1.49  | 5290.55 | 0.01977 | 0.78104 |
-   | TopoAE | 0     | 0.05793 | 0.04891 | 0.9265 | 0.09651 | 1.10  | 228.11  | 0.12049 | 0.56013 |
 
 
+3. Generalization testing
 
-4. The process of manifold data reconstruction and generation using ML-AE
-
-   In the learning phase, the ML-AE taking (a) the training data as input, output (b) embedding in the learned latent space, and then reconstruct back (c). In the generation phase, the ML-Dec takes (d) random input samples in the latent space, and maps the samples to the manifold (e).
-
-<img src='./figs/generation.PNG'  width="600">
-
-
-
-5. Generalization testing
-
-   The unseen manifold data sets are well unfolded by the ML-Enc and the removed shapes are kept very well, illustrating that the learned ML-Enc has a good ability to generalize to unseen data. 
+   The learned ML-Enc network can unfold unseen data of the learned manifold whereas the compared methods cannot.  
 
 <img src='./figs/generalization.PNG'  width="800">
 
 
-
-6. Visualization of ML-AE training evolution
+4. Visualization of ML-AE training evolution
 
    The gif below shows the evolution of the process that ML-AE gradually unfolds the manifold in each layer of the encoder, learning the optimal embedding in the latent space and then reconstruct it in the mirrored symmetric layers of the decoder during the training.
 <p align="center">
