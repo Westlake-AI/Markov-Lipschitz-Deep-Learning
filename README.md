@@ -2,16 +2,28 @@
 
 # Markov-Lipschitz Deep Learning (MLDL)
 
-## Summary
+<p align="center">
+  <img src='./figs/MLDL.png' width="700">
+</p>
 
-This is the PyTorch code for the following paper:
+This is a PyTorch implementation of the 
+  [
+  MLDL paper
+  ](https://arxiv.org/abs/2006.08256)
+:
+```bibtex
+@article{Li-MarLip-2020,
+  title={Markov-Lipschitz Deep Learning},
+  author={Stan Z Li and Zelin Zang and Lirong Wu},
+  journal={arXiv preprint arXiv:2006.08256},
+  year={2020}
+}
+```
 
-[
-Stan Z. Li, Zelin Zang, Lirong Wu, "Markov-Lipschitz Deep Learning", arXiv preprint, arXiv:2006.08256, 2020.
-](https://arxiv.org/abs/2006.08256)
-
-Main features of MLDL for manifold learning and generation in comparison with some others are summarized below:
-<img src='./figs/MLDL_Features.png' width="800">
+The main features of MLDL for manifold learning and generation in comparison to other popular methods are summarized below:
+<p align="center">
+	<img src='./figs/MLDL_Features.png' width="800">
+</p>
 
 The code includes the following modules:
 * Datasets (Swiss rool, S-Curve, MNIST, Spheres)
@@ -20,7 +32,7 @@ The code includes the following modules:
 * Test for manifold generation (ML-Dec) 
 * Visualization
 * Evaluation metrics 
-* Compared methods include: AutoEncoder (AE), <a href="https://github.com/BorgwardtLab/topological-autoencoders">Topological AutoEncoder (TopoAE)</a>, [Modified Locally Linear Embedding (MLLE)](https://github.com/scikit-learn/scikit-learn), [ISOMAP](https://github.com/scikit-learn/scikit-learn), [t-SNE](https://github.com/scikit-learn/scikit-learn). (Note: We modified the original TopoAE source code to make it able to run the Swiss roll dataset by adding a swiss roll dataset generation function and modifying the network structure for fair comparison.)
+* The compared methods include: AutoEncoder (AE), <a href="https://github.com/BorgwardtLab/topological-autoencoders">Topological AutoEncoder (TopoAE)</a>, [Modified Locally Linear Embedding (MLLE)](https://github.com/scikit-learn/scikit-learn), [ISOMAP](https://github.com/scikit-learn/scikit-learn), [t-SNE](https://github.com/scikit-learn/scikit-learn). (Note: We modified the original TopoAE source code to make it able to run the Swiss roll dataset by adding a swiss roll dataset generation function and modifying the network structure for fair comparison.)
 
 ## Requirements
 
@@ -38,9 +50,9 @@ The code includes the following modules:
   * SetParam() -- Parameters for training
   * train() -- Train a new model (encoder and/or decoder)
   * autotrain() -- Training 10 models, each with different seed
-  * onlinePlot() -- Online plot intermediate results
-  * Generation() -- Generate manifold
-  * Generalization() -- Test the generalization of a learned model to unseen data 
+  * Generation() -- Testing generation of new data of the learned manifold
+  * Generalization() -- Testing dimension reduction from unseen data of the learned manifold
+  * onlinePlot() -- online plot intermediate results during training
 * dataset.py  
   * LoadData() -- Load data of selected dataset
 * loss.py  
@@ -159,18 +171,6 @@ The results are available in `./pic/file_name/Generation.png`
 6. Visualization of ML-AE training evolution
 
    The gif below shows the evolution of the process that ML-AE gradually unfolds the manifold in each layer of the encoder, learning the optimal embedding in the latent space and then reconstruct it in the mirrored symmetric layers of the decoder during the training.
-<center>
-  <img src='./figs/latent.gif'  width="400" align="middle">
-</center>
-
-## Citation
-
-
-```bibtex
-@article{Li-MarLip-2020,
-  title={Markov-Lipschitz Deep Learning},
-  author={Stan Z Li and Zelin Zang and Lirong Wu},
-  journal={arXiv preprint arXiv:2006.08256},
-  year={2020}
-}
-```
+<p align="center">
+ <img src='./figs/latent.gif'  width="400" align="middle">
+</p>
