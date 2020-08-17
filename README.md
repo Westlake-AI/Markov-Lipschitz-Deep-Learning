@@ -49,7 +49,7 @@ The code includes the following modules:
 * main.py  
   * SetParam() -- Parameters for training
   * Train() -- Train a new model (encoder and/or decoder)
-  * AutoTrain() -- Training 10 models, each with different seed
+  * Train_MultiRun() -- Run the training for 10 times, each with a different seed
   * Generation() -- Testing generation of new data of the learned manifold
   * Generalization() -- Testing dimension reduction from unseen data of the learned manifold
   * InlinePlot() -- Inline plot intermediate results during training
