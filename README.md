@@ -1,5 +1,4 @@
 
-
 # Markov-Lipschitz Deep Learning (MLDL)
 
 <p align="center">
@@ -82,13 +81,13 @@ The code includes the following modules:
 python main.py -Auto
   ```
 
-4. To choose a dataset among SwissRoll, Scurve, 7MNIST, 10MNIST and Spheres5500, run
+4. To choose a dataset from SwissRoll, Scurve, 7MNIST, 10MNIST and Spheres5500
 
   ```
   python main.py -D "dataset name"
   ```
 
-5. To get the metrics for ML-Enc and ML-AE, run
+5. To get the metrics for ML-Enc and ML-AE
 
   ```
   python eval.py -M ML-Enc
@@ -96,13 +95,13 @@ python main.py -Auto
   ```
 The evaluation metrics are available in `./pic/indicators.csv`
 
-6. To test the generalization to unseen data, run
+6. To test the generalization to unseen data
   ```
   python main.py -M Test
   ```
 The results are available in `./pic/file_name/Test.png`
 
-7. To test the manifold generation, run
+7. To test the manifold generation
   ```
   python main.py -M Generation
   ```
