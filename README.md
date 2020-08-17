@@ -52,7 +52,7 @@ The code includes the following modules:
   * AutoTrain() -- Training 10 models, each with different seed
   * Generation() -- Testing generation of new data of the learned manifold
   * Generalization() -- Testing dimension reduction from unseen data of the learned manifold
-  * onlinePlot() -- online plot intermediate results during training
+  * InlinePlot() -- Inline plot intermediate results during training
 * dataset.py  
   * LoadData() -- Load data of selected dataset
 * loss.py  
@@ -126,7 +126,7 @@ The results are available in `./pic/file_name/Generation.png`
 
    This table demonstrates that the ML-Enc outperforms all the other 6 methods in all the evaluation metrics, particularly significant in terms of the isometry (LGD, RRE, Cont and Trust) and Lipschitz (*K*-Min and *K*-Max) related metrics. 
 
-<<<<<<< HEAD
+<p align="center">
    |        | #Succ | L-KL   | RRE      | Trust  | Cont   | LGD     | K-Min | K-Max   | MPE    |
    | ------ | ----- | ------ | -------- | ------ | ------ | ------- | ----- | ------- | ------ |
    | ML-Enc | 10    | 0.0184 | 0.000414 | 0.9999 | 0.9985 | 0.00385 | 1.00  | 2.14    | 0.0262 |
@@ -137,11 +137,13 @@ The results are available in `./pic/file_name/Generation.png`
    | t-SNE  | 0     | 0.0450 | 0.006108 | 0.9987 | 0.9843 | 3.40665 | 11.1  | 1097.62 | 0.1071 |
    | LLE    | 0     | 0.1775 | 0.014249 | 0.9753 | 0.9895 | 0.04671 | 6.17  | 451.58  | 0.1400 |
    | TopoAE | 0     | 0.0349 | 0.022174 | 0.9661 | 0.9884 | 0.13294 | 1.27  | 189.95  | 0.1307 |
+</p>
 
 3. Performance metrics for the ML-AE with Swiss Roll (800 points) data
 
    While the other 3 autoencoders fail to unfold the manifold data sets, the ML-AE produces good quality results especially in terms of the isometry and Lipschitz related metrics. 
 
+<p align="center">
    |        | #Succ | L-KL    | RRE     | Trust  | Cont   | LGD     | K-min | K-max   | MPE     | MRE     |
    | ------ | ----- | ------- | ------- | ------ | ------ | ------- | ----- | ------- | ------- | ------- |
    | ML-AE  | 10    | 0.00165 | 0.00070 | 0.9998 | 0.9998 | 0.00514 | 1.01  | 2.54    | 0.04309 | 0.01846 |
@@ -159,12 +161,11 @@ The results are available in `./pic/file_name/Generation.png`
    | t-SNE  | 0     | 0.0450 | 0.006108 | 0.9987 | 3.40665 | 11.1  | 1097.62 | 0.1071 |
    | LLE    | 0     | 0.1775 | 0.014249 | 0.9753 | 0.04671 | 6.17  | 451.58  | 0.1400 |
 
->>>>>>> 9b0037e1cb1c759d9ff64ef4ce272b49601efed1
+</p>
 
 
 3. Ability to generalization
 
-<<<<<<< HEAD
    In the learning phase, the ML-AE taking (a) the training data as input, output (b) embedding in the learned latent space, and then reconstruct back (c). In the generation phase, the ML-Dec takes (d) random input samples in the latent space, and maps the samples to the manifold (e).
 
 <p align="center">
@@ -174,7 +175,6 @@ The results are available in `./pic/file_name/Generation.png`
 5. Generalization testing
 
    The learned ML-Enc network can unfold unseen data of the learned manifold whereas the compared methods cannot.  
->>>>>>> 9b0037e1cb1c759d9ff64ef4ce272b49601efed1
 
 <p align="center">
 <img src='./figs/generalization.PNG'  width="800" align="center">
