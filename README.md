@@ -147,7 +147,7 @@ The results are available in `./pic/file_name/Generation.png`
 
    This table demonstrates that the ML-Enc outperforms all the other 6 methods in all the evaluation metrics, particularly significant in terms of the isometry (LGD, RRE, Cont and Trust) and Lipschitz (*K*-Min and *K*-Max) related metrics. 
 
-<p align="center">
+<p align="right">
 	
    |        | #Succ | L-KL   | RRE      | Trust  | Cont   | LGD     | K-Min | K-Max   | MPE    |
    | ------ | ----- | ------ | -------- | ------ | ------ | ------- | ----- | ------- | ------ |
