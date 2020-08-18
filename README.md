@@ -20,7 +20,6 @@ This is a PyTorch implementation of the
   MLDL paper
   ](https://arxiv.org/abs/2006.08256)
 :
-
 ```bibtex
 @article{Li-MarLip-2020,
   title={Markov-Lipschitz Deep Learning},
@@ -135,7 +134,10 @@ The results are available in `./pic/file_name/Generation.png`
   <img src='./figs/MNIST-results.png' align="center"  width="500" >
 </p>
 
-* Spheres
+* Spheres (from 
+  [
+  the topoAE project
+  ](https://github.com/BorgwardtLab/topological-autoencoders))
 
 <p align="center">
   <img src='./figs/Spheres-results.png' align="center">
