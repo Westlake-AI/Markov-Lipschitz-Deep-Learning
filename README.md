@@ -136,7 +136,7 @@ The results are available in `./pic/file_name/Generation.png`
 
 * Spheres (from the 
   [
-  topoAE project
+  TopoAE project
   ](https://github.com/BorgwardtLab/topological-autoencoders) )
 
 <p align="center">
