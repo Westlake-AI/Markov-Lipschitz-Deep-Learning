@@ -2,16 +2,16 @@
 # Markov-Lipschitz Deep Learning (MLDL)
 
 <p align="center">
-  <img src='./figs/MLDL.png' width="700">
+  <img src='./figs/MLDL.png' width="650">
 </p>
 
 <p align="center">
-<img src='./figs/train.gif' width="270"  alt="ML-AE Result">
+<img src='./figs/train.gif' width="290"  alt="ML-AE Result">
 <a href="https://github.com/BorgwardtLab/topological-autoencoders/blob/master/animations/topoae.gif">
-        <img src='./figs/topoae.gif' width="270" alt="TopoAE Result">
+        <img src='./figs/topoae.gif' width="290" alt="TopoAE Result">
 </a>
 <a href="https://github.com/BorgwardtLab/topological-autoencoders/blob/master/animations/vanilla.gif">
-        <img src='./figs/vanilla.gif' width="270" alt="Vanilla AE Result">
+        <img src='./figs/vanilla.gif' width="290" alt="Vanilla AE Result">
 </a>
 </p>
 
@@ -125,13 +125,13 @@ The results are available in `./pic/file_name/Generation.png`
    A symbol √ or X represents a success or failure in unfolding the manifold. The methods in the upper-row ML-Enc succeed and by calculation, the ML-Enc best maintains the true aspect ratio.
 
 <p align="center">
-  <img src='./figs/swiss roll.png' align="center">
+  <img src='./figs/swiss roll.png' align="center" width="700">
 </p>
 
 * MNIST
 
 <p align="center">
-  <img src='./figs/MNIST-results.png' align="center"  width="500" >
+  <img src='./figs/MNIST-results.png' align="center"  width="400" >
 </p>
 
 * Spheres (from the 
@@ -168,7 +168,7 @@ The results are available in `./pic/file_name/Generation.png`
    The learned ML-Enc network can unfold unseen data of the learned manifold, demonstrated using the Swiss-roll with a hole, whereas the compared methods cannot.  
 
 <p align="center">
-	<img src='./figs/generalization.PNG'  width="800" align="center">
+	<img src='./figs/generalization.PNG'  width="800">
 </p>
 
 
@@ -177,7 +177,7 @@ The results are available in `./pic/file_name/Generation.png`
    In the learning phase, the ML-AE taking (a) the training data as input, output (b) embedding in the learned latent space, and then reconstruct back (c). In the generation phase, the ML-Dec takes (d) random input samples in the latent space, and maps the samples to the manifold (e).
 
 <p align="center">
-<img src='./figs/generation.PNG'  width="800" align="center">
+<img src='./figs/generation.PNG'  width="800" width="500">
 </p>
 
 
