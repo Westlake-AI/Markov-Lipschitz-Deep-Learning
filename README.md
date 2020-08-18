@@ -30,9 +30,9 @@ This is a PyTorch implementation of the
 ```
 
 The main features of MLDL for manifold learning and generation in comparison to other popular methods are summarized below:
-<p align="center">
+
   <img src='./figs/MLDL_Features.png' width="800">
-</p>
+
 
 The code includes the following modules:
 * Datasets (Swiss rool, S-Curve, MNIST, Spheres)
