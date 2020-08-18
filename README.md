@@ -147,10 +147,10 @@ The results are available in `./pic/file_name/Generation.png`
 
    This table demonstrates that the ML-Enc outperforms all the other 6 methods in all the evaluation metrics, particularly significant in terms of the isometry (LGD, RRE, Cont and Trust) and Lipschitz (*K*-Min and *K*-Max) related metrics. 
 
-<p align="right">
+<p align="center">
 	
    |        | #Succ | L-KL   | RRE      | Trust  | Cont   | LGD     | K-Min | K-Max   | MPE    |
-   | ------ | ----- | ------ | -------- | ------ | ------ | ------- | ----- | ------- | ------ |
+   | ------ | :-----: | ------: | --------: | ------: | ------: | -------: | -----: | -------: | ------: |
    | ML-Enc | **10**    | **0.0184** | **0.000414** | **0.9999** | **0.9985** | **0.00385** | **1.00**  | **2.14**    | **0.0262** |
    | TopoAE | 0     | 0.0349 | 0.022174 | 0.9661 | 0.9884 | 0.13294 | 1.27  | 189.95  | 0.1307 |
    | t-SNE  | 0     | 0.0450 | 0.006108 | 0.9987 | 0.9843 | 3.40665 | 11.1  | 1097.62 | 0.1071 |
