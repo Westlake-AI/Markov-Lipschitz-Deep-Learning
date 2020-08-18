@@ -134,10 +134,10 @@ The results are available in `./pic/file_name/Generation.png`
   <img src='./figs/MNIST-results.png' align="center"  width="500" >
 </p>
 
-* Spheres (from 
+* Spheres (from the 
   [
-  the topoAE project
-  ](https://github.com/BorgwardtLab/topological-autoencoders))
+  topoAE project
+  ](https://github.com/BorgwardtLab/topological-autoencoders) )
 
 <p align="center">
   <img src='./figs/Spheres-results.png' align="center">
