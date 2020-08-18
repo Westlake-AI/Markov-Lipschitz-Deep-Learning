@@ -134,7 +134,7 @@ The results are available in `./pic/file_name/Generation.png`
   <img src='./figs/MNIST-results.png'  width="400" >
 </p>
 
-* Spheres (from the 
+* Spheres (dataset designed by the 
   [
   TopoAE project
   ](https://github.com/BorgwardtLab/topological-autoencoders) )
