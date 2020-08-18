@@ -6,12 +6,12 @@
 </p>
 
 <p align="center">
-<img src='./figs/ML-AE.gif' width="300"  alt="ML-AE Result">
+<img src='./figs/ML-AE.gif' width="270"  alt="ML-AE Result">
 <a href="https://github.com/BorgwardtLab/topological-autoencoders/blob/master/animations/topoae.gif">
-        <img src='./figs/topoae.gif' width="300" alt="TopoAE Result">
+        <img src='./figs/topoae.gif' width="270" alt="TopoAE Result">
 </a>
 <a href="https://github.com/BorgwardtLab/topological-autoencoders/blob/master/animations/vanilla.gif">
-        <img src='./figs/vanilla.gif' width="300" alt="Vanilla AE Result">
+        <img src='./figs/vanilla.gif' width="270" alt="Vanilla AE Result">
 </a>
 </p>
 
