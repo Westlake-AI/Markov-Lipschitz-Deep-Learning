@@ -1,18 +1,18 @@
 import os
+import time
 import math
 import torch
 import signal
 import imageio
+import subprocess
 import numpy as np
+from itertools import product
 import matplotlib.pyplot as plt
 from scipy.spatial import Delaunay
 from sklearn.decomposition import PCA
 from mpl_toolkits.mplot3d import Axes3D
 from multiprocessing import Process, Manager
 from scipy.spatial.distance import pdist, squareform
-from itertools import product
-import time
-import subprocess
 
 
 def run(command, gpuid, gpustate):
@@ -57,7 +57,7 @@ class GIFPloter():
 
 
     # Plotting the results of a single layer in the network based on the input data
-    def PlotOtherLayer(self, fig, data, label, title='', fig_position0=1, fig_position1=1, fig_position2=1, s=10):
+    def PlotOtherLayer(self, fig, data, label, title='', fig_position0=1, fig_position1=1, fig_position2=1, s=10, dataset='None'):
 
         color_list = []
         for i in range(label.shape[0]):
@@ -79,14 +79,15 @@ class GIFPloter():
         if data_em.shape[1] == 2:
             ax = fig.add_subplot(fig_position0, fig_position1, fig_position2)
             ax.scatter(data_em[:, 0], data_em[:, 1], c=label, s=s, cmap='rainbow')
-            ax.set_xlim([-0.22,0.22])
-            ax.set_ylim([-0.22,0.22])
-            # plt.axis('equal')
-            # plt.
+            if dataset == 'Spheres5500':
+                ax.set_xlim([-0.22,0.22])
+                ax.set_ylim([-0.22,0.22])
+            else:
+                plt.axis('equal')
 
-        # plt.xticks([])
-        # plt.yticks([])
-        
+        if dataset != 'Spheres5500':
+            plt.xticks([])
+            plt.yticks([])
 
         plt.title(title, fontsize=20)
 
@@ -94,7 +95,7 @@ class GIFPloter():
 
 
     # Plot the results for all layers of certain epoch based on the input data
-    def AddNewFig(self, output_info, label, loss=None, title=''):
+    def AddNewFig(self, output_info, label, loss=None, title='', dataset='None'):
 
         if self.his_loss is None and loss is not None:
             self.his_loss = [[] for i in range(len(loss))]
@@ -113,7 +114,8 @@ class GIFPloter():
                 title=self.name_list[index],
                 fig_position0=self.num_row,
                 fig_position1=self.num_fig_every_row,
-                fig_position2=int(self.sub_position_list[i])
+                fig_position2=int(self.sub_position_list[i]),
+                dataset = dataset
             )
 
         ax = fig.add_subplot(self.num_row, self.num_fig_every_row, int(max(self.sub_position_list)) + 1)

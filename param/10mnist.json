@@ -1,5 +1,5 @@
 {
-  "FileName": null,
+  "name": null,
   "ParamPath": "None",
   "Mode": "ML-AE",
   "DATASET": "10MNIST",
@@ -31,5 +31,5 @@
     25
   ],
   "Noise": 0.0,
-  "Autotrain": false
+  "Train_MultiRun": false
 }
