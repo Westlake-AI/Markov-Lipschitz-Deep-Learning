@@ -2,7 +2,17 @@
 # Markov-Lipschitz Deep Learning (MLDL)
 
 <p align="center">
-  <img src='./figs/MLDL.png' width="700">
+  <img src='./figs/MLDL.png' width="650">
+</p>
+
+<p align="center">
+<img src='./figs/ML-AE.gif' width="270"  alt="ML-AE Result">
+<a href="https://github.com/BorgwardtLab/topological-autoencoders/blob/master/animations/topoae.gif">
+        <img src='./figs/topoae.gif' width="270" alt="TopoAE Result">
+</a>
+<a href="https://github.com/BorgwardtLab/topological-autoencoders/blob/master/animations/vanilla.gif">
+        <img src='./figs/vanilla.gif' width="270" alt="Vanilla AE Result">
+</a>
 </p>
 
 This is a PyTorch implementation of the 
@@ -20,9 +30,9 @@ This is a PyTorch implementation of the
 ```
 
 The main features of MLDL for manifold learning and generation in comparison to other popular methods are summarized below:
-<p align="center">
-	<img src='./figs/MLDL_Features.png' width="800">
-</p>
+
+  <img src='./figs/MLDL_Features.png' width="800">
+
 
 The code includes the following modules:
 * Datasets (Swiss rool, S-Curve, MNIST, Spheres)
@@ -109,59 +119,77 @@ The results are available in `./pic/file_name/Generation.png`
 
 ## Results
 
-1. Visualization of demision reduction results: embeddings in latent spaces
+1. ML-Enc: Dimension reduction results -- embeddings in latent spaces
 * Swiss Roll and S-Curve
 
-   A symbol √ or X represents a success or failure in unfolding the manifold. From the figure below, we can see that the ML-Enc not only succeeds but also best maintains the true aspect ratio.
-  
-  <img src='./figs/swiss roll.png' align="center">
+   A symbol √ or X represents a success or failure in unfolding the manifold. The methods in the upper-row ML-Enc succeed and by calculation, the ML-Enc best maintains the true aspect ratio.
 
-* MNIST and Spheres
-   
-  <img src='./figs/mnist+spheres.png' align="center">
+<p align="center">
+  <img src='./figs/swiss roll.png'  width="700">
+</p>
 
+* MNIST
 
-2. Performance metrics for dimension reduction on Swiss Roll (800 points) data
+<p align="center">
+  <img src='./figs/MNIST-results.png'  width="400" >
+</p>
+
+* Spheres (data designed by the 
+  [
+  TopoAE project
+  ](https://github.com/BorgwardtLab/topological-autoencoders) )
+
+<p align="center">
+  <img src='./figs/Spheres-results.png' align="center">
+</p>
+
+2. ML-Enc: Performance metrics for dimension reduction on Swiss Roll (800 points) data
 
    This table demonstrates that the ML-Enc outperforms all the other 6 methods in all the evaluation metrics, particularly significant in terms of the isometry (LGD, RRE, Cont and Trust) and Lipschitz (*K*-Min and *K*-Max) related metrics. 
 
 <p align="center">
 	
    |        | #Succ | L-KL   | RRE      | Trust  | Cont   | LGD     | K-Min | K-Max   | MPE    |
-   | ------ | ----- | ------ | -------- | ------ | ------ | ------- | ----- | ------- | ------ |
-   | ML-Enc | 10    | 0.0184 | 0.000414 | 0.9999 | 0.9985 | 0.00385 | 1.00  | 2.14    | 0.0262 |
+   | ------ | :-----: | ------: | --------: | ------: | ------: | -------: | -----: | -------: | ------: |
+   | ML-Enc | **10**    | **0.0184** | **0.000414** | **0.9999** | **0.9985** | **0.00385** | **1.00**  | **2.14**    | **0.0262** |
+   | TopoAE | 0     | 0.0349 | 0.022174 | 0.9661 | 0.9884 | 0.13294 | 1.27  | 189.95  | 0.1307 |
+   | t-SNE  | 0     | 0.0450 | 0.006108 | 0.9987 | 0.9843 | 3.40665 | 11.1  | 1097.62 | 0.1071 |
    | MLLE   | 6     | 0.1251 | 0.030702 | 0.9455 | 0.9844 | 0.04534 | 7.37  | 238.74  | 0.1709 |
    | HLLE   | 6     | 0.1297 | 0.034619 | 0.9388 | 0.9859 | 0.04542 | 7.44  | 218.38  | 0.0978 |
    | LTSA   | 6     | 0.1296 | 0.034933 | 0.9385 | 0.9859 | 0.04542 | 7.44  | 215.93  | 0.0964 |
    | ISOMAP | 6     | 0.0234 | 0.009650 | 0.9827 | 0.9950 | 0.02376 | 1.11  | 34.35   | 0.0429 |
-   | t-SNE  | 0     | 0.0450 | 0.006108 | 0.9987 | 0.9843 | 3.40665 | 11.1  | 1097.62 | 0.1071 |
    | LLE    | 0     | 0.1775 | 0.014249 | 0.9753 | 0.9895 | 0.04671 | 6.17  | 451.58  | 0.1400 |
-   | TopoAE | 0     | 0.0349 | 0.022174 | 0.9661 | 0.9884 | 0.13294 | 1.27  | 189.95  | 0.1307 |
 
 </p>
 
-3. Ability of ML-Enc to generalize on unseen data of the learned manifold
+
+3. ML-Enc: Ability to generalize on unseen data of the learned manifold
 
    The learned ML-Enc network can unfold unseen data of the learned manifold, demonstrated using the Swiss-roll with a hole, whereas the compared methods cannot.  
 
 <p align="center">
-	<img src='./figs/generalization.PNG'  width="800" align="center">
+	<img src='./figs/generalization.PNG'  width="800">
 </p>
 
 
-4. ML-AE for dimension reduction and manifold data generation
+4. ML-AE: For dimension reduction and manifold data generation
 
    In the learning phase, the ML-AE taking (a) the training data as input, output (b) embedding in the learned latent space, and then reconstruct back (c). In the generation phase, the ML-Dec takes (d) random input samples in the latent space, and maps the samples to the manifold (e).
 
 <p align="center">
-<img src='./figs/generation.PNG'  width="800" align="center">
+<img src='./figs/generation.PNG'  width="650">
 </p>
 
 
-5. Visualization of ML-AE training evolution
+5. ML-AE: Evolution of training evolution
 
    The ML-AE training gradually unfolds the manifold from input layer to the latent layer and reconstructs the latent embedding back to data in the input space.
    
 <p align="center">
  <img src='./figs/latent.gif'  width="400" align="middle">
 </p>
+
+## Feedback
+If you need any more information about our work or have any issue about the implementation, please feel free to contact us by email:  
+* Zelin Zang: zangzelin@westlakeedu.cn
+* Lirong Wu: wulirong@westlake.edu.cn

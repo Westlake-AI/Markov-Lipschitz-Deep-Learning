@@ -95,7 +95,7 @@ def Generation(model, latent_point, label_point, latent_index):
     gif_ploter.Plot_Generation(latent_point[0], latent_point[latent_index], latent_point[-1], gen_latent, gen_data, label_point, title = path + '/Generation.png')
 
 
-def Genelization(Model, path):
+def Generalization(Model, path):
     test_data, test_label = dataset.LoadData(
         data_name=param['DATASET'],
         data_num=8000,
@@ -241,7 +241,7 @@ def SetParam():
     parser.add_argument("-SD", "--SEED", default=42, type=int)   # Seeds used to ensure reproducible results
     parser.add_argument("-NS", "--NetworkStructure", default=[101, 50, 25, 2], type=int, nargs='+')
     parser.add_argument("-Noise", "--Noise", default=0.0, type=float)   # Noise added to the generated data
-    parser.add_argument("-Auto", "--Autotrain", default=False, action='store_true')
+    parser.add_argument("-MultiRun", "--Train_MultiRun", default=False, action='store_true')
     args = parser.parse_args()
 
 
@@ -270,7 +270,7 @@ def SetModel(param):
     return Model, loss
 
 
-def Autotrain():
+def Train_MultiRun():
     # Combination of multiple parallel training parameters (only SEED is set below, different parameters can be set as needed)
     cmd=[]
     for i in range(10):
@@ -303,8 +303,8 @@ def Autotrain():
 if __name__ == '__main__':
 
     param, path = SetParam()
-    if param['Autotrain']:
-        Autotrain()
+    if param['Train_MultiRun']:
+        Train_MultiRun()
     else:
         SetSeed(param['SEED'])
 
@@ -356,4 +356,4 @@ if __name__ == '__main__':
 
         # Testing the generalizability of the model to out-of-samples
         if param['Mode'] == 'Test':
-            Genelization(Model, path)
+            Generalization(Model, path)

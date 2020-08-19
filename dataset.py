@@ -55,7 +55,6 @@ def create_sphere_dataset5500(n_samples=1000, d=100, bigR=25, n_spheres=11, r=5,
     variance = 10/np.sqrt(d)
     shift_matrix = np.random.normal(0, variance, [n_spheres, d+1])
 
-    np.random.seed(seed)
     spheres = []
     n_datapoints = 0
     for i in np.arange(n_spheres-1):
@@ -86,7 +85,6 @@ def create_sphere_dataset5500(n_samples=1000, d=100, bigR=25, n_spheres=11, r=5,
 
     return dataset/22 + 0.5, labels
 
-
 def LoadData(data_name='SwissRoll', data_num=1500, seed=0, noise=0.0, device=torch.device('cuda' if torch.cuda.is_available() else 'cpu'), remove=None, test=False):
 
     """
@@ -114,7 +112,7 @@ def LoadData(data_name='SwissRoll', data_num=1500, seed=0, noise=0.0, device=tor
         train_data, train_label = make_s_curve(n_samples=data_num, noise=noise, random_state=seed)
         train_data = train_data / 2
 
-    # Load Mnist Dataset
+    # Load 7Mnist Dataset
     if data_name == '7MNIST':
 
         train_data = torchvisiondatasets.MNIST(
@@ -139,6 +137,7 @@ def LoadData(data_name='SwissRoll', data_num=1500, seed=0, noise=0.0, device=tor
             train_data = train_data[mask][data_num:data_num*2]
             train_label = train_label[mask][data_num:data_num*2]
 
+    # Load 10Mnist Dataset
     if data_name == '10MNIST':
 
         train_data = torchvisiondatasets.MNIST(

@@ -44,6 +44,7 @@ class MLDL_Loss(object):
 
         return d, kNN_mask
 
+
     def KNNGraph(self, data):
 
         """
@@ -73,6 +74,7 @@ class MLDL_Loss(object):
         kNN_mask[torch.eye(kNN_mask.shape[0], dtype=bool)] = 0
 
         return d, kNN_mask.bool()
+
 
     # Using the reconstruction loss as Loss_ae
     def ReconstructionLoss(self, pred, target):
