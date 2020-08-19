@@ -30,11 +30,6 @@ This is a PyTorch implementation of the
 ```
 
 The main features of MLDL for manifold learning and generation in comparison to other popular methods are summarized below:
-<style>
-table {
-margin: auto;
-}
-</style>
 
 |                                            | MLDL(ours) | AE/TopoAE | MLLE | ISOMAP | t-SNE |
 | :----------------------------------------- | :--------: | :-------: | :--: | :----: | :--: |
@@ -43,7 +38,7 @@ margin: auto;
 | Able to generate data of learned manifolds |    Yes     |    No     |  No  |   No   |  No  |
 
 The code includes the following modules:
-* Datasets (Swiss rool, S-Curve, MNIST, Spheres)
+* Datasets (Swiss Roll, S-Curve, MNIST, Spheres)
 * Training for ML-Enc and ML-AE (ML-Enc + ML-Dec)
 * Test for manifold learning (ML-Enc) 
 * Test for manifold generation (ML-Dec) 
