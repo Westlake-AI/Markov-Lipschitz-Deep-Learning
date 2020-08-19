@@ -159,21 +159,35 @@ def PlotLatenSpace(model, batch_size, device, datas, labels, da=0, txt='no name'
     plt.close()
 
     if param['Debuginfo']:
-        path = 'pic/'+param['DATASET']+'/'
+        path = 'pic/gif'+param['DATASET']+'/'
         da.AnalisisInfo(path, filename+txt)
     # visdomtool.ShowImg(path, model.model_name+name)
 
-    np.save('data.npy', datas.detach().cpu().numpy())
-    np.save('latent.npy', latent_point,)
-    np.save('label_point.npy', label_point)
+    # np.save('data{}.npy', datas.detach().cpu().numpy())
+    np.save('gif10000/latent{}.npy'.format(txt), latent_point,)
+    np.save('gif10000/label_point{}.npy'.format(txt), label_point)
+    
+    # plt.figure()
+    # clist = ['slategrey', 'lightseagreen', 'blue', 'darkgoldenrod', 'darkmagenta', 'black', 'darkgreen',
+    #          'pink', 'lightblue', 'lightgreen', 'red']
+    # num_labels = int(labels.max())+1
+    # plt.gca().set_aspect('equal')
+
+    # for ii in range(num_labels):
+    #     i = num_labels - ii - 1
+    #     point = latent_point[label_point == i]
+    #     plt.scatter(point[:, 0], point[:, 1], c=clist[i], s=3.6,)
+
+    # plt.savefig('./gif/gif'+txt+'.png')
+    
 
 # --- main function --- #
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("-D", "--DATASET", default='sphere5500',
+    parser.add_argument("-D", "--DATASET", default='sphere',
                         type=str, choices=[
-                            'sphere', 'sphere5500', 'sphere55000',
+                            'sphere', 'sphere5500', 'sphere10000',
                             'mnist', 'Fmnist',
                         ])
     parser.add_argument("-R", "--LEARNINGRATE", default=1e-3, type=float)
@@ -184,7 +198,7 @@ if __name__ == '__main__':
     parser.add_argument(
         "-Ri", "--RATIO", default=[1.0, 1.0, 0], type=float)
     parser.add_argument("-E", "--EPOCHS", default=1000, type=int)
-    parser.add_argument("-P", "--PlotForloop", default=100, type=int)
+    parser.add_argument("-P", "--PlotForloop", default=4, type=int)
     parser.add_argument("-S", "--SSS", default=0, type=int)
     parser.add_argument("-ML", "--MultiLayerLoss", default=False, type=bool)
     parser.add_argument("-DI", "--Debuginfo", default=False, type=bool)

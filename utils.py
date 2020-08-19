@@ -10,6 +10,9 @@ from sklearn.decomposition import PCA
 from mpl_toolkits.mplot3d import Axes3D
 from multiprocessing import Process, Manager
 from scipy.spatial.distance import pdist, squareform
+from itertools import product
+import time
+import subprocess
 
 
 def run(command, gpuid, gpustate):
@@ -76,10 +79,14 @@ class GIFPloter():
         if data_em.shape[1] == 2:
             ax = fig.add_subplot(fig_position0, fig_position1, fig_position2)
             ax.scatter(data_em[:, 0], data_em[:, 1], c=label, s=s, cmap='rainbow')
-            plt.axis('equal')
+            ax.set_xlim([-0.22,0.22])
+            ax.set_ylim([-0.22,0.22])
+            # plt.axis('equal')
+            # plt.
 
-        plt.xticks([])
-        plt.yticks([])
+        # plt.xticks([])
+        # plt.yticks([])
+        
 
         plt.title(title, fontsize=20)
 
@@ -647,3 +654,56 @@ class Sampling():
             out_y = np.concatenate((out_y, y))
 
         return np.concatenate((out_x.reshape(-1, 1), out_y.reshape(-1, 1)), axis=1)
+
+
+class AutoTrainer():
+    def __init__(self,
+                 changeList,
+                 paramName,
+                 mainFunc,
+                 deviceList=[4, 5, 6, 7],
+                 poolNumber=4,
+                 name='AutoTrainer'):
+        self.paramName = paramName
+        self.mainFunc = mainFunc
+        self.changeList = changeList
+        self.deviceList = deviceList
+        self.poolNumber = poolNumber
+        self.name = name
+
+        self.loopList = list(product(*tuple(changeList)))
+        # print(self.loopList)
+        # input()
+
+    def Run(self, ):
+
+        poolLeftNumber = self.poolNumber - 1
+        # gpunum = 0
+        for i, item in enumerate(self.loopList):
+
+            txtDevice = "CUDA_VISIBLE_DEVICES={} ".format(
+                self.deviceList[i % len(self.deviceList)])
+            txtmain = 'python -u ' + self.mainFunc
+            txtparam = ''
+            for j, param in enumerate(self.paramName):
+                txtparam += '--{} {} '.format(param, item[j])
+            txtname = '--name ' + self.name + txtparam.replace(
+                ' ', '_').replace('--', '_')
+
+            txt = ' '.join([txtDevice, txtmain, txtparam, txtname])
+            print(txt)
+            # input()
+            # os.system(txt)
+            time.sleep(2)
+
+            if poolLeftNumber == 0:
+                print('continue left:', poolLeftNumber)
+                poolLeftNumber = self.poolNumber - 1
+                child = subprocess.Popen(txt, shell=True)
+                child.wait()
+                # subprocess.Popen()
+            else:
+                print('wait left:', poolLeftNumber)
+                child = subprocess.Popen(txt, shell=True)
+                # child.wait(2)
+                poolLeftNumber -= 1

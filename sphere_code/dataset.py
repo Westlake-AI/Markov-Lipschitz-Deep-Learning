@@ -257,10 +257,10 @@ def LoadData(
         test_data, test_labels = create_sphere_dataset()
 
         train_test_split = train_data.shape[0] * 9//10
-        train_data = torch.tensor(train_data).to(device)[:train_test_split]
-        train_label = torch.tensor(train_label).to(device)[:train_test_split]
-        test_data = torch.tensor(test_data).to(device)[train_test_split:]
-        test_labels = torch.tensor(test_labels).to(device)[train_test_split:]
+        train_data = torch.tensor(train_data).to(device)[:7500]
+        train_label = torch.tensor(train_label).to(device)[:7500]
+        test_data = torch.tensor(test_data).to(device)[9000:]
+        test_labels = torch.tensor(test_labels).to(device)[9000:]
     if dataname == 'sphere5500':
         train_data, train_label = create_sphere_dataset5500(seed=42)
         test_data, test_labels = create_sphere_dataset5500(seed=42)

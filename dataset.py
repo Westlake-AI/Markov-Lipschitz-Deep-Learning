@@ -48,7 +48,7 @@ def dsphere(n=100, d=2, r=1, noise=None, ambient=None):
 
     return data
 
-def create_sphere_dataset5500(n_samples=500, d=100, bigR=25, n_spheres=11, r=5, seed=42):
+def create_sphere_dataset5500(n_samples=1000, d=100, bigR=25, n_spheres=11, r=5, seed=42):
     np.random.seed(42)
 
     # it seemed that rescaling the shift variance by sqrt of d lets big sphere stay around the inner spheres
@@ -151,7 +151,7 @@ def LoadData(data_name='SwissRoll', data_num=1500, seed=0, noise=0.0, device=tor
         ).targets
 
     if data_name == 'Spheres5500':
-        train_data, train_label = create_sphere_dataset5500(n_samples=500, seed=seed, bigR=25)
+        train_data, train_label = create_sphere_dataset5500(n_samples=1500, seed=seed, bigR=25)
 
     # Put the data to device
     train_data = torch.tensor(train_data).to(device)[:data_num]
