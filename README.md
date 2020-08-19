@@ -30,6 +30,11 @@ This is a PyTorch implementation of the
 ```
 
 The main features of MLDL for manifold learning and generation in comparison to other popular methods are summarized below:
+<style>
+table {
+margin: auto;
+}
+</style>
 
 |                                            | MLDL(ours) | AE/TopoAE | MLLE | ISOMAP | t-SNE |
 | :----------------------------------------- | :--------: | :-------: | :--: | :----: | :--: |
