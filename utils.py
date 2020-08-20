@@ -213,7 +213,7 @@ class GIFPloter():
         plt.close() 
 
 
-def GetIndicator(data, latent, lat=None, dataset='None'):
+def CompPerformMetrics(data, latent, lat=None, dataset='None'):
 
     """
     function used to evaluate metrics

@@ -113,7 +113,7 @@ def LoadData(data_name='SwissRoll', data_num=1500, seed=0, noise=0.0, device=tor
         train_data = train_data / 2
 
     # Load 7Mnist Dataset
-    if data_name == '7MNIST':
+    if data_name == 'MNIST_7':
 
         train_data = torchvisiondatasets.MNIST(
             '~/data', train=True, download=True,
@@ -138,7 +138,7 @@ def LoadData(data_name='SwissRoll', data_num=1500, seed=0, noise=0.0, device=tor
             train_label = train_label[mask][data_num:data_num*2]
 
     # Load 10Mnist Dataset
-    if data_name == '10MNIST':
+    if data_name == 'MNIST_10':
 
         train_data = torchvisiondatasets.MNIST(
             '~/data', train=True, download=True,

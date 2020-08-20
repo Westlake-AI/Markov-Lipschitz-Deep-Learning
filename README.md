@@ -72,7 +72,7 @@ The code includes the following modules:
 * eval.py -- Calculate performance metrics from results, each being the average of 10 seeds
 * utils.py  
   * GIFPloter() -- Auxiliary tool for online plot
-  * GetIndicator() -- Auxiliary tool for evaluating metric 
+  * CompPerformMetrics() -- Auxiliary tool for evaluating metric 
   * Sampling() -- Sampling in the latent space for generating new data on the learned manifold 
 
 ## Running the code
@@ -103,7 +103,7 @@ python main.py -MultiRun
   python eval.py -M ML-Enc
   python eval.py -M ML-AE
   ```
-The evaluation metrics are available in `./pic/indicators.csv`
+The evaluation metrics are available in `./pic/PerformMetrics.csv`
 
 6. To test the generalization to unseen data
   ```

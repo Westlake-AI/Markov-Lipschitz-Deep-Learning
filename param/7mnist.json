@@ -2,7 +2,7 @@
   "name": null,
   "ParamPath": "None",
   "Mode": "ML-AE",
-  "DATASET": "7MNIST",
+  "DATASET": "MNIST_10",
   "LEARNINGRATE": 0.001,
   "BATCHSIZE": 8000,
   "RegularB": 2.2,

@@ -1,7 +1,7 @@
 import csv
 import argparse
 import numpy as np
-from utils import GetIndicator
+from utils import CompPerformMetrics
 
 if __name__ == "__main__":
 
@@ -19,10 +19,10 @@ if __name__ == "__main__":
 
         if args.mode == 'ML-Enc':
             data9 = np.loadtxt(path + '9.txt')
-            indicator = GetIndicator(data=data0, latent=data9, lat=[data8])
+            indicator = CompPerformMetrics(data=data0, latent=data9, lat=[data8])
         if args.mode == 'ML-AE':
             data18 = np.loadtxt(path + '18.txt')
-            indicator = GetIndicator(data=data0, latent=data18, lat=[data8, data11])    
+            indicator = CompPerformMetrics(data=data0, latent=data18, lat=[data8, data11])    
 
         out_seeds.append(np.array(list(indicator.values())))
         print(indicator)
@@ -31,7 +31,7 @@ if __name__ == "__main__":
     out_seeds = out_seeds.mean(axis=0)
 
     # Save metrics results to a csv file
-    outFile = open('./pic/indicators.csv','a+', newline='')
+    outFile = open('./pic/PerformMetrics.csv','a+', newline='')
     writer = csv.writer(outFile, dialect='excel')
 
     names = []
