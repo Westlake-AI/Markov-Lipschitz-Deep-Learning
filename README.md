@@ -34,8 +34,8 @@ The main features of MLDL for manifold learning and generation in comparison to 
 |                                            | MLDL(ours) | AE/TopoAE | MLLE | ISOMAP | t-SNE |
 | :----------------------------------------- | :--------: | :-------: | :--: | :----: | :--: |
 | Manifold Learning without decoder          |    Yes     |    No     | Yes  |  Yes   | Yes  |
-| Learned NLDR applicable to test data       |    Yes     |    Yes    |  No  |   No   |  No  |
-| Able to generate data of learned manifolds |    Yes     |    No     |  No  |   No   |  No  |
+| Learned NLDR model applicable to test data |    Yes     |    Yes    |  No  |   No   |  No  |
+| Able to generate data of learned manifold  |    Yes     |    No     |  No  |   No   |  No  |
 
 The code includes the following modules:
 * Datasets (Swiss Roll, S-Curve, MNIST, Spheres)
