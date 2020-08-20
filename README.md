@@ -31,11 +31,14 @@ This is a PyTorch implementation of the
 
 The main features of MLDL for manifold learning and generation in comparison to other popular methods are summarized below:
 
-  <img src='./figs/MLDL_Features.png' width="800">
-
+|                                            | MLDL(ours) | AE/TopoAE | MLLE | ISOMAP | t-SNE |
+| :----------------------------------------- | :--------: | :-------: | :--: | :----: | :--: |
+| Manifold Learning without decoder          |    Yes     |    No     | Yes  |  Yes   | Yes  |
+| Learned NLDR model applicable to test data |    Yes     |    Yes    |  No  |   No   |  No  |
+| Able to generate data of learned manifold  |    Yes     |    No     |  No  |   No   |  No  |
 
 The code includes the following modules:
-* Datasets (Swiss rool, S-Curve, MNIST, Spheres)
+* Datasets (Swiss Roll, S-Curve, MNIST, Spheres)
 * Training for ML-Enc and ML-AE (ML-Enc + ML-Dec)
 * Test for manifold learning (ML-Enc) 
 * Test for manifold generation (ML-Dec) 
@@ -91,7 +94,7 @@ The code includes the following modules:
 python main.py -MultiRun
   ```
 
-4. To choose a dataset from SwissRoll, Scurve, 7MNIST, 10MNIST and Spheres5500
+4. To choose a dataset among SwissRoll, Scurve, MNIST_7, MNIST_10, Spheres5500 and Spheres10000
 
   ```
   python main.py -D "dataset name"
