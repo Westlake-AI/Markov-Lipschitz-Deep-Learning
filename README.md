@@ -94,7 +94,7 @@ The code includes the following modules:
 python main.py -MultiRun
   ```
 
-4. To choose a dataset from SwissRoll, Scurve, 7MNIST, 10MNIST and Spheres5500
+4. To choose a dataset among SwissRoll, Scurve, MNIST_7, MNIST_10, Spheres5500 and Spheres10000
 
   ```
   python main.py -D "dataset name"
