@@ -107,7 +107,7 @@ The evaluation metrics are available in `./pic/PerformMetrics.csv`
   ```
   python main.py -D "dataset name"
   ```
-​       To choose a dataset Spheres5500 for ML-Enc
+​       To choose a dataset Spheres5500 and Spheres10000 for ML-Enc
 
   ```
   python main.py -D "dataset name"
