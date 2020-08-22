@@ -1,5 +1,5 @@
 import argparse
-# import os
+import os
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -159,13 +159,13 @@ def PlotLatenSpace(model, batch_size, device, datas, labels, da=0, txt='no name'
     plt.close()
 
     if param['Debuginfo']:
-        path = 'pic/gif'+param['DATASET']+'/'
+        path = 'pic/'+param['DATASET']+'/'
         da.AnalisisInfo(path, filename+txt)
     # visdomtool.ShowImg(path, model.model_name+name)
 
     # np.save('data{}.npy', datas.detach().cpu().numpy())
-    np.save('gif10000/latent{}.npy'.format(txt), latent_point,)
-    np.save('gif10000/label_point{}.npy'.format(txt), label_point)
+    np.save('pic/{}/latent{}.npy'.format(param['DATASET'], txt), latent_point,)
+    np.save('pic/{}/label_point{}.npy'.format(param['DATASET'], txt), label_point)
     
     # plt.figure()
     # clist = ['slategrey', 'lightseagreen', 'blue', 'darkgoldenrod', 'darkmagenta', 'black', 'darkgreen',
@@ -187,7 +187,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("-D", "--DATASET", default='sphere',
                         type=str, choices=[
-                            'sphere', 'sphere5500', 'sphere10000',
+                            'sphere', 'Spheres5500', 'Spheres10000',
                             'mnist', 'Fmnist',
                         ])
     parser.add_argument("-R", "--LEARNINGRATE", default=1e-3, type=float)
@@ -198,7 +198,7 @@ if __name__ == '__main__':
     parser.add_argument(
         "-Ri", "--RATIO", default=[1.0, 1.0, 0], type=float)
     parser.add_argument("-E", "--EPOCHS", default=1000, type=int)
-    parser.add_argument("-P", "--PlotForloop", default=4, type=int)
+    parser.add_argument("-P", "--PlotForloop", default=100, type=int)
     parser.add_argument("-S", "--SSS", default=0, type=int)
     parser.add_argument("-ML", "--MultiLayerLoss", default=False, type=bool)
     parser.add_argument("-DI", "--Debuginfo", default=False, type=bool)
@@ -216,6 +216,8 @@ if __name__ == '__main__':
     print(test_data.shape)
     print(train_data.shape)
 
+    if not os.path.exists("pic/{}/".format(param['DATASET'])):
+        os.makedirs("pic/{}/".format(param['DATASET']))
 
     In_DIM = train_data.view(train_data.shape[0], -1).shape[1]
     Model = model.MAE2(param['ZDIM'], In_DIM=In_DIM, param=param).to(device)

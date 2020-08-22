@@ -19,8 +19,8 @@
   ],
   "Epsilon": 2,
   "MAEK": 15,
-  "EPOCHS": 2000,
-  "PlotForloop": 100,
+  "EPOCHS": 10000,
+  "PlotForloop": 1000,
   "SEED": 42,
   "NetworkStructure": [
     101,
@@ -29,5 +29,6 @@
     2
   ],
   "Noise": 0.0,
-  "Train_MultiRun": false
+  "Train_MultiRun": false,
+  "Visualization": false
 }

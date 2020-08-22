@@ -1,26 +1,26 @@
 {
-  "name": null,
+  "name": "MLDL_MNIST_N8000_Visualization",
   "ParamPath": "None",
-  "Mode": "ML-AE",
-  "DATASET": "MNIST_10",
+  "Mode": "Test",
+  "DATASET": "MNIST",
   "LEARNINGRATE": 0.001,
   "BATCHSIZE": 8000,
-  "RegularB": 3,
+  "RegularB": 2.2,
   "N_Dataset": 8000,
   "GradualChanging": [
     10000,
     10000
   ],
   "ratio": [
-    0.0,
+    1.0,
     1.0,
     0.0,
-    2
+    200
   ],
   "Epsilon": 0.23,
-  "MAEK": 15,
+  "MAEK": 5,
   "EPOCHS": 1000,
-  "PlotForloop": 100,
+  "PlotForloop": 500,
   "SEED": 0,
   "NetworkStructure": [
     784,
@@ -28,8 +28,9 @@
     500,
     250,
     100,
-    25
+    2
   ],
   "Noise": 0.0,
-  "Train_MultiRun": false
+  "Train_MultiRun": false,
+  "Visualization": true
 }

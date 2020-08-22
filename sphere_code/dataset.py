@@ -252,7 +252,7 @@ def LoadData(
         ).targets
         print(train_data.max())
 
-    if dataname == 'sphere':
+    if dataname == 'Spheres10000':
         train_data, train_label = create_sphere_dataset()
         test_data, test_labels = create_sphere_dataset()
 
@@ -261,7 +261,7 @@ def LoadData(
         train_label = torch.tensor(train_label).to(device)[:7500]
         test_data = torch.tensor(test_data).to(device)[9000:]
         test_labels = torch.tensor(test_labels).to(device)[9000:]
-    if dataname == 'sphere5500':
+    if dataname == 'Spheres5500':
         train_data, train_label = create_sphere_dataset5500(seed=42)
         test_data, test_labels = create_sphere_dataset5500(seed=42)
 

@@ -2,10 +2,10 @@
   "name": null,
   "ParamPath": "None",
   "Mode": "ML-AE",
-  "DATASET": "MNIST_10",
+  "DATASET": "MNIST",
   "LEARNINGRATE": 0.001,
   "BATCHSIZE": 8000,
-  "RegularB": 2.2,
+  "RegularB": 3,
   "N_Dataset": 8000,
   "GradualChanging": [
     10000,
@@ -15,12 +15,12 @@
     0.0,
     1.0,
     0.0,
-    110
+    2
   ],
   "Epsilon": 0.23,
   "MAEK": 15,
-  "EPOCHS": 2000,
-  "PlotForloop": 200,
+  "EPOCHS": 1000,
+  "PlotForloop": 100,
   "SEED": 0,
   "NetworkStructure": [
     784,
@@ -28,8 +28,9 @@
     500,
     250,
     100,
-    2
+    25
   ],
   "Noise": 0.0,
-  "Train_MultiRun": false
+  "Train_MultiRun": false,
+  "Visualization": false
 }

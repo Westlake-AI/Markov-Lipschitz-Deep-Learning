@@ -112,8 +112,8 @@ def LoadData(data_name='SwissRoll', data_num=1500, seed=0, noise=0.0, device=tor
         train_data, train_label = make_s_curve(n_samples=data_num, noise=noise, random_state=seed)
         train_data = train_data / 2
 
-    # Load 7Mnist Dataset
-    if data_name == 'MNIST_7':
+    # Load Mnist Dataset
+    if data_name == 'MNIST':
 
         train_data = torchvisiondatasets.MNIST(
             '~/data', train=True, download=True,
@@ -124,30 +124,12 @@ def LoadData(data_name='SwissRoll', data_num=1500, seed=0, noise=0.0, device=tor
             transform=transforms.ToTensor()
         ).targets
 
-        #Select 7 number in MNIST
-        discard = [2, 8, 9]
-        mask = train_label >= 0
-        for num in discard:
-            mask = mask & (train_label != num)
-            
         if not test:
-            train_data = train_data[mask][:data_num]
-            train_label = train_label[mask][:data_num]
+            train_data = train_data[:data_num]
+            train_label = train_label[:data_num]
         else:
-            train_data = train_data[mask][data_num:data_num*2]
-            train_label = train_label[mask][data_num:data_num*2]
-
-    # Load 10Mnist Dataset
-    if data_name == 'MNIST_10':
-
-        train_data = torchvisiondatasets.MNIST(
-            '~/data', train=True, download=True,
-            transform=transforms.ToTensor()
-        ).data.float().view(-1, 28*28)/255
-        train_label = torchvisiondatasets.MNIST(
-            '~/data', train=True, download=True,
-            transform=transforms.ToTensor()
-        ).targets
+            train_data = train_data[data_num:data_num*2]
+            train_label = train_label[data_num:data_num*2]
 
     if data_name == 'Spheres5500':
         train_data, train_label = create_sphere_dataset5500(n_samples=1500, seed=seed, bigR=25)

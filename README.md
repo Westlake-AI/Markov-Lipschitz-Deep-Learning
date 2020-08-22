@@ -94,19 +94,30 @@ The code includes the following modules:
 python main.py -MultiRun
   ```
 
-4. To choose a dataset among SwissRoll, Scurve, MNIST_7, MNIST_10, Spheres5500 and Spheres10000
-
-  ```
-  python main.py -D "dataset name"
-  ```
-
-5. To get the metrics for ML-Enc and ML-AE
+4. To get the metrics for ML-Enc and ML-AE
 
   ```
   python eval.py -M ML-Enc
   python eval.py -M ML-AE
   ```
 The evaluation metrics are available in `./pic/PerformMetrics.csv`
+
+5. To choose a dataset among SwissRoll, Scurve and MNIST for ML-Enc and ML-AE
+
+  ```
+  python main.py -D "dataset name"
+  ```
+​       To choose a dataset Spheres5500 for ML-Enc
+
+  ```
+  python main.py -D "dataset name"
+  ```
+​       To choose a dataset among Spheres5500 and Spheres10000 for ML-AE
+
+  ```
+  cd sphere_code
+  python main.py -D "dataset name"
+  ```
 
 6. To test the generalization to unseen data
   ```

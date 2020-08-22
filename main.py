@@ -164,7 +164,7 @@ def InlinePlot(model, batch_size, datas, labels, path, name, indicator=False, mo
             label_point = np.concatenate((label_point, label.cpu().detach().numpy()), axis=0)
 
     # Plotting a new fig for the current epoch
-    if param['DATASET'] != 'MNIST_10':
+    if param['DATASET'] != 'MNIST' or param['Visualization'] == True:
         gif_ploter.AddNewFig(
             latent_point, 
             label_point,
@@ -226,7 +226,7 @@ def SetParam():
     parser.add_argument("-N", "--name", default=None, type=str)   # File names where data and figs are stored
     parser.add_argument("-PP", "--ParamPath", default='None', type=str)   # Path for an existing parameter
     parser.add_argument("-M", "--Mode", default='ML-AE', type=str)
-    parser.add_argument("-D", "--DATASET", default='SwissRoll', type=str, choices=['SwissRoll', 'SCurve', 'MNIST_7', 'MNIST_10', 'Spheres5500'])
+    parser.add_argument("-D", "--DATASET", default='SwissRoll', type=str, choices=['SwissRoll', 'SCurve', 'MNIST', 'Spheres5500'])
     parser.add_argument("-LR", "--LEARNINGRATE", default=1e-3, type=float)
     parser.add_argument("-B", "--BATCHSIZE", default=800, type=int)
     parser.add_argument("-RB", "--RegularB", default=3, type=float)   # Boundary parameters for push-away Loss
@@ -241,12 +241,13 @@ def SetParam():
     parser.add_argument("-NS", "--NetworkStructure", default=[3, 100, 100, 100, 3, 2], type=int, nargs='+')
     parser.add_argument("-Noise", "--Noise", default=0.0, type=float)   # Noise added to the generated data
     parser.add_argument("-MultiRun", "--Train_MultiRun", default=False, action='store_true')
+    parser.add_argument("-Visualization", "--Visualization", default=False, action='store_true')
     args = parser.parse_args()
 
-    if args.DATASET == 'MNIST_7':
-        args.ParamPath = './param/mnist_7.json'
-    if args.DATASET == 'MNIST_10':
-        args.ParamPath = './param/mnist_10.json'
+    if args.DATASET == 'MNIST' and args.Visualization == False:
+        args.ParamPath = './param/mnist_25.json'
+    if args.DATASET == 'MNIST' and args.Visualization == True:
+        args.ParamPath = './param/mnist_2.json'
     if args.DATASET == 'Spheres5500':
         args.ParamPath = './param/spheres5500.json'
     if args.ParamPath is not 'None':
@@ -362,7 +363,7 @@ if __name__ == '__main__':
 
         # Plotting the final results and evaluating the metrics
         InlinePlot(Model, param['BATCHSIZE'], train_data, train_label, path, name='Train', indicator=True, mode=param['Mode'])
-        if param['DATASET'] != 'MNIST_10':
+        if param['DATASET'] != 'MNIST' or param['Visualization'] == True:
             gif_ploter.SaveGIF(path=path)
 
         # Testing the generalizability of the model to out-of-samples
