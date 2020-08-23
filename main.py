@@ -283,11 +283,8 @@ def SetModel(param):
 def Train_MultiRun():
     # Combination of multiple parallel training parameters (only SEED is set below, different parameters can be set as needed)
     cmd=[]
-    cmd.append('CUDA_VISIBLE_DEVICES={} '+'python main.py -D Spheres5500')
-    cmd.append('CUDA_VISIBLE_DEVICES={} '+'python main.py -D MNIST')
-    cmd.append('CUDA_VISIBLE_DEVICES={} '+'python main.py -D MNIST -Visualization')
     for i in range(10):
-        cmd.append('CUDA_VISIBLE_DEVICES={} '+'python main.py -SD {seed} -D SCurve'.format(seed=i))
+        cmd.append('CUDA_VISIBLE_DEVICES={} '+'python main.py -SD {seed}'.format(seed=i))
 
     signal.signal(signal.SIGTERM, term)
     gpustate=Manager().dict({str(i):True for i in range(1,8)})
