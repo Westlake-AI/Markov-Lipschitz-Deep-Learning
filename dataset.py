@@ -7,7 +7,7 @@ from torchvision import transforms
 from torchvision import datasets as torchvisiondatasets
 
 # shuffling the data to get an index of the individual batches
-class SampleIndexGenerater():
+class SampleIndexGenerator():
     def __init__(self, data, batch_size):
 
         self.num_train_sample = data.shape[0]

@@ -20,7 +20,7 @@ parser = argparse.ArgumentParser(description="author: CAIRI")
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 
-def Train(model, loss, epoch, train_data, train_label, sample_index, batch_size):
+def Train(model, loss, epoch, train_data, train_label, index_generator, batch_size):
 
     """
     Train the model for one loop.
@@ -31,13 +31,13 @@ def Train(model, loss, epoch, train_data, train_label, sample_index, batch_size)
         epoch {int} -- current epoch
         train_data {tensor} -- the train data
         train_label {tensor} -- the train label, for unsuprised method, it is only used in plot figs
-        sample_index {class} -- an index generator used for training
+        index_generator {class} -- an index generator used for training
         batch_size {int} -- batch size
     """
 
     model.train()
     loss.SetEpoch(epoch)
-    sample_index.Reset()
+    index_generator.Reset()
 
     train_loss_sum = [0, 0, 0, 0]
     num_train_sample = train_data.shape[0]
@@ -45,7 +45,7 @@ def Train(model, loss, epoch, train_data, train_label, sample_index, batch_size)
 
     for batch_idx in torch.arange(num_batch):
 
-        sample_index = sample_index.CalSampleIndex(batch_idx)
+        sample_index = index_generator.CalSampleIndex(batch_idx)
         data = train_data[sample_index].float()
         label = train_label[sample_index]
 
@@ -283,8 +283,11 @@ def SetModel(param):
 def Train_MultiRun():
     # Combination of multiple parallel training parameters (only SEED is set below, different parameters can be set as needed)
     cmd=[]
+    cmd.append('CUDA_VISIBLE_DEVICES={} '+'python main.py -D Spheres5500')
+    cmd.append('CUDA_VISIBLE_DEVICES={} '+'python main.py -D MNIST')
+    cmd.append('CUDA_VISIBLE_DEVICES={} '+'python main.py -D MNIST -Visualization')
     for i in range(10):
-        cmd.append('CUDA_VISIBLE_DEVICES={} '+'python main.py -SD {seed}'.format(seed=i))
+        cmd.append('CUDA_VISIBLE_DEVICES={} '+'python main.py -SD {seed} -D SCurve'.format(seed=i))
 
     signal.signal(signal.SIGTERM, term)
     gpustate=Manager().dict({str(i):True for i in range(1,8)})
@@ -348,12 +351,12 @@ if __name__ == '__main__':
         optimizer_dec = torch.optim.Adam([{'params': [param for name, param in Model.named_parameters() if
                                             any([s in name for s in param_dec])]}], lr=param['LEARNINGRATE'])
 
-        sample_index = dataset.SampleIndexGenerater(train_data, param['BATCHSIZE'])
+        index_generator = dataset.SampleIndexGenerator(train_data, param['BATCHSIZE'])
         gif_ploter = GIFPloter(param, Model)
 
         # Start training
         for epoch in range(param['EPOCHS'] + 1):
-            Train(Model, loss, epoch, train_data, train_label, sample_index, param['BATCHSIZE'])
+            Train(Model, loss, epoch, train_data, train_label, index_generator, param['BATCHSIZE'])
 
             if epoch % param['PlotForloop'] == 0:
                 name = 'Epoch_' + str(epoch).zfill(5)
