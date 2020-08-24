@@ -204,6 +204,6 @@ The results are available in `./pic/file_name/Generation.png`
 </p>
 
 ## Feedback
-If you need any more information about our work or have any issue about the implementation, please feel free to contact us by email:  
+If you have any issue about the implementation, please feel free to contact us by email:  
 * Zelin Zang: zangzelin@westlakeedu.cn
 * Lirong Wu: wulirong@westlake.edu.cn
