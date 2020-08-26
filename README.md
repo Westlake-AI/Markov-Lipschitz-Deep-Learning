@@ -142,7 +142,7 @@ The results are available in `./pic/file_name/Generation.png`
   <img src='./figs/swiss roll.png'  width="700">
 </p>
 
-* MNIST
+* MNIST (10 digits)
 
 <p align="center">
   <img src='./figs/MNIST-results.png'  width="400" >
