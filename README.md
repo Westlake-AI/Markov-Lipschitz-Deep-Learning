@@ -31,11 +31,18 @@ This is a PyTorch implementation of the
 
 The main features of MLDL for manifold learning and generation in comparison to other popular methods are summarized below:
 
-|                                            | MLDL(ours) | AE/TopoAE | MLLE | ISOMAP | t-SNE |
-| :----------------------------------------- | :--------: | :-------: | :--: | :----: | :--: |
-| Manifold Learning without decoder          |    Yes     |    No     | Yes  |  Yes   | Yes  |
-| Learned NLDR model applicable to test data |    Yes     |    Yes    |  No  |   No   |  No  |
-| Able to generate data of learned manifold  |    Yes     |    No     |  No  |   No   |  No  |
+The main features of MLDL for manifold learning and generation in comparison to other popular methods are summarized below:
+
+|                                               | MLDL(ours)		| AE/TopoAE 	| MLLE 	| ISOMAP 	| t-SNE	|
+| :----------------------------------------- 	| :--------:		| :-------: 	| :---: | :----: 	| :---: |
+| Manifold Learning without decoder          	|    Yes     		|    No     	| Yes  	|   Yes   	| Yes  	|
+| Learned NLDR model applicable to test data 	|    Yes     		|    Yes    	|  No  	|   No   	|  No  	|
+| Able to generate data of learned manifold  	|    Yes     		|    No     	|  No  	|   No   	|  No  	|
+| Compatible with other DL frameworks           |    Yes     		|    No     	|  No  	|   No   	|  No  	|	
+| Scalable to large-scale datasets              |    Yes     		|    Yes     	|  No  	|   No   	|  No  	|
+
+
+
 
 The code includes the following modules:
 * Datasets (Swiss Roll, S-Curve, MNIST, Spheres)
