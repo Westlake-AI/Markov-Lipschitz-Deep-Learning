@@ -48,27 +48,40 @@ def Train(model, loss, epoch, train_data, train_label, index_generator, batch_si
         sample_index = index_generator.CalSampleIndex(batch_idx)
         data = train_data[sample_index].float()
         label = train_label[sample_index]
+        if 'Spheres' in param['DATASET'] and param['Mode'] == 'ML-AE':
+            optimizer.zero_grad()
+            data = data.to(device)
+            label = label.to(device)
+            train_info = model(data)
+            loss_list = loss.CalLosses(train_info)
 
-        optimizer_enc.zero_grad()
+            for i, loss_item in enumerate(loss_list):
+                loss_item.backward(retain_graph=True)
+                train_loss_sum[i] += loss_item.item()
 
-        # Add data to device and forward
-        data = data.to(device)
-        label = label.to(device)
-        train_info = model(data)
-        loss_list = loss.CalLosses(train_info)
+            optimizer.step()
 
-        for i, loss_item in enumerate(loss_list[1:]):
-            loss_item.backward(retain_graph=True)
-            train_loss_sum[i+1] += loss_item.item()
+        else:
+            optimizer_enc.zero_grad()
 
-        optimizer_enc.step()
+            # Add data to device and forward
+            data = data.to(device)
+            label = label.to(device)
+            train_info = model(data)
+            loss_list = loss.CalLosses(train_info)
 
-        optimizer_dec.zero_grad()
-        for i, loss_item in enumerate(loss_list[0:1]):
-            loss_item.backward(retain_graph=True)
-            train_loss_sum[i] += loss_item.item()
+            for i, loss_item in enumerate(loss_list[1:]):
+                loss_item.backward(retain_graph=True)
+                train_loss_sum[i+1] += loss_item.item()
 
-        optimizer_dec.step()
+            optimizer_enc.step()
+
+            optimizer_dec.zero_grad()
+            for i, loss_item in enumerate(loss_list[0:1]):
+                loss_item.backward(retain_graph=True)
+                train_loss_sum[i] += loss_item.item()
+
+            optimizer_dec.step()
 
         print('Train Epoch: {} [{}/{} ({:.0f}%)] \t Loss: {}'.format(
             epoch, 
@@ -170,7 +183,7 @@ def InlinePlot(model, batch_size, datas, labels, path, name, indicator=False, mo
             label_point,
             title = path + '/' + name,
             loss = train_loss_sum,
-            dataset = param['DATASET']
+            dataset = param['DATASET'] + param['Mode']
         )
 
     # Used for metrics evaluation and executed at the completion of the entire training process.
@@ -225,8 +238,8 @@ def SetParam():
     parser = argparse.ArgumentParser()
     parser.add_argument("-N", "--name", default=None, type=str)   # File names where data and figs are stored
     parser.add_argument("-PP", "--ParamPath", default='None', type=str)   # Path for an existing parameter
-    parser.add_argument("-M", "--Mode", default='ML-AE', type=str)
-    parser.add_argument("-D", "--DATASET", default='SwissRoll', type=str, choices=['SwissRoll', 'SCurve', 'MNIST', 'Spheres5500'])
+    parser.add_argument("-M", "--Mode", default='ML-Enc', type=str)
+    parser.add_argument("-D", "--DATASET", default='SwissRoll', type=str, choices=['SwissRoll', 'SCurve', 'MNIST', 'Spheres5500', 'Spheres10000'])
     parser.add_argument("-LR", "--LEARNINGRATE", default=1e-3, type=float)
     parser.add_argument("-B", "--BATCHSIZE", default=800, type=int)
     parser.add_argument("-RB", "--RegularB", default=3, type=float)   # Boundary parameters for push-away Loss
@@ -248,8 +261,12 @@ def SetParam():
         args.ParamPath = './param/mnist_25.json'
     if args.DATASET == 'MNIST' and args.Visualization == True:
         args.ParamPath = './param/mnist_2.json'
-    if args.DATASET == 'Spheres5500':
-        args.ParamPath = './param/spheres5500.json'
+    if args.DATASET == 'Spheres5500' and args.Mode == 'ML-Enc':
+        args.ParamPath = './param/spheres5500_enc.json'
+    if args.DATASET == 'Spheres5500' and args.Mode == 'ML-AE':
+        args.ParamPath = './param/spheres5500_ae.json'
+    if args.DATASET == 'Spheres10000':
+        args.ParamPath = './param/spheres10000_ae.json'
     if args.ParamPath is not 'None':
         jsontxt = open(args.ParamPath, 'r').read()
         param = json.loads(jsontxt)
@@ -283,8 +300,11 @@ def SetModel(param):
 def Train_MultiRun():
     # Combination of multiple parallel training parameters (only SEED is set below, different parameters can be set as needed)
     cmd=[]
-    for i in range(10):
-        cmd.append('CUDA_VISIBLE_DEVICES={} '+'python main.py -SD {seed}'.format(seed=i))
+    cmd.append('CUDA_VISIBLE_DEVICES={} '+'python main.py -D Spheres5500 -M ML-Enc')
+    cmd.append('CUDA_VISIBLE_DEVICES={} '+'python main.py -D Spheres5500 -M ML-AE')
+    cmd.append('CUDA_VISIBLE_DEVICES={} '+'python main.py -D Spheres10000 -M ML-AE')
+    # for i in range(10):
+    #     cmd.append('CUDA_VISIBLE_DEVICES={} '+'python main.py -SD {seed}'.format(seed=i))
 
     signal.signal(signal.SIGTERM, term)
     gpustate=Manager().dict({str(i):True for i in range(1,8)})
@@ -293,7 +313,7 @@ def Train_MultiRun():
 
     # Open multiple threads to perform multiple GPU parallel training
     while idx<len(cmd):
-        for gpuid in range(1,8):
+        for gpuid in range(3,8):
             if gpustate[str(gpuid)]==True:
                 print(idx)
                 gpustate[str(gpuid)]=False
@@ -332,7 +352,11 @@ if __name__ == '__main__':
             test_label = train_label[-5500:]
             train_data = train_data[:-5500]
             train_label = train_label[:-5500]
-            param['BATCHSIZE'] = train_data.shape[0]
+        if param['DATASET'] == 'Spheres10000':
+            test_data = train_data[9000:]
+            test_label = train_label[9000:]
+            train_data = train_data[:7500]
+            train_label = train_label[:7500]
             
         # Init the model
         Model, loss = SetModel(param)
@@ -358,7 +382,7 @@ if __name__ == '__main__':
             if epoch % param['PlotForloop'] == 0:
                 name = 'Epoch_' + str(epoch).zfill(5)
                 InlinePlot(Model, param['BATCHSIZE'], train_data, train_label, path, name, indicator=False)
-                if param['DATASET'] == 'Spheres5500':
+                if 'Spheres' in param['DATASET']:
                     InlinePlot(Model, param['BATCHSIZE'], test_data, test_label, path, 'Test_' + name, indicator=False)
 
         # Plotting the final results and evaluating the metrics

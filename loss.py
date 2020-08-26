@@ -71,7 +71,7 @@ class MLDL_Loss(object):
         s_, indices = torch.sort(d, dim=1)
         indices = indices[:, :k+1]
         kNN_mask = torch.zeros((batch_size, batch_size,), device=self.device).scatter(1, indices, 1)
-        kNN_mask[torch.eye(kNN_mask.shape[0], dtype=bool)] = 0
+        kNN_mask[torch.eye(kNN_mask.shape[0], dtype=int)] = 0
 
         return d, kNN_mask.bool()
 
@@ -98,8 +98,13 @@ class MLDL_Loss(object):
             kNN_latent {tensor} -- the mask to determine the neighborhood for latent layer data
         """
 
-        norml_data = torch.sqrt(torch.tensor(float(data.shape[1])))
-        norml_latent = torch.sqrt(torch.tensor(float(latent.shape[1])))
+        if 'Spheres' in self.args['DATASET'] and self.args['Mode'] == 'ML-AE':
+            kNN_data = kNN_latent + kNN_data
+            norml_data = 1
+            norml_latent = 1
+        else:
+            norml_data = torch.sqrt(torch.tensor(float(data.shape[1])))
+            norml_latent = torch.sqrt(torch.tensor(float(latent.shape[1])))
 
         # Calculate Loss_iso
         D1_1 = (dis_data/norml_data)[kNN_data]
@@ -159,7 +164,7 @@ class MLDL_Loss(object):
 
     def MorphicLossItem(self, data, latent):
 
-        if 'MNIST' in self.args['DATASET']:
+        if 'MNIST' in self.args['DATASET']  or ('Spheres' in self.args['DATASET'] and self.args['Mode'] == 'ML-AE'):
             dis_data, kNN_data  = self.KNNGraph(data)
             dis_latent, kNN_latent = self.KNNGraph(latent)
         else:
@@ -189,7 +194,7 @@ class MLDL_Loss(object):
 
         train_info[0] = train_info[0].view(train_info[0].shape[0], -1)
         loss_ae = self.ReconstructionLoss(train_info[0], train_info[-1])
-        if self.args['DATASET'] != 'Spheres5500':
+        if 'Spheres' not in self.args['DATASET']:
             loss_ae += self.ReconstructionLoss(train_info[2], train_info[-2])
             loss_ae += self.ReconstructionLoss(train_info[4], train_info[-4])
             loss_ae += self.ReconstructionLoss(train_info[6], train_info[-6])

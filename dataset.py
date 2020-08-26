@@ -48,7 +48,46 @@ def dsphere(n=100, d=2, r=1, noise=None, ambient=None):
 
     return data
 
-def create_sphere_dataset5500(n_samples=500, d=100, bigR=25, n_spheres=11, r=5, seed=42):
+def create_sphere_dataset10000(n_samples=500, d=100, n_spheres=11, r=5, seed=42):
+    np.random.seed(seed)
+
+    # it seemed that rescaling the shift variance by sqrt of d lets big sphere stay around the inner spheres
+    variance = 10/np.sqrt(d)
+    shift_matrix = np.random.normal(0, variance, [n_spheres, d+1])
+
+    spheres = []
+    n_datapoints = 0
+    for i in np.arange(n_spheres-1):
+        sphere = dsphere(n=n_samples, d=d, r=r)
+        spheres.append(sphere + shift_matrix[i, :])
+        n_datapoints += n_samples
+
+    # additional big surrounding sphere:
+    n_samples_big = 10*n_samples  # int(n_samples/2)
+    big = dsphere(n=n_samples_big, d=d, r=r*5)
+    spheres.append(big)
+    n_datapoints += n_samples_big
+
+    # create Dataset
+    dataset = np.concatenate(spheres, axis=0)
+
+    labels = np.zeros(n_datapoints)
+    label_index = 0
+    for index, data in enumerate(spheres):
+        n_sphere_samples = data.shape[0]
+        labels[label_index:label_index + n_sphere_samples] = index
+        label_index += n_sphere_samples
+
+    index_seed = np.linspace(0, 10000, num=20, dtype='int16', endpoint=False)
+    arr = np.array([], dtype='int16')
+    for i in range(500):
+        arr = np.concatenate((arr, index_seed+int(i)))
+    dataset = dataset[arr]
+    labels = labels[arr]
+
+    return dataset/22 + 0.5, labels
+
+def create_sphere_dataset5500(n_samples=1500, d=100, bigR=25, n_spheres=11, r=5, seed=42):
     np.random.seed(42)
 
     # it seemed that rescaling the shift variance by sqrt of d lets big sphere stay around the inner spheres
@@ -132,7 +171,9 @@ def LoadData(data_name='SwissRoll', data_num=1500, seed=0, noise=0.0, device=tor
             train_label = train_label[data_num:data_num*2]
 
     if data_name == 'Spheres5500':
-        train_data, train_label = create_sphere_dataset5500(n_samples=1500, seed=seed, bigR=25)
+        train_data, train_label = create_sphere_dataset5500(seed=seed)
+    if data_name == 'Spheres10000':
+        train_data, train_label = create_sphere_dataset10000(seed=seed)
 
     # Put the data to device
     train_data = torch.tensor(train_data).to(device)[:data_num]

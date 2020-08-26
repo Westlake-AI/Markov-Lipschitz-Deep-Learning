@@ -1,34 +1,32 @@
 {
   "name": null,
   "ParamPath": "None",
-  "Mode": "ML-Enc",
-  "DATASET": "MNIST",
-  "LEARNINGRATE": 0.001,
-  "BATCHSIZE": 8000,
+  "Mode": "ML-AE",
+  "DATASET": "Spheres10000",
+  "LEARNINGRATE": 1e-3,
+  "BATCHSIZE": 64,
   "RegularB": 3,
-  "N_Dataset": 8000,
+  "N_Dataset": 10000,
   "GradualChanging": [
-    10000,
-    10000
+    200,
+    400
   ],
   "ratio": [
-    0.0,
+    1.0,
     1.0,
     0.0,
-    2
+    0.0
   ],
-  "Epsilon": 0.23,
-  "MAEK": 15,
+  "Epsilon": 2,
+  "MAEK": 25,
   "EPOCHS": 1000,
   "PlotForloop": 100,
-  "SEED": 0,
+  "SEED": 42,
   "NetworkStructure": [
-    784,
-    1000,
-    500,
-    250,
-    100,
-    25
+    101,
+    88,
+    75,
+    2
   ],
   "Noise": 0.0,
   "Train_MultiRun": false,

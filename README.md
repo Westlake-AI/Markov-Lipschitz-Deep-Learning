@@ -109,23 +109,11 @@ python main.py -MultiRun
   ```
 The evaluation metrics are available in `./pic/PerformMetrics.csv`
 
-5. To choose a dataset among SwissRoll, Scurve and MNIST for ML-Enc and ML-AE
+5. To choose a dataset among SwissRoll, Scurve, MNIST, Spheres5500 and Spheres10000 for tow modes (ML-Enc and ML-AE)
 
   ```
-  python main.py -D "dataset name"
+  python main.py -D "dataset name" -M "mode"
   ```
-​       To choose a dataset Spheres5500 and Spheres10000 for ML-Enc
-
-  ```
-  python main.py -D "dataset name"
-  ```
-​       To choose a dataset among Spheres5500 and Spheres10000 for ML-AE
-
-  ```
-  cd sphere_code
-  python main.py -D "dataset name"
-  ```
-
 6. To test the generalization to unseen data
   ```
   python main.py -M Test
@@ -205,7 +193,7 @@ The results are available in `./pic/file_name/Generation.png`
 ### 5. ML-AE: Evolution of training evolution
 
    The ML-AE training gradually unfolds the manifold from input layer to the latent layer and reconstructs the latent embedding back to data in the input space.
-   
+
 <p align="center">
  <img src='./figs/latent.gif'  width="400" align="middle">
 </p>

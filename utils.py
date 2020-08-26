@@ -79,9 +79,13 @@ class GIFPloter():
         if data_em.shape[1] == 2:
             ax = fig.add_subplot(fig_position0, fig_position1, fig_position2)
             ax.scatter(data_em[:, 0], data_em[:, 1], c=label, s=s, cmap='rainbow')
-            if dataset == 'Spheres5500':
-                ax.set_xlim([-0.22,0.22])
-                ax.set_ylim([-0.22,0.22])
+            if 'Spheres' in dataset:
+                if 'ML-AE' in dataset:
+                    ax.set_xlim([-2, 2])
+                    ax.set_ylim([-2, 2])
+                else:
+                    ax.set_xlim([-0.22, 0.22])
+                    ax.set_ylim([-0.22, 0.22])
             else:
                 plt.axis('equal')
 

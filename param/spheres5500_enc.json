@@ -1,34 +1,32 @@
 {
-  "name": null,
+  "name": "MLDL_Spheres5500_N11000_Enc",
   "ParamPath": "None",
   "Mode": "ML-Enc",
-  "DATASET": "MNIST",
+  "DATASET": "Spheres5500",
   "LEARNINGRATE": 0.001,
-  "BATCHSIZE": 8000,
+  "BATCHSIZE": 5500,
   "RegularB": 3,
-  "N_Dataset": 8000,
+  "N_Dataset": 11000,
   "GradualChanging": [
-    10000,
-    10000
+    200,
+    400
   ],
   "ratio": [
     0.0,
     1.0,
     0.0,
-    2
+    0.0
   ],
-  "Epsilon": 0.23,
+  "Epsilon": 2,
   "MAEK": 15,
-  "EPOCHS": 1000,
-  "PlotForloop": 100,
-  "SEED": 0,
+  "EPOCHS": 10000,
+  "PlotForloop": 1000,
+  "SEED": 42,
   "NetworkStructure": [
-    784,
-    1000,
-    500,
-    250,
-    100,
-    25
+    101,
+    50,
+    25,
+    2
   ],
   "Noise": 0.0,
   "Train_MultiRun": false,
