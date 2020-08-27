@@ -39,7 +39,7 @@ The main features of MLDL for manifold learning and generation in comparison to 
 | Learned NLDR model applicable to test data 	|    Yes     		|    Yes    	|  No  	|   No   	|  No  	|
 | Able to generate data of learned manifold  	|    Yes     		|    No     	|  No  	|   No   	|  No  	|
 | Compatible with other DL frameworks           |    Yes     		|    No     	|  No  	|   No   	|  No  	|	
-| Scalable to large-scale datasets              |    Yes     		|    Yes     	|  No  	|   No   	|  No  	|
+| Scalable to large datasets                    |    Yes     		|    Yes     	|  No  	|   No   	|  No  	|
 
 
 
