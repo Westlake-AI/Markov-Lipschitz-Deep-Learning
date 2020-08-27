@@ -31,8 +31,6 @@ This is a PyTorch implementation of the
 
 The main features of MLDL for manifold learning and generation in comparison to other popular methods are summarized below:
 
-The main features of MLDL for manifold learning and generation in comparison to other popular methods are summarized below:
-
 |                                               | MLDL(ours)		| AE/TopoAE 	| MLLE 	| ISOMAP 	| t-SNE	|
 | :----------------------------------------- 	| :--------:		| :-------: 	| :---: | :----: 	| :---: |
 | Manifold Learning without decoder          	|    Yes     		|    No     	| Yes  	|   Yes   	| Yes  	|
