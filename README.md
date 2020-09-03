@@ -3,7 +3,9 @@
 
 <p align="center">
   <img src='./figs/MLDL.png' width="650">
+<br>The general arechitecture of an MLDL neural network.
 </p>
+
 
 <p align="center">
 <img src='./figs/ML-AE.gif' width="270"  alt="ML-AE Result">
@@ -13,7 +15,10 @@
 <a href="https://github.com/BorgwardtLab/topological-autoencoders/blob/master/animations/vanilla.gif">
         <img src='./figs/vanilla.gif' width="270" alt="Vanilla AE Result">
 </a>
+<br>Comparison of three autoencoders on the Spheres dataset.
 </p>
+
+<br>
 
 This is a PyTorch implementation of the 
   [
