@@ -15,7 +15,7 @@
 <a href="https://github.com/BorgwardtLab/topological-autoencoders/blob/master/animations/vanilla.gif">
         <img src='./figs/vanilla.gif' width="270" alt="Vanilla AE Result">
 </a>
-<br>Comparison of three autoencoders on the Spheres dataset.
+<br>Comparison of training processes of three autoencoders on the Spheres dataset.
 </p>
 
 <br>
