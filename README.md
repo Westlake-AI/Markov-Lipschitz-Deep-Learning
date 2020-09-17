@@ -2,8 +2,8 @@
 # Markov-Lipschitz Deep Learning (MLDL)
 
 <p align="center">
-  <img src='./figs/MLDL.png' width="650">
-<br>The general arechitecture of an MLDL neural network.
+  <img src='./figs/MLDL.jpg' width="800">
+
 </p>
 
 
