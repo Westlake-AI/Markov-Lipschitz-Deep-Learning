@@ -1,12 +1,16 @@
 
 # Markov-Lipschitz Deep Learning (MLDL)
 
-<p align="center">
-  <img src='./figs/MLDL.jpg' width="800">
 
+<p align="center">
+<br>
 </p>
 
+<p align="center">
+  <img src='./figs/MLDL.jpg' width="900">
+</p>
 
+<br>
 <p align="center">
 <img src='./figs/ML-AE.gif' width="270"  alt="ML-AE Result">
 <a href="https://github.com/BorgwardtLab/topological-autoencoders/blob/master/animations/topoae.gif">
