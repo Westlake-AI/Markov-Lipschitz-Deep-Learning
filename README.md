@@ -30,7 +30,7 @@ This is a PyTorch implementation of the
   ](https://arxiv.org/abs/2006.08256)
 :
 ```bibtex
-@article{Li-MarLip-2020,
+@article{Li-MLDL-2020,
   title={Markov-Lipschitz Deep Learning},
   author={Stan Z Li and Zelin Zang and Lirong Wu},
   journal={arXiv preprint arXiv:2006.08256},
@@ -40,7 +40,7 @@ This is a PyTorch implementation of the
 
 The main features of MLDL for manifold learning and generation in comparison to other popular methods are summarized below:
 
-|                                               | MLDL(ours)		| AE/TopoAE 	| MLLE 	| ISOMAP 	| t-SNE	|
+|                                               | MLDL (ours)		| AE/TopoAE 	| MLLE 	| ISOMAP 	| t-SNE	|
 | :----------------------------------------- 	| :--------:		| :-------: 	| :---: | :----: 	| :---: |
 | Manifold Learning without decoder          	|    Yes     		|    No     	| Yes  	|   Yes   	| Yes  	|
 | Learned NLDR model applicable to test data 	|    Yes     		|    Yes    	|  No  	|   No   	|  No  	|
