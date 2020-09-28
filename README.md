@@ -1,10 +1,16 @@
 
 # Markov-Lipschitz Deep Learning (MLDL)
 
+
 <p align="center">
-  <img src='./figs/MLDL.png' width="650">
+<br>
 </p>
 
+<p align="center">
+  <img src='./figs/MLDL.jpg' width="800">
+</p>
+
+<br>
 <p align="center">
 <img src='./figs/ML-AE.gif' width="270"  alt="ML-AE Result">
 <a href="https://github.com/BorgwardtLab/topological-autoencoders/blob/master/animations/topoae.gif">
@@ -13,7 +19,10 @@
 <a href="https://github.com/BorgwardtLab/topological-autoencoders/blob/master/animations/vanilla.gif">
         <img src='./figs/vanilla.gif' width="270" alt="Vanilla AE Result">
 </a>
+<br>Comparison of training processes of three autoencoders on the Spheres dataset.
 </p>
+
+<br>
 
 This is a PyTorch implementation of the 
   [
@@ -21,7 +30,7 @@ This is a PyTorch implementation of the
   ](https://arxiv.org/abs/2006.08256)
 :
 ```bibtex
-@article{Li-MarLip-2020,
+@article{Li-MLDL-2020,
   title={Markov-Lipschitz Deep Learning},
   author={Stan Z Li and Zelin Zang and Lirong Wu},
   journal={arXiv preprint arXiv:2006.08256},
@@ -31,15 +40,13 @@ This is a PyTorch implementation of the
 
 The main features of MLDL for manifold learning and generation in comparison to other popular methods are summarized below:
 
-The main features of MLDL for manifold learning and generation in comparison to other popular methods are summarized below:
-
-|                                               | MLDL(ours)		| AE/TopoAE 	| MLLE 	| ISOMAP 	| t-SNE	|
+|                                               | MLDL (ours)		| AE/TopoAE 	| MLLE 	| ISOMAP 	| t-SNE	|
 | :----------------------------------------- 	| :--------:		| :-------: 	| :---: | :----: 	| :---: |
 | Manifold Learning without decoder          	|    Yes     		|    No     	| Yes  	|   Yes   	| Yes  	|
 | Learned NLDR model applicable to test data 	|    Yes     		|    Yes    	|  No  	|   No   	|  No  	|
 | Able to generate data of learned manifold  	|    Yes     		|    No     	|  No  	|   No   	|  No  	|
 | Compatible with other DL frameworks           |    Yes     		|    No     	|  No  	|   No   	|  No  	|	
-| Scalable to large-scale datasets              |    Yes     		|    Yes     	|  No  	|   No   	|  No  	|
+| Scalable to large datasets                    |    Yes     		|    Yes     	|  No  	|   No   	|  No  	|
 
 
 
@@ -200,5 +207,5 @@ The results are available in `./pic/file_name/Generation.png`
 
 ## Feedback
 If you have any issue about the implementation, please feel free to contact us by email:  
-* Zelin Zang: zangzelin@westlakeedu.cn
+* Zelin Zang: zangzelin@westlake.edu.cn
 * Lirong Wu: wulirong@westlake.edu.cn
