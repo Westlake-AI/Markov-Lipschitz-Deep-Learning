@@ -207,5 +207,5 @@ The results are available in `./pic/file_name/Generation.png`
 
 ## Feedback
 If you have any issue about the implementation, please feel free to contact us by email:  
-* Zelin Zang: zangzelin@westlakeedu.cn
+* Zelin Zang: zangzelin@westlake.edu.cn
 * Lirong Wu: wulirong@westlake.edu.cn
