@@ -48,7 +48,7 @@ def dsphere(n=100, d=2, r=1, noise=None, ambient=None):
 
     return data
 
-def create_sphere_dataset10000(n_samples=500, d=100, n_spheres=11, r=5, seed=42):
+def create_sphere_dataset10000(n_samples=1000, d=100, n_spheres=11, r=5, seed=42):
     np.random.seed(seed)
 
     # it seemed that rescaling the shift variance by sqrt of d lets big sphere stay around the inner spheres
@@ -78,9 +78,9 @@ def create_sphere_dataset10000(n_samples=500, d=100, n_spheres=11, r=5, seed=42)
         labels[label_index:label_index + n_sphere_samples] = index
         label_index += n_sphere_samples
 
-    index_seed = np.linspace(0, 10000, num=20, dtype='int16', endpoint=False)
+    index_seed = np.linspace(0, 20000, num=20, dtype='int16', endpoint=False)
     arr = np.array([], dtype='int16')
-    for i in range(500):
+    for i in range(n_samples):
         arr = np.concatenate((arr, index_seed+int(i)))
     dataset = dataset[arr]
     labels = labels[arr]
