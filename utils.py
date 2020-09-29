@@ -57,7 +57,7 @@ class GIFPloter():
 
 
     # Plotting the results of a single layer in the network based on the input data
-    def PlotOtherLayer(self, fig, data, label, title='', fig_position0=1, fig_position1=1, fig_position2=1, s=1, dataset='None'):
+    def PlotOtherLayer(self, fig, data, label, title='', fig_position0=1, fig_position1=1, fig_position2=1, s=10, dataset='None'):
 
         color_list = []
         for i in range(label.shape[0]):

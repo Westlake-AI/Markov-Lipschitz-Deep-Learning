@@ -246,7 +246,7 @@ def SetParam():
     parser.add_argument("-ND", "--N_Dataset", default=800, type=int)   # The data number used for training
     parser.add_argument("-GC", "--GradualChanging", default=[500, 1000], type=int, nargs='+')   # Range for the gradual changing of push-away Loss
     parser.add_argument("-R", "--ratio", default=[0.2, 1.0, 0.0, 1.0], type=float, nargs='+')   # The weight ratio for loss_ae/loss_iso/loss_angle/loss_push-away
-    parser.add_argument("-EPS", "--Epsilon", default=0.30, type=float)   # The boundary parameters used to determine the neighborhood
+    parser.add_argument("-EPS", "--Epsilon", default=0.23, type=float)   # The boundary parameters used to determine the neighborhood
     parser.add_argument("-MK", "--MAEK", default=15, type=int)
     parser.add_argument("-E", "--EPOCHS", default=10000, type=int)
     parser.add_argument("-P", "--PlotForloop", default=1000, type=int)   # Save data and plot every 1000 epochs
@@ -267,6 +267,8 @@ def SetParam():
         args.ParamPath = './param/spheres5500_ae.json'
     if args.DATASET == 'Spheres10000' and args.Mode == 'ML-Enc':
         args.ParamPath = './param/spheres10000_enc.json'
+    if args.DATASET == 'Spheres10000' and args.Mode == 'ML-AE':
+        args.ParamPath = './param/spheres10000_ae.json'
     if args.ParamPath is not 'None':
         jsontxt = open(args.ParamPath, 'r').read()
         param = json.loads(jsontxt)
