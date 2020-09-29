@@ -160,7 +160,7 @@ The results are available in `./pic/file_name/Generation.png`
   <img src='./figs/sphere5500.png'  width="400" >
 </p>
 
-* Spheres 5500 (data designed by the 
+* Spheres 10000 (data designed by the 
   [
   TopoAE project
   ](https://github.com/BorgwardtLab/topological-autoencoders) )
