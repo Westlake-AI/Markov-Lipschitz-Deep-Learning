@@ -147,17 +147,27 @@ The results are available in `./pic/file_name/Generation.png`
 * MNIST (10 digits)
 
 <p align="center">
-  <img src='./figs/MNIST-results.png'  width="400" >
+  <img src='./figs/mnist.png'  width="400" >
 </p>
 
-* Spheres (data designed by the 
+
+* Spheres 5500 (data designed by the 
   [
   TopoAE project
   ](https://github.com/BorgwardtLab/topological-autoencoders) )
 
 <p align="center">
-  <img src='./figs/Spheres-results.png' align="center">
+  <img src='./figs/sphere5500.png'  width="400" >
 </p>
+
+* Spheres 5500 (data designed by the 
+  [
+  TopoAE project
+  ](https://github.com/BorgwardtLab/topological-autoencoders) )
+
+  <p align="center">
+    <img src='./figs/sphere10000.png'  width="400" >
+  </p>
 
 ### 2. ML-Enc: Performance metrics for dimension reduction on Swiss Roll (800 points) data
 
