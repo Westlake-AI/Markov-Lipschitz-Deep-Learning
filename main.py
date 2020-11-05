@@ -13,6 +13,7 @@ import dataset
 from model import MLDL_model
 from loss import MLDL_Loss
 from utils import *
+import time
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "4"
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
@@ -248,7 +249,7 @@ def SetParam():
     parser.add_argument("-R", "--ratio", default=[0.2, 1.0, 0.0, 1.0], type=float, nargs='+')   # The weight ratio for loss_ae/loss_iso/loss_angle/loss_push-away
     parser.add_argument("-EPS", "--Epsilon", default=0.23, type=float)   # The boundary parameters used to determine the neighborhood
     parser.add_argument("-MK", "--MAEK", default=15, type=int)
-    parser.add_argument("-E", "--EPOCHS", default=10000, type=int)
+    parser.add_argument("-E", "--EPOCHS", default=1000, type=int)
     parser.add_argument("-P", "--PlotForloop", default=1000, type=int)   # Save data and plot every 1000 epochs
     parser.add_argument("-SD", "--SEED", default=0, type=int)   # Seeds used to ensure reproducible results
     parser.add_argument("-NS", "--NetworkStructure", default=[3, 100, 100, 100, 3, 2], type=int, nargs='+')
@@ -349,6 +350,8 @@ if __name__ == '__main__':
             noise=param['Noise'],
             test=False   
         )
+        
+
 
         if param['DATASET'] == 'Spheres5500':
             test_data = train_data[-5500:]
@@ -360,7 +363,15 @@ if __name__ == '__main__':
             test_label = train_label[18500:]
             train_data = train_data[:7500]
             train_label = train_label[:7500]
-            
+        
+        
+        train_data_numpy = train_data.cpu().numpy()
+        train_label_numpy = train_label.cpu().numpy()
+        import numpy as np
+        np.save('save{}data'.format(param['DATASET']), train_data_numpy)
+        np.save('save{}label'.format(param['DATASET']), train_label_numpy)       
+        
+        
         # Init the model
         Model, loss = SetModel(param)
         optimizer = torch.optim.Adam(Model.parameters(), lr=param['LEARNINGRATE'])
@@ -378,6 +389,8 @@ if __name__ == '__main__':
         index_generator = dataset.SampleIndexGenerator(train_data, param['BATCHSIZE'])
         gif_ploter = GIFPloter(param, Model)
 
+        starttime = time.time()
+
         # Start training
         for epoch in range(param['EPOCHS'] + 1):
             Train(Model, loss, epoch, train_data, train_label, index_generator, param['BATCHSIZE'])
@@ -388,11 +401,14 @@ if __name__ == '__main__':
                 if 'Spheres' in param['DATASET']:
                     InlinePlot(Model, param['BATCHSIZE'], test_data, test_label, path, 'Test_' + name, indicator=False)
 
-        # Plotting the final results and evaluating the metrics
-        InlinePlot(Model, param['BATCHSIZE'], train_data, train_label, path, name='Train', indicator=True, mode=param['Mode'])
-        if param['DATASET'] != 'MNIST' or param['Visualization'] == True:
-            gif_ploter.SaveGIF(path=path)
+        endtime = time.time()
+        print(path, 'time', endtime-starttime, file=open('savelog.txt', 'a'))
 
-        # Testing the generalizability of the model to out-of-samples
-        if param['Mode'] == 'Test':
-            Generalization(Model, path)
+        # Plotting the final results and evaluating the metrics
+        # InlinePlot(Model, param['BATCHSIZE'], train_data, train_label, path, name='Train', indicator=True, mode=param['Mode'])
+        # if param['DATASET'] != 'MNIST' or param['Visualization'] == True:
+        #     gif_ploter.SaveGIF(path=path)
+
+        # # Testing the generalizability of the model to out-of-samples
+        # if param['Mode'] == 'Test':
+        #     Generalization(Model, path)

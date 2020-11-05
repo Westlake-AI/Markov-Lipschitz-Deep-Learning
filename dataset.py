@@ -155,11 +155,11 @@ def LoadData(data_name='SwissRoll', data_num=1500, seed=0, noise=0.0, device=tor
     if data_name == 'MNIST':
 
         train_data = torchvisiondatasets.MNIST(
-            '~/data', train=True, download=True,
+            'data', train=True, download=True,
             transform=transforms.ToTensor()
         ).data.float().view(-1, 28*28)/255
         train_label = torchvisiondatasets.MNIST(
-            '~/data', train=True, download=True,
+            'data', train=True, download=True,
             transform=transforms.ToTensor()
         ).targets
 
