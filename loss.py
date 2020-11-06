@@ -179,8 +179,8 @@ class MLDL_Loss(object):
 
         return loss_iso, loss_ang, loss_push_away
 
-
-    def CalLosses(self, train_info):
+    
+    def CalLosses(self, train_info, label=None):
         
         """
         function used to calculate four losses
@@ -191,7 +191,10 @@ class MLDL_Loss(object):
         Outputs:
             loss_list {list} -- four losses: loss_ae, loss_iso, loss_angle, loss_push-away
         """
-
+        if label:
+            celoss = torch.nn.CrossEntropyLoss()
+            ce = celoss(train_info[self.latent_index], label)    
+        
         train_info[0] = train_info[0].view(train_info[0].shape[0], -1)
         loss_ae = self.ReconstructionLoss(train_info[0], train_info[-1])
         if 'Spheres' not in self.args['DATASET']:
@@ -207,4 +210,4 @@ class MLDL_Loss(object):
         for i in range(len(loss_list)):
             loss_list[i] *= self.args['ratio'][i]
 
-        return loss_list
+        return loss_list+ce
