@@ -37,7 +37,8 @@ class MLDL_Loss(object):
         xx = torch.pow(x, 2).sum(1, keepdim=True).expand(m, n)
         yy = torch.pow(y, 2).sum(1, keepdim=True).expand(n, m).t()
         dist = xx + yy
-        dist.addmm_(1, -2, x, y.t())
+        # dist.addmm_(1, -2, x, y.t())
+        dist = torch.addmm(dist, mat1=x, mat2=y.t(),beta=1, alpha=-2)
         d = dist.clamp(min=1e-8).sqrt()
 
         kNN_mask = (d < Epsilon).bool()
@@ -65,7 +66,8 @@ class MLDL_Loss(object):
         xx = torch.pow(x, 2).sum(1, keepdim=True).expand(m, n)
         yy = torch.pow(y, 2).sum(1, keepdim=True).expand(n, m).t()
         dist = xx + yy
-        dist.addmm_(1, -2, x, y.t())
+        # dist.addmm_(1, -2, x, y.t())
+        dist = torch.addmm(dist, mat1=x, mat2=y.t(),beta=1, alpha=-2)
         d = dist.clamp(min=1e-8).sqrt()  # for numerical stabili
 
         s_, indices = torch.sort(d, dim=1)

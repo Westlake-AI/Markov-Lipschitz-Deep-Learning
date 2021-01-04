@@ -73,14 +73,16 @@ def Train(model, loss, epoch, train_data, train_label, index_generator, batch_si
             for i, loss_item in enumerate(loss_list[1:]):
                 loss_item.backward(retain_graph=True)
                 train_loss_sum[i+1] += loss_item.item()
-
             optimizer_enc.step()
 
+            data = data.to(device)
+            label = label.to(device)
+            train_info = model(data)
+            loss_list = loss.CalLosses(train_info)
             optimizer_dec.zero_grad()
             for i, loss_item in enumerate(loss_list[0:1]):
                 loss_item.backward(retain_graph=True)
                 train_loss_sum[i] += loss_item.item()
-
             optimizer_dec.step()
 
         print('Train Epoch: {} [{}/{} ({:.0f}%)] \t Loss: {}'.format(
@@ -335,6 +337,7 @@ def Train_MultiRun():
 
 if __name__ == '__main__':
 
+    torch.autograd.set_detect_anomaly(True)
     param, path = SetParam()
     if param['Train_MultiRun']:
         Train_MultiRun()
